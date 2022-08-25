@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlRefactoringTests", "HtmlRefactoringTests\HtmlRefactoringTests.csproj", "{162ADD65-651D-420E-86B7-23C111F0ADED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlRefactoringWindowsApp", "HtmlRefactoringWindowsApp\HtmlRefactoringWindowsApp.csproj", "{0BF762EC-A9A2-4CDA-B692-216D70114E9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlRefactoringWindowsApp", "HtmlRefactoringWindowsApp\HtmlRefactoringWindowsApp.csproj", "{0BF762EC-A9A2-4CDA-B692-216D70114E9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlRefactoringTests", "HtmlRefactoringTests\HtmlRefactoringTests.csproj", "{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0BF762EC-A9A2-4CDA-B692-216D70114E9B} = {0BF762EC-A9A2-4CDA-B692-216D70114E9B}
+		{7F6510A0-4051-4A52-A94B-B1BE07688620} = {7F6510A0-4051-4A52-A94B-B1BE07688620}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlRefactoringConsole", "HtmlRefactoringConsole\HtmlRefactoringConsole.csproj", "{7F6510A0-4051-4A52-A94B-B1BE07688620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +19,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{162ADD65-651D-420E-86B7-23C111F0ADED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{162ADD65-651D-420E-86B7-23C111F0ADED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{162ADD65-651D-420E-86B7-23C111F0ADED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{162ADD65-651D-420E-86B7-23C111F0ADED}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BF762EC-A9A2-4CDA-B692-216D70114E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BF762EC-A9A2-4CDA-B692-216D70114E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BF762EC-A9A2-4CDA-B692-216D70114E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BF762EC-A9A2-4CDA-B692-216D70114E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F6510A0-4051-4A52-A94B-B1BE07688620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F6510A0-4051-4A52-A94B-B1BE07688620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F6510A0-4051-4A52-A94B-B1BE07688620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F6510A0-4051-4A52-A94B-B1BE07688620}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
