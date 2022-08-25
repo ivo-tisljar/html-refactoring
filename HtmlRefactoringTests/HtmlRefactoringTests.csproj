@@ -21,4 +21,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HtmlRefactoringWindowsApp\HtmlRefactoringWindowsApp.csproj" />
+  </ItemGroup>
+
 </Project>
