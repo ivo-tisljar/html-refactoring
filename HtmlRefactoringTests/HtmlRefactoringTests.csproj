@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HtmlRefactoringWindowsApp\HtmlRefactoringWindowsApp.csproj" />
+    <ProjectReference Include="..\HtmlRefactoringConsole\HtmlRefactoringConsole.csproj" />
   </ItemGroup>
 
 </Project>

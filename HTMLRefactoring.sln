@@ -5,13 +5,12 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlRefactoringWindowsApp", "HtmlRefactoringWindowsApp\HtmlRefactoringWindowsApp.csproj", "{0BF762EC-A9A2-4CDA-B692-216D70114E9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlRefactoringTests", "HtmlRefactoringTests\HtmlRefactoringTests.csproj", "{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlRefactoringTests", "HtmlRefactoringTests\HtmlRefactoringTests.csproj", "{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}"
 	ProjectSection(ProjectDependencies) = postProject
-		{0BF762EC-A9A2-4CDA-B692-216D70114E9B} = {0BF762EC-A9A2-4CDA-B692-216D70114E9B}
 		{7F6510A0-4051-4A52-A94B-B1BE07688620} = {7F6510A0-4051-4A52-A94B-B1BE07688620}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlRefactoringConsole", "HtmlRefactoringConsole\HtmlRefactoringConsole.csproj", "{7F6510A0-4051-4A52-A94B-B1BE07688620}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlRefactoringConsole", "HtmlRefactoringConsole\HtmlRefactoringConsole.csproj", "{7F6510A0-4051-4A52-A94B-B1BE07688620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
