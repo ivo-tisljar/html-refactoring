@@ -27,7 +27,7 @@ namespace HtmlRefactoringConsole
 
         public string AuthorNameWithoutTitles()
         {
-            return AuthorNameWithTitles;
+            return StringUtils.StripTitlesFromName(AuthorNameWithTitles);
         }
 
     }
