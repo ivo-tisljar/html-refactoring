@@ -17,6 +17,7 @@ namespace HtmlRefactoringConsole.Utils
             return paramValue;
         }
 
+        // to-do: keep titles in cionfiguration file and enable crud operations on them
         public static string StripTitlesFromName(string nameWithTitles)
         {
             string[] titles = { "prof", "izv", "doc", "dr", "mr", "sc", "dipl", "mag", "oec", "iur", "univ", "bacc", "ll m", "acca", "inž", "građ",
