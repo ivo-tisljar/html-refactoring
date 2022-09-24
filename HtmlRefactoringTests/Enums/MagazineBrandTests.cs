@@ -1,5 +1,6 @@
 ﻿using HtmlRefactoringConsole;
 using HtmlRefactoringConsole.Enums;
+using System;
 
 namespace HtmlRefactoringTests.Enums
 {
@@ -11,6 +12,8 @@ namespace HtmlRefactoringTests.Enums
             const string label = "RRiF";
 
             const MagazineBrand magazineBrand = MagazineBrand.RRiF;
+
+//assertThat(Month.valueOf("January"), is (notNullValue()));
 
             Assert.Equal(label, magazineBrand.GetLabel());
         }

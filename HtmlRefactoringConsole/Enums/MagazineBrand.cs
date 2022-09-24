@@ -59,7 +59,15 @@ namespace HtmlRefactoringConsole.Enums
 
         public static string GetName(this MagazineBrand magazineBrand)
         {
-            return magazineData[(int)magazineBrand].Name;
+            if (magazineBrand.IsDefined()) {
+                return magazineData[(int)magazineBrand].Name;
+            }
+            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
+        }
+
+        public static bool IsDefined(this MagazineBrand magazineBrand)
+        {
+            return magazineBrand >= MagazineBrand.RRiF && magazineBrand <= MagazineBrand.Obavijesti;
         }
     }
 }

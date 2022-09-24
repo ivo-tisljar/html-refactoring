@@ -12,12 +12,19 @@ Console.WriteLine(">" + nameWithoutTitles + "<");
 string authorNameWithoutTitles = article.AuthorNameWithoutTitles();
 Console.WriteLine(">" + authorNameWithoutTitles + "<");
 
-foreach (MagazineBrand magazineType in Enum.GetValues(typeof(MagazineBrand)))
+foreach (MagazineBrand mBrand in Enum.GetValues(typeof(MagazineBrand)))
 {
-    Console.WriteLine($">{magazineType}<   >{magazineType.GetLeadChar()}<   >{magazineType.GetID()}<   >{magazineType.GetLabel()}<   >{magazineType.GetName()}<");
+    Console.WriteLine($">{mBrand}<   >{mBrand.GetLeadChar()}<   >{mBrand.GetID()}<   >{mBrand.GetLabel()}<   >{mBrand.GetName()}<");
 }
 
-foreach (MagazineType2 magazineType in Enum.GetValues(typeof(MagazineType2)))
+foreach (MagazineType2 mBrand in Enum.GetValues(typeof(MagazineType2)))
 {
-    Console.WriteLine($">{magazineType}<   >{magazineType.GetLeadChar()}<   >{magazineType.GetID()}<   >{magazineType.GetLabel()}<   >{magazineType.GetName()}<");
+    Console.WriteLine($">{mBrand}<   >{mBrand.GetLeadChar()}<   >{mBrand.GetID()}<   >{mBrand.GetLabel()}<   >{mBrand.GetName()}<");
 }
+
+MagazineBrand magBrand = (MagazineBrand)9;
+string magazineBrandName = magBrand.GetName();
+Console.WriteLine(">" + magazineBrandName + "<");
+
+
+
