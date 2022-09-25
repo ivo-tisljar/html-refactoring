@@ -44,22 +44,35 @@ namespace HtmlRefactoringConsole.Enums
 
         public static string GetLeadChar(this MagazineBrand magazineBrand)
         {
-            return magazineData[(int)magazineBrand].LeadChar;
+            if (magazineBrand.IsDefined())
+            {
+                return magazineData[(int)magazineBrand].LeadChar;
+            }
+            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
         }
 
         public static int GetID(this MagazineBrand magazineBrand)
         {
-            return magazineData[(int)magazineBrand].ID;
+            if (magazineBrand.IsDefined())
+            {
+                return magazineData[(int)magazineBrand].ID;
+            }
+            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
         }
 
         public static string GetLabel(this MagazineBrand magazineBrand)
         {
-            return magazineData[(int)magazineBrand].Label;
+            if (magazineBrand.IsDefined())
+            {
+                return magazineData[(int)magazineBrand].Label;
+            }
+            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
         }
 
         public static string GetName(this MagazineBrand magazineBrand)
         {
-            if (magazineBrand.IsDefined()) {
+            if (magazineBrand.IsDefined())
+            {
                 return magazineData[(int)magazineBrand].Name;
             }
             throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
