@@ -1,5 +1,5 @@
-﻿using HtmlRefactoringConsole;
-using HtmlRefactoringConsole.Enums;
+﻿using HtmlRefactoringWindowsApp;
+using HtmlRefactoringWindowsApp.Enums;
 using System;
 
 namespace HtmlRefactoringTests.Enums

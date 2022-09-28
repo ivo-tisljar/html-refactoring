@@ -1,4 +1,4 @@
-﻿using HtmlRefactoringConsole.Utils;
+﻿using HtmlRefactoringWindowsApp.Utils;
 
 namespace HtmlRefactoringTests
 {

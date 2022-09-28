@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HtmlRefactoringConsole.Utils
+namespace HtmlRefactoringWindowsApp.Utils
 {
     public class StringUtils
     {
@@ -22,7 +22,7 @@ namespace HtmlRefactoringConsole.Utils
         {
             string[] titles = { "prof", "izv", "doc", "dr", "mr", "sc", "dipl", "mag", "oec", "iur", "univ", "bacc", "ll m", "acca", "inž", "građ",
                                 "dip", "oecc", "eoc",
-                                "ovl", "rač", "rev", "por", "for", "savj", "struč", "spec", "pred", "i", "v", "š", "soc", "rad", "pravna", "savjetnica", "vis", "šk",
+                                "ovl", "rač", "rev", "por", "for", "savj", "sav", "struč", "spec", "pred", "i", "v", "š", "soc", "rad", "pravna", "savjetnica", "vis", "šk",
                                 "glavni", "urednik", "glavna", "urednica", "zamjenik", "glavne", "urednice", "gl", "ur", "časopisa",
                                 "priredio", "priredila", "pripremio", "pripremila",
                                 "stalni", "sudski", "tumač", "za", "njemački", "jezik", "sutkinja", "općinskoga", "građanskog", "suda", "u", "zagrebu"};

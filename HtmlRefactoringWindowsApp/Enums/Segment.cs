@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HtmlRefactoringConsole.Enums
+namespace HtmlRefactoringWindowsApp.Enums
 {
-    // 
     public enum Segment
     {
         Paragraph = 0,
