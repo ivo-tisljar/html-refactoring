@@ -6,11 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlRefactoringWindowsApp", "HtmlRefactoringWindowsApp\HtmlRefactoringWindowsApp.csproj", "{0BF762EC-A9A2-4CDA-B692-216D70114E9B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlRefactoringTests", "HtmlRefactoringTests\HtmlRefactoringTests.csproj", "{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}"
-	ProjectSection(ProjectDependencies) = postProject
-		{7F6510A0-4051-4A52-A94B-B1BE07688620} = {7F6510A0-4051-4A52-A94B-B1BE07688620}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlRefactoringConsole", "HtmlRefactoringConsole\HtmlRefactoringConsole.csproj", "{7F6510A0-4051-4A52-A94B-B1BE07688620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +21,6 @@ Global
 		{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3660074C-AFAC-41DF-ACF8-ED4474EB05AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F6510A0-4051-4A52-A94B-B1BE07688620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F6510A0-4051-4A52-A94B-B1BE07688620}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F6510A0-4051-4A52-A94B-B1BE07688620}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F6510A0-4051-4A52-A94B-B1BE07688620}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

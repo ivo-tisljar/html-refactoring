@@ -37,7 +37,16 @@ namespace HtmlRefactoringWindowsApp.Enums
 
         public static string GetName(this Segment segment)
         {
-            return segmentData[(int)segment].Name;
+            if (segment.IsDefined())
+            {
+                return segmentData[(int)segment].Name;
+            }
+            throw new ArgumentOutOfRangeException($"Invalid value! Value {segment} is NOT valid for type Segment.");
+        }
+
+        public static bool IsDefined(this Segment segment)
+        {
+            return segment >= Segment.Paragraph && segment <= Segment.Whatever;
         }
     }
 }
