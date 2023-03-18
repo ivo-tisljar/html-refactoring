@@ -8,7 +8,7 @@ namespace HtmlRefactoringWindowsApp.Utils
 {
     public class StringUtils
     {
-        public static string ValidateNotWhiteSpace(string paramValue, string paramName)
+        public static string ValidateNotEmptyOrWhiteSpace(string paramValue, string paramName)
         {
             if (string.IsNullOrWhiteSpace(paramValue))
             {

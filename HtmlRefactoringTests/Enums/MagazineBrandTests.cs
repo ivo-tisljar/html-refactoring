@@ -1,6 +1,7 @@
 ﻿using HtmlRefactoringWindowsApp;
 using HtmlRefactoringWindowsApp.Enums;
 using System;
+using static Xunit.Assert;
 
 namespace HtmlRefactoringTests.Enums
 {
@@ -16,7 +17,7 @@ namespace HtmlRefactoringTests.Enums
                 isDefined &= magazineBrand.IsDefined();
             }
 
-            Assert.True(isDefined);
+            True(isDefined);
         }
 
         [Fact]
@@ -28,7 +29,7 @@ namespace HtmlRefactoringTests.Enums
 
             bool isDefined = prevToMinElement.IsDefined() || succToMaxElement.IsDefined();
 
-            Assert.False(isDefined);
+            False(isDefined);
         }
 
         [Fact]
@@ -36,7 +37,7 @@ namespace HtmlRefactoringTests.Enums
         {
             MagazineBrand succToMaxElement = (MagazineBrand)(Enum.GetValues(typeof(MagazineBrand)).Cast<int>().Max() + 1);
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => succToMaxElement.GetLabel());
+            Throws<ArgumentOutOfRangeException>(() => succToMaxElement.GetLabel());
         }
 
         [Fact]
@@ -46,7 +47,7 @@ namespace HtmlRefactoringTests.Enums
 
             const MagazineBrand magazineBrand = MagazineBrand.RRiF;
 
-            Assert.Equal(label, magazineBrand.GetLabel());
+            Equal(label, magazineBrand.GetLabel());
         }
 
         [Fact]
@@ -56,7 +57,7 @@ namespace HtmlRefactoringTests.Enums
 
             const MagazineBrand magazineBrand = MagazineBrand.PiP;
 
-            Assert.Equal(name, magazineBrand.GetName());
+            Equal(name, magazineBrand.GetName());
         }
 
         [Fact]
@@ -66,7 +67,7 @@ namespace HtmlRefactoringTests.Enums
 
             const MagazineBrand magazineBrand = MagazineBrand.Proracuni;
 
-            Assert.Equal(leadChar, magazineBrand.GetLeadChar());
+            Equal(leadChar, magazineBrand.GetLeadChar());
         }
 
 
@@ -77,7 +78,7 @@ namespace HtmlRefactoringTests.Enums
 
             const MagazineBrand magazineBrand = MagazineBrand.Neprofitni;
 
-            Assert.Equal(id, magazineBrand.GetID());
+            Equal(id, magazineBrand.GetID());
         }
 
     }

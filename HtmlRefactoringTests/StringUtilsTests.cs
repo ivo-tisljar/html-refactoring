@@ -1,9 +1,27 @@
-﻿using HtmlRefactoringWindowsApp.Utils;
+﻿using HtmlRefactoringWindowsApp;
+using HtmlRefactoringWindowsApp.Utils;
+using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
 {
     public class StringUtilsTests
     {
+
+        [Fact]
+        public void WhenValidateEmpty_Throws()
+        {
+            const string paramValue = "";
+
+            Throws<ArgumentOutOfRangeException>(() => StringUtils.ValidateNotEmptyOrWhiteSpace(paramValue, "x"));
+        }
+
+        [Fact]
+        public void WhenValidateWhiteSpace_Throws()
+        {
+            const string paramValue = "\t \r\n";
+
+            Throws<ArgumentOutOfRangeException>(() => StringUtils.ValidateNotEmptyOrWhiteSpace(paramValue, "x"));
+        }
 
         [Fact]
         public void StripTitlesFromName_Nada()
@@ -13,7 +31,7 @@ namespace HtmlRefactoringTests
 
             string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
 
-            Assert.Equal(nameStripedOfTitles, nameWithoutTitles);
+            Equal(nameStripedOfTitles, nameWithoutTitles);
         }
 
         [Fact]
@@ -24,7 +42,7 @@ namespace HtmlRefactoringTests
 
             string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
 
-            Assert.Equal(nameStripedOfTitles, nameWithoutTitles);
+            Equal(nameStripedOfTitles, nameWithoutTitles);
         }
 
         [Fact]
@@ -35,7 +53,7 @@ namespace HtmlRefactoringTests
 
             string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
 
-            Assert.Equal(nameStripedOfTitles, nameWithoutTitles);
+            Equal(nameStripedOfTitles, nameWithoutTitles);
         }
 
         [Fact]
@@ -46,7 +64,7 @@ namespace HtmlRefactoringTests
 
             string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
 
-            Assert.Equal(nameStripedOfTitles, nameWithoutTitles);
+            Equal(nameStripedOfTitles, nameWithoutTitles);
         }
 
         [Fact]
@@ -57,7 +75,7 @@ namespace HtmlRefactoringTests
 
             string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
 
-            Assert.Equal(nameStripedOfTitles, nameWithoutTitles);
+            Equal(nameStripedOfTitles, nameWithoutTitles);
         }
 
         [Fact]
@@ -68,7 +86,7 @@ namespace HtmlRefactoringTests
 
             string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
 
-            Assert.Equal(nameStripedOfTitles, nameWithoutTitles);
+            Equal(nameStripedOfTitles, nameWithoutTitles);
         }
 
         [Fact]
@@ -79,7 +97,7 @@ namespace HtmlRefactoringTests
 
             string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
 
-            Assert.Equal(nameStripedOfTitles, nameWithoutTitles);
+            Equal(nameStripedOfTitles, nameWithoutTitles);
         }
 
         [Fact]
@@ -90,7 +108,7 @@ namespace HtmlRefactoringTests
 
             string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
 
-            Assert.Equal(nameStripedOfTitles, nameWithoutTitles);
+            Equal(nameStripedOfTitles, nameWithoutTitles);
         }
     }
 }

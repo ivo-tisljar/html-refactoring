@@ -1,4 +1,5 @@
 using HtmlRefactoringWindowsApp;
+using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
 {
@@ -11,41 +12,41 @@ namespace HtmlRefactoringTests
 
             var article = new Article(title, "2", "3", "4");
 
-            Assert.Equal(title, article.Title);
+            Equal(title, article.Title);
         }
 
         [Fact]
-        public void Article_Title_When_Empty_Throws()
+        public void Title_WhenEmptyThrows()
         {
             const string title = "";
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Article(title, "2", "3", "4"));
+            Throws<ArgumentOutOfRangeException>(() => new Article(title, "2", "3", "4"));
         }
 
         [Fact]
-        public void Article_Title_When_WhiteSpace_Throws()
+        public void Title_WhenWhiteSpaceThrows()
         {
             const string title = " \t\r\n";
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Article(title, "2", "3", "4"));
+            Throws<ArgumentOutOfRangeException>(() => new Article(title, "2", "3", "4"));
         }
 
+        //[Fact]
+        //public void AuthorNameWithTitles_WhenNullThrows()
+        //{
+        //    const string authorNameWithTitles = "AuthorNameWithTitles";
+
+        //    var article = new Article("1", authorNameWithTitles, "3", "4");
+
+        //    Equal(authorNameWithTitles, article.AuthorNameWithTitles);
+        //}
+
         [Fact]
-        public void Article_AuthorNameWithTitles_When_Null_Throws()
-        {
-            const string authorNameWithTitles = "AuthorNameWithTitles";
-
-            var article = new Article("1", authorNameWithTitles, "3", "4");
-
-            Assert.Equal(authorNameWithTitles, article.AuthorNameWithTitles);
-        }
-
-        [Fact]
-        public void Article_AuthorNameWithTitles_When_Empty_Throws()
+        public void AuthorNameWithTitles_WhenEmptyThrows()
         {
             const string authorNameWithTitles = "";
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Article("1", authorNameWithTitles, "3", "4"));
+            Throws<ArgumentOutOfRangeException>(() => new Article("1", authorNameWithTitles, "3", "4"));
         }
 
         [Fact]
@@ -53,7 +54,7 @@ namespace HtmlRefactoringTests
         {
             const string authorNameWithTitles = " \t\r\n";
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Article("1", authorNameWithTitles, "3", "4"));
+            Throws<ArgumentOutOfRangeException>(() => new Article("1", authorNameWithTitles, "3", "4"));
         }
 
         [Fact]
@@ -63,7 +64,7 @@ namespace HtmlRefactoringTests
 
             var article = new Article("1", "2", inputRelativePath, "4");
 
-            Assert.Equal(inputRelativePath, article.InputRelativePath);
+            Equal(inputRelativePath, article.InputRelativePath);
         }
 
         [Fact]
@@ -71,7 +72,7 @@ namespace HtmlRefactoringTests
         {
             const string inputRelativePath = "";
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", inputRelativePath, "4"));
+            Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", inputRelativePath, "4"));
         }
 
         [Fact]
@@ -79,7 +80,7 @@ namespace HtmlRefactoringTests
         {
             const string inputRelativePath = " \t\r\n";
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", inputRelativePath, "4"));
+            Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", inputRelativePath, "4"));
         }
 
         [Fact]
@@ -89,7 +90,7 @@ namespace HtmlRefactoringTests
 
             var article = new Article("1", "2", "3", inputFileName);
 
-            Assert.Equal(inputFileName, article.InputFileName);
+            Equal(inputFileName, article.InputFileName);
         }
 
         [Fact]
@@ -97,7 +98,7 @@ namespace HtmlRefactoringTests
         {
             const string inputFileName = "";
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", "3", inputFileName));
+            Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", "3", inputFileName));
         }
 
         [Fact]
@@ -105,7 +106,7 @@ namespace HtmlRefactoringTests
         {
             const string inputFileName = " \t\r\n";
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", "3", inputFileName));
+            Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", "3", inputFileName));
         }
 
         [Fact]
@@ -118,7 +119,7 @@ namespace HtmlRefactoringTests
 
             string authorNameWithoutTitles = article.AuthorNameWithoutTitles();
 
-            Assert.Equal(authorNameWithoutTitles, nameWithoutTitles);
+            Equal(authorNameWithoutTitles, nameWithoutTitles);
         }
 
         [Fact]
@@ -131,7 +132,20 @@ namespace HtmlRefactoringTests
 
             string authorNameWithoutTitles = article.AuthorNameWithoutTitles();
 
-            Assert.Equal(authorNameWithoutTitles, nameWithoutTitles);
+            Equal(authorNameWithoutTitles, nameWithoutTitles);
+        }
+
+        [Fact]
+        public void Article_AuthorNameWithoutTitles_Vlado()
+        {
+            const string nameWithTitles = "Dr. sc. Vlado BRKANIÆ , prof. struè. stud., ovl. raè. i ovl. rev.";
+            const string nameWithoutTitles = "Vlado BRKANIÆ";
+
+            var article = new Article("1", nameWithTitles, "3", "4");
+
+            string authorNameWithoutTitles = article.AuthorNameWithoutTitles();
+
+            Equal(authorNameWithoutTitles, nameWithoutTitles);
         }
     }
 }
