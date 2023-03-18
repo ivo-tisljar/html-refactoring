@@ -1,0 +1,116 @@
+p.okviri_okvir {
+	background-color:#fffade;
+	border-color:#000000;
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	color:#000000;
+	font-family:Utopia, serif;
+	font-size:10px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.135;
+	margin-bottom:11px;
+	margin-left:6px;
+	margin-right:6px;
+	margin-top:11px;
+	orphans:2;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:justify;
+	text-align-last:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:none;
+	widows:2;
+}
+p.uvlake_uvlaka-broj {
+	color:#000000;
+	font-family:Utopia, serif;
+	font-size:10px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.135;
+	list-style-position:outside;
+	list-style-type:decimal;
+	margin-bottom:0;
+	margin-left:26px;
+	margin-right:0;
+	margin-top:0;
+	orphans:2;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:justify;
+	text-align-last:left;
+	text-decoration:none;
+	text-indent:-14px;
+	text-transform:none;
+	widows:2;
+}
+p.uvlake_uvlaka-strelica {
+	color:#000000;
+	font-family:Utopia, serif;
+	font-size:10px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.135;
+	list-style-position:outside;
+	margin-bottom:0;
+	margin-left:23px;
+	margin-right:0;
+	margin-top:0;
+	orphans:2;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:justify;
+	text-align-last:left;
+	text-decoration:none;
+	text-indent:-11px;
+	text-transform:none;
+	widows:2;
+}
+span.tekst_tekst-bold-italic {
+	font-family:Utopia, serif;
+	font-size:10px;
+	font-style:italic;
+	font-weight:600;
+}
+span.tekst_tekst-italic {
+	font-family:Utopia, serif;
+	font-size:10px;
+	font-style:italic;
+	font-weight:normal;
+}
+td.CellOverride-1 {
+	background-color:#f6d2bf;
+	border-right-color:#000000;
+	border-right-style:solid;
+	border-right-width:1px;
+	padding-bottom:3px;
+	padding-left:0px;
+	padding-right:0px;
+	padding-top:1px;
+	vertical-align:middle;
+}
+td.CellOverride-5 {
+	background-color:#f6d2bf;
+	border-bottom-color:#000000;
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-left-color:#000000;
+	border-left-style:solid;
+	border-left-width:1px;
+	border-right-color:#000000;
+	border-right-style:solid;
+	border-right-width:1px;
+	border-top-color:#000000;
+	border-top-style:solid;
+	border-top-width:1px;
+	padding-bottom:3px;
+	padding-left:1px;
+	padding-right:1px;
+	padding-top:1px;
+	vertical-align:middle;
+}
