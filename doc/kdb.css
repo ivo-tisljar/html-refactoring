@@ -1,0 +1,76 @@
+:root {
+	--left-indent: 1.25rem;
+}	
+body {
+	background-color: #222;
+	color: #bbb;
+	font-family: calibri;
+	font-size: 110%;
+}
+h1, h2, h3 {
+	padding-left: var(--left-indent);
+}
+h2 {
+	background-color: #111;
+	border-bottom: double 4px #bbb;
+	margin-top: 2em;
+}
+h3 {
+	background-color: #2d2d2d;
+	border-bottom: solid 1px #666;
+	font-size: 150%;
+	font-weight: 800;
+}
+p {
+	text-indent: var(--left-indent);
+}
+a {
+	color: #d90;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}	
+table.list-item {
+	margin-left: 2em;
+}	
+td {
+	border-bottom: solid 1px #444;
+	vertical-align: top;
+	padding: 1px 4px;
+}	
+pre {
+	background-color: #111;
+	margin: 4px 2em;
+	padding: 4px 8px;
+	tab-size: 4;
+}	
+table pre {
+	margin: 4px 0;
+}	
+div.body > ul > li {
+	margin-bottom: 1em;
+}	
+div.body > ul.links > li {
+	margin-bottom: 4px;
+}
+div.body {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+.to-do {
+	background-color: #432b;
+}	
+.missing {
+	background-color: #f002;
+}	
+.green {
+	color: green;
+}
+.red {
+	color: red;
+}
+.red-background {
+	background-color: #f004;
+	padding: 4px 8px;
+}	
