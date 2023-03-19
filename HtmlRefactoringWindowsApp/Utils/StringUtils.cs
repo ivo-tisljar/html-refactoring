@@ -20,12 +20,10 @@ namespace HtmlRefactoringWindowsApp.Utils
         // to-do: keep titles in cionfiguration file and enable crud operations on them
         public static string StripTitlesFromName(string nameWithTitles)
         {
-            string[] titles = { "prof", "izv", "doc", "dr", "mr", "sc", "dipl", "mag", "oec", "iur", "univ", "bacc", "ll m", "acca", "inž", "građ",
-                                "dip", "oecc", "eoc",
-                                "ovl", "rač", "rev", "por", "for", "savj", "sav", "struč", "spec", "pred", "i", "v", "š", "soc", "rad", "pravna", "savjetnica", "vis", "šk",
-                                "glavni", "urednik", "glavna", "urednica", "zamjenik", "glavne", "urednice", "gl", "ur", "časopisa",
-                                "priredio", "priredila", "pripremio", "pripremila",
-                                "stalni", "sudski", "tumač", "za", "njemački", "jezik", "sutkinja", "općinskoga", "građanskog", "suda", "u", "zagrebu"};
+            string[] titles = { "acca", "bacc", "časopisa", "dip", "dipl", "doc", "dr", "eoc", "for", "gl", "glavna", "glavne", "glavni", "građ", "građanskog", "i", "inž", "iur", "izv", 
+                                "jezik", "ll m", "mag", "mr", "njemački", "oec", "oecc", "općinskoga", "ovl", "por", "pravna", "pred", "pripremila", "pripremio", "priredila", "priredio",
+                                "prof", "rad", "rač", "rev", "sav", "savj", "savjetnica", "sc", "soc", "spec", "stalni", "struč", "suda", "sudski", "sutkinja", "stud", "š", "šk", "tumač", 
+                                "u", "univ", "ur", "urednica", "urednice", "urednik", "v", "vis", "za", "zagrebu", "zamjenik" };
 
             nameWithTitles = " " + nameWithTitles.Replace(".", " ").Replace(",", " ").Replace(":", " ").Replace("*", " ").Replace("  ", " ") + " ";
 
