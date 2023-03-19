@@ -24,5 +24,13 @@ namespace HtmlRefactoringTests
         {
             Throws<MissingPropertyValueException>(() => new CssProperty("x:"));
         }
+
+        //[Fact]
+        //public void AfterConstruction_CanReadPropertyName()
+        //{
+        //    var property = new CssProperty("x:");
+
+            //Equals 
+        //}
     }
 }

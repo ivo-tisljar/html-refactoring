@@ -10,35 +10,37 @@ namespace HtmlRefactoringWindowsApp.Css
     {
         private const char Colon = ':';
 
+        //public string PropertyName { get; set; }
+
+        //public string PropertyValue { get; set; }
+
         public CssProperty(string property) 
         {
-            VerifyColon(property);
-            VerifyPropertyName(property);
-            VerifyPropertyValue(property);
+            var colonIndex = GetColonIndex(property);
+            ExtractPropertyName(property, colonIndex);
+            VerifyPropertyValue(property, colonIndex);
         }
 
-        private void VerifyColon(string property)
+        private int GetColonIndex(string property)
         {
             if (!property.Contains(Colon))
             {
                 throw new MissingColonException($"Invalid value! Property '{property}' does not contains colon '{Colon}'.");
             }
+            return property.IndexOf(Colon);
         }
 
-        private void VerifyPropertyName(string property)
+        private void ExtractPropertyName(string property, int colonIndex)
         {
-            var colonIndex = property.IndexOf(Colon);
-
             if ((colonIndex == 0) || (string.IsNullOrWhiteSpace(property.Substring(0, colonIndex))))
             {
                 throw new MissingPropertyNameException($"Invalid value! Property '{property}' does not contains property-name.");
             }
+            //return property.Substring(0, colonIndex);
         }
 
-        private void VerifyPropertyValue(string property)
+        private void VerifyPropertyValue(string property, int colonIndex)
         {
-            var colonIndex = property.IndexOf(Colon);
-
             if (string.IsNullOrWhiteSpace(property.Substring(colonIndex + 1)))
             {
                 throw new MissingPropertyValueException($"Invalid value! Property '{property}' does not contains property-value.");
