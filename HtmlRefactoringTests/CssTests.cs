@@ -11,18 +11,23 @@ namespace HtmlRefactoringTests
         {
             Throws<MissingColonException>(() => new CssProperty(""));
             Throws<MissingColonException>(() => new CssProperty("x"));
+            Throws<MissingColonException>(() => new CssProperty("x=0"));
         }
 
         [Fact]
-        public void WhenMissingPropertyName_Throws()
+        public void WhenInvalidPropertyName_Throws()
         {
-            Throws<MissingPropertyNameException>(() => new CssProperty(":"));
+            Throws<InvalidPropertyNameException>(() => new CssProperty(":"));
+            Throws<InvalidPropertyNameException>(() => new CssProperty(" :"));
+            Throws<InvalidPropertyNameException>(() => new CssProperty("0:"));
+            Throws<InvalidPropertyNameException>(() => new CssProperty("9a:0"));
         }
 
         [Fact]
         public void WhenMissingPropertyValue_Throws()
         {
             Throws<MissingPropertyValueException>(() => new CssProperty("x:"));
+            Throws<MissingPropertyValueException>(() => new CssProperty("x: "));
         }
 
         //[Fact]
@@ -30,7 +35,9 @@ namespace HtmlRefactoringTests
         //{
         //    var property = new CssProperty("x:");
 
-            //Equals 
+        //Throws<InvalidPropertyNameException>(() => new CssProperty("w :"));
+
+        //Equals 
         //}
     }
 }

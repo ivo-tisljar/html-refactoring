@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace HtmlRefactoringWindowsApp.Css
 {
@@ -16,12 +17,12 @@ namespace HtmlRefactoringWindowsApp.Css
 
         public CssProperty(string property) 
         {
-            var colonIndex = GetColonIndex(property);
-            ExtractPropertyName(property, colonIndex);
+            var colonIndex = FetchColonIndex(property);
+            VerifyPropertyName(property, colonIndex);
             VerifyPropertyValue(property, colonIndex);
         }
 
-        private int GetColonIndex(string property)
+        private int FetchColonIndex(string property)
         {
             if (!property.Contains(Colon))
             {
@@ -30,18 +31,20 @@ namespace HtmlRefactoringWindowsApp.Css
             return property.IndexOf(Colon);
         }
 
-        private void ExtractPropertyName(string property, int colonIndex)
+        private void VerifyPropertyName(string property, int colonIndex)
         {
-            if ((colonIndex == 0) || (string.IsNullOrWhiteSpace(property.Substring(0, colonIndex))))
+            var reg = new Regex("^[a-zA-Z_-][0-9a-zA-Z_-]*\\s*$");
+
+            if (!reg.IsMatch(property[..colonIndex]))
             {
-                throw new MissingPropertyNameException($"Invalid value! Property '{property}' does not contains property-name.");
+                throw new InvalidPropertyNameException($"Invalid value! Property '{property}' has invalid property-name.");
             }
-            //return property.Substring(0, colonIndex);
+            //return property[..colonIndex];
         }
 
         private void VerifyPropertyValue(string property, int colonIndex)
         {
-            if (string.IsNullOrWhiteSpace(property.Substring(colonIndex + 1)))
+            if (string.IsNullOrWhiteSpace(property[(colonIndex + 1)..]))
             {
                 throw new MissingPropertyValueException($"Invalid value! Property '{property}' does not contains property-value.");
             }
@@ -53,9 +56,9 @@ namespace HtmlRefactoringWindowsApp.Css
         {
         }
     }
-    public class MissingPropertyNameException : Exception
+    public class InvalidPropertyNameException : Exception
     {
-        public MissingPropertyNameException(string message) : base(message)
+        public InvalidPropertyNameException(string message) : base(message)
         {
         }
     }
