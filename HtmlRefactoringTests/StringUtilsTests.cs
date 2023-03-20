@@ -1,5 +1,4 @@
-﻿using HtmlRefactoringWindowsApp;
-using HtmlRefactoringWindowsApp.Utils;
+﻿using HtmlRefactoringWindowsApp.Utils;
 using static Xunit.Assert;
 
 namespace HtmlRefactoringTests

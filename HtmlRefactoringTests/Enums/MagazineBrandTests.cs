@@ -1,6 +1,4 @@
-﻿using HtmlRefactoringWindowsApp;
-using HtmlRefactoringWindowsApp.Enums;
-using System;
+﻿using HtmlRefactoringWindowsApp.Enums;
 using static Xunit.Assert;
 
 namespace HtmlRefactoringTests.Enums

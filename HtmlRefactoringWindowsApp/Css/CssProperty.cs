@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace HtmlRefactoringWindowsApp.Css
 {
@@ -11,17 +6,15 @@ namespace HtmlRefactoringWindowsApp.Css
     {
         private const char Colon = ':';
 
-        private readonly string name;
-        public string Name { get { return name; } }
+        public string Name { get; }
 
-        private readonly string value;
-        public string Value { get { return value; } }
+        public string Value { get; }
 
-        public CssProperty(string property) 
+        public CssProperty(string property)
         {
             var colonIndex = FetchColonIndex(property);
-            name = InitPropertyName(property, colonIndex);
-            value = InitPropertyValue(property, colonIndex);
+            Name = InitPropertyName(property, colonIndex);
+            Value = InitPropertyValue(property, colonIndex);
         }
 
         private int FetchColonIndex(string property)
