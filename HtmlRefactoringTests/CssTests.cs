@@ -67,18 +67,28 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingWithOneInvalidProperty_Throws()
+        public void AfterCreatingCssPropertiesIfAnyOfIndividualPropertiesIsInvalid_Throws()
         {
             ThrowsAny<CssPropertyException>(() => new CssProperties("a"));
-            ThrowsAny<CssPropertyException>(() => new CssProperty("2:"));
-            ThrowsAny<CssPropertyException>(() => new CssProperty("c-3:"));
+            ThrowsAny<CssPropertyException>(() => new CssProperties("2:"));
+            ThrowsAny<CssPropertyException>(() => new CssProperties("c-3:"));
+            ThrowsAny<CssPropertyException>(() => new CssProperties("c-3:0;x;"));
+            ThrowsAny<CssPropertyException>(() => new CssProperties("c-3:0;x:a;z"));
+            ThrowsAny<CssPropertyException>(() => new CssProperties("c-3:0;x;a:x"));
         }
 
-        //[Fact]
-        //public void AfterCreatingCssPropertiesWithOneProperty_CountOfPropertiesIsOne()
-        //{
-        //    var cssProperties = new CssProperties("x");
-        //    Equal(1, cssProperties.Count());
-        //}
+        [Fact]
+        public void AfterCreatingCssPropertiesWithOneProperty_CountOfPropertiesIsOne()
+        {
+            var cssProperties = new CssProperties("x:0");
+            Equal(1, cssProperties.Count());
+        }
+
+        [Fact]
+        public void AfterCreatingCssPropertiesWithTwoProperties_CountOfPropertiesIsTwo()
+        {
+            var cssProperties = new CssProperties("x:0;y:1");
+            Equal(2, cssProperties.Count());
+        }
     }
 }

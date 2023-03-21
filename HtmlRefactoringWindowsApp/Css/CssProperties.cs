@@ -8,17 +8,33 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssProperties
     {
-        public CssProperties(string properties)
+        private const char semicolon = ';';
+
+        private List<CssProperty> properties;
+
+        public CssProperties(string propertiesText)
         {
-            if (!string.IsNullOrWhiteSpace(properties))
-            {
-                var property = new CssProperty(properties);
-            }
+            properties = new List<CssProperty>();
+            ReadProperties(propertiesText);
         }
 
         public int Count()
         { 
-            return 0; 
+            return properties.Count; 
+        }
+
+        //  function ReadProperties DOES NOT take quotes and apostrophes into considerations when spliting properitiesText, IT IS ACCEPTABLE!
+
+        public void ReadProperties(string propertiesText)
+        {
+            var splitProperties = propertiesText.Split(semicolon);
+            foreach (var property in splitProperties)
+            {
+                if (!string.IsNullOrWhiteSpace(property))
+                {
+                    properties.Add(new CssProperty(property));
+                }
+            }
         }
     }
 }
