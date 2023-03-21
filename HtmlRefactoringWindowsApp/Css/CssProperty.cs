@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace HtmlRefactoringWindowsApp.Css
+﻿namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssProperty
     {
@@ -12,53 +10,72 @@ namespace HtmlRefactoringWindowsApp.Css
 
         public CssProperty(string property)
         {
-            var colonIndex = FetchColonIndex(property);
-            Name = InitPropertyName(property, colonIndex);
-            Value = InitPropertyValue(property, colonIndex);
+            var colonIndex = property.IndexOf(Colon);
+            if (colonIndex < 0)
+            {
+                throw new MissingColonException($"Error! Property '{property}' does not contain colon '{Colon}'.");
+            }
+
+            var name = property.Substring(0, colonIndex).Trim();
+            if (!IsValidPropertyName(name))
+            {
+                throw new InvalidPropertyNameException($"Error! Property '{property}' contains invalid property name '{name}'.");
+            }
+            Name = name;
+
+            var value = property.Substring(colonIndex + 1).Trim();
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new MissingPropertyValueException($"Error! Property '{property}' does not contain property value.");
+            }
+            Value = value;
         }
 
-        private int FetchColonIndex(string property)
+        private bool IsValidPropertyName(string name)
         {
-            if (!property.Contains(Colon))
+            // Property name can start with a letter, underscore, or hyphen, followed by letters, digits, underscores, or hyphens.
+            // Reference: https://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
+            if (string.IsNullOrEmpty(name))
             {
-                throw new MissingColonException($"Error! Property '{property}' does not contains colon '{Colon}'.");
+                return false;
             }
-            return property.IndexOf(Colon);
-        }
-
-        private string InitPropertyName(string property, int colonIndex)
-        {
-            var reg = new Regex("^\\s*[a-zA-Z_-][0-9a-zA-Z_-]*\\s*$");
-
-            if (!reg.IsMatch(property[..colonIndex]))
+            if (!char.IsLetter(name[0]) && name[0] != '_' && name[0] != '-')
             {
-                throw new InvalidPropertyNameException($"Error! Property '{property}' does not contain or has invalid property-name.");
+                return false;
             }
-            return property[..colonIndex].Trim();
-        }
-
-        private string InitPropertyValue(string property, int colonIndex)
-        {
-            if (string.IsNullOrWhiteSpace(property[(colonIndex + 1)..]))
+            for (int i = 1; i < name.Length; i++)
             {
-                throw new MissingPropertyValueException($"Error! Property '{property}' does not contains property-value.");
+                if (!char.IsLetterOrDigit(name[i]) && name[i] != '_' && name[i] != '-')
+                {
+                    return false;
+                }
             }
-            return property[(colonIndex + 1)..].Trim();
+            return true;
         }
     }
-    public class MissingColonException : Exception
+
+    public class CssPropertyException : Exception
+    {
+        public CssPropertyException(string message) : base(message)
+        {
+        }
+    }
+
+    public class MissingColonException : CssPropertyException
     {
         public MissingColonException(string message) : base(message)
         {
         }
     }
-    public class InvalidPropertyNameException : Exception
+
+    public class InvalidPropertyNameException : CssPropertyException
     {
         public InvalidPropertyNameException(string message) : base(message)
         {
         }
     }
-    public class MissingPropertyValueException : Exception
+
+    public class MissingPropertyValueException : CssPropertyException
     {
         public MissingPropertyValueException(string message) : base(message)
         {

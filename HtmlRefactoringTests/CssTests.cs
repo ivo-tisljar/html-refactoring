@@ -45,5 +45,40 @@ namespace HtmlRefactoringTests
             Equal("12 13", new CssProperty("x: 12 13 ").Value);
             Equal("čžš", new CssProperty("x:    čžš").Value);
         }
+
+        //  properties can be empty
+        //  there can be one property only
+        //  there can be multiple properties separated by semicolon
+        //  there can be new property
+        //  there can be already existing property
+
+
+        [Fact]
+        public void CanCreateCssProperties()
+        {
+            var cssProperties = new CssProperties("");
+        }
+
+        [Fact]
+        public void AfterCreatingCssProperties_CountOfPropertiesIsZero()
+        {
+            var cssProperties = new CssProperties("");
+            Equal(0, cssProperties.Count());
+        }
+
+        [Fact]
+        public void AfterCreatingWithOneInvalidProperty_Throws()
+        {
+            ThrowsAny<CssPropertyException>(() => new CssProperties("a"));
+            ThrowsAny<CssPropertyException>(() => new CssProperty("2:"));
+            ThrowsAny<CssPropertyException>(() => new CssProperty("c-3:"));
+        }
+
+        //[Fact]
+        //public void AfterCreatingCssPropertiesWithOneProperty_CountOfPropertiesIsOne()
+        //{
+        //    var cssProperties = new CssProperties("x");
+        //    Equal(1, cssProperties.Count());
+        //}
     }
 }
