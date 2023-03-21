@@ -46,19 +46,6 @@ namespace HtmlRefactoringTests
             Equal("čžš", new CssProperty("x:    čžš").Value);
         }
 
-        //  properties can be empty
-        //  there can be one property only
-        //  there can be multiple properties separated by semicolon
-        //  there can be new property
-        //  there can be already existing property
-
-
-        [Fact]
-        public void CanCreateCssProperties()
-        {
-            var cssProperties = new CssProperties("");
-        }
-
         [Fact]
         public void AfterCreatingCssProperties_CountOfPropertiesIsZero()
         {
@@ -89,6 +76,18 @@ namespace HtmlRefactoringTests
         {
             var cssProperties = new CssProperties("x:0;y:1");
             Equal(2, cssProperties.Count());
+        }
+
+        [Fact]
+        public void AfterCreatingCssProperties_CanReadIndividualPropertyNamesAndValues()
+        {
+            var cssProperties = new CssProperties("x:0;y:1;z:2");
+            Equal("x", cssProperties[0].Name);
+            Equal("0", cssProperties[0].Value);
+            Equal("y", cssProperties[1].Name);
+            Equal("1", cssProperties[1].Value);
+            Equal("z", cssProperties[2].Name);
+            Equal("2", cssProperties[2].Value);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,11 @@ namespace HtmlRefactoringWindowsApp.Css
         {
             properties = new List<CssProperty>();
             ReadProperties(propertiesText);
+        }
+
+        public CssProperty this[int index]
+        {
+            get { return properties[index]; }
         }
 
         public int Count()
