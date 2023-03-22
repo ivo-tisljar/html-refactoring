@@ -89,5 +89,33 @@ namespace HtmlRefactoringTests
             Equal("z", cssProperties[2].Name);
             Equal("2", cssProperties[2].Value);
         }
+
+        //  there can be already existing property
+
+        [Fact]
+        public void AfterCreatingCssProperties_CanReadRealWorldIndividualPropertyNamesAndValues()
+        {
+            var cssProperties = new CssProperties("border-collapse:collapse;\r\n\tborder-color\t:\t#000000;\r\n\tborder-style : solid;\r\n\tborder-width:1px;\r\n\t" + 
+                                                  "margin-bottom:-4px;\r\n\tmargin-top:4px;");
+            Equal("border-collapse", cssProperties[0].Name);
+            Equal("collapse",        cssProperties[0].Value);
+            Equal("border-color",    cssProperties[1].Name);
+            Equal("#000000",          cssProperties[1].Value);
+            Equal("border-style",    cssProperties[2].Name);
+            Equal("solid",           cssProperties[2].Value);
+            Equal("border-width",    cssProperties[3].Name);
+            Equal("1px",             cssProperties[3].Value);
+            Equal("margin-bottom",   cssProperties[4].Name);
+            Equal("-4px",            cssProperties[4].Value);
+            Equal("margin-top",      cssProperties[5].Name);
+            Equal("4px",             cssProperties[5].Value);
+        }
+
+
+        [Fact]
+        public void CanCreateCssRule()
+        {
+            var cssRule = new CssRule();
+        }
     }
 }
