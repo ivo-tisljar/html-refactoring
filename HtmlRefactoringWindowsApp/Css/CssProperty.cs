@@ -2,18 +2,16 @@
 {
     public class CssProperty
     {
-        private const char colon = ':';
-
         public string Name { get; }
 
         public string Value { get; }
 
         public CssProperty(string property)
         {
-            var colonIndex = property.IndexOf(colon);
+            var colonIndex = property.IndexOf(':');
             if (colonIndex < 0)
             {
-                throw new MissingColonException($"Error! Property '{property}' does not contain colon '{colon}'.");
+                throw new MissingColonException($"Error! Property '{property}' does not contain colon ':'.");
             }
 
             var name = property.Substring(0, colonIndex).Trim();

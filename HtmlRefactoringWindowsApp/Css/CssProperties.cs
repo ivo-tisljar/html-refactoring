@@ -2,19 +2,17 @@
 {
     public class CssProperties
     {
-        private const char semicolon = ';';
-
         private List<CssProperty> properties;
+
+        public CssProperty this[int index]
+        {
+            get { return properties[index]; }
+        }
 
         public CssProperties(string propertiesText)
         {
             properties = new List<CssProperty>();
             ReadProperties(propertiesText);
-        }
-
-        public CssProperty this[int index]
-        {
-            get { return properties[index]; }
         }
 
         public int Count()
@@ -26,7 +24,7 @@
 
         public void ReadProperties(string propertiesText)
         {
-            var splitProperties = propertiesText.Split(semicolon);
+            var splitProperties = propertiesText.Split(';');
             foreach (var property in splitProperties)
             {
                 if (!string.IsNullOrWhiteSpace(property))

@@ -5,6 +5,7 @@ namespace HtmlRefactoringTests
 {
     public class CssTests
     {
+        #region CssPropertyTests
         [Fact]
         public void WhenMissingColon_Throws()
         {
@@ -45,7 +46,9 @@ namespace HtmlRefactoringTests
             Equal("12 13", new CssProperty("x: 12 13 ").Value);
             Equal("čžš", new CssProperty("x:    čžš").Value);
         }
+        #endregion
 
+        #region CssPropertiesTests
         [Fact]
         public void AfterCreatingCssProperties_CountOfPropertiesIsZero()
         {
@@ -110,12 +113,17 @@ namespace HtmlRefactoringTests
             Equal("margin-top",      cssProperties[5].Name);
             Equal("4px",             cssProperties[5].Value);
         }
+        #endregion
 
-
+        #region CssRuleTests
         [Fact]
-        public void CanCreateCssRule()
+        public void WhenCssRuleHasInvalidBraces_Throws ()
         {
-            var cssRule = new CssRule();
+            Throws<InvalidBracesException>(() => new CssRule("x x:0"));
+            Throws<InvalidBracesException>(() => new CssRule("x{x:0"));
+            Throws<InvalidBracesException>(() => new CssRule("x x:0}"));
+            Throws<InvalidBracesException>(() => new CssRule("x}x:0{"));
         }
+        #endregion
     }
 }
