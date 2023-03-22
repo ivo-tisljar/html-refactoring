@@ -115,6 +115,14 @@ namespace HtmlRefactoringTests
         }
         #endregion
 
+        #region CssSelectorTests
+        [Fact]
+        public void CanCreateCssSelector()
+        {
+            var cssSelector = new CssSelector();
+        }
+        #endregion
+
         #region CssRuleTests
         [Fact]
         public void WhenCssRuleHasInvalidBraces_Throws ()

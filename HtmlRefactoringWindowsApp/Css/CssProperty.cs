@@ -1,54 +1,51 @@
-﻿namespace HtmlRefactoringWindowsApp.Css
+﻿using System.Text.RegularExpressions;
+
+namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssProperty
     {
+        private const char Colon = ':';
+
         public string Name { get; }
 
         public string Value { get; }
 
         public CssProperty(string property)
         {
-            var colonIndex = property.IndexOf(':');
-            if (colonIndex < 0)
-            {
-                throw new MissingColonException($"Error! Property '{property}' does not contain colon ':'.");
-            }
-
-            var name = property.Substring(0, colonIndex).Trim();
-            if (!IsValidPropertyName(name))
-            {
-                throw new InvalidPropertyNameException($"Error! Property '{property}' contains invalid property name '{name}'.");
-            }
-            Name = name;
-
-            var value = property.Substring(colonIndex + 1).Trim();
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                throw new MissingPropertyValueException($"Error! Property '{property}' does not contain property value.");
-            }
-            Value = value;
+            var colonIndex = FetchColonIndex(property);
+            Name = InitPropertyName(property[..colonIndex].Trim());
+            Value = InitPropertyValue(property[(colonIndex + 1)..].Trim());
         }
 
-        private bool IsValidPropertyName(string name)
+        private int FetchColonIndex(string property)
         {
-            // Property name can start with a letter, underscore, or hyphen, followed by letters, digits, underscores, or hyphens.
-            // Reference: https://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
-            if (string.IsNullOrEmpty(name))
+            if (!property.Contains(Colon))
             {
-                return false;
+                throw new MissingColonException($"Error! Property '{property}' does not contains colon '{Colon}'.");
             }
-            if (!char.IsLetter(name[0]) && name[0] != '_' && name[0] != '-')
+            return property.IndexOf(Colon);
+        }
+
+        //  Constructor CssProperty with RegEx is 5 times slower (200.000 properties/sec) than version with if & for-loop validation function
+
+        private string InitPropertyName(string propertyName)
+        {
+            var reg = new Regex("^[a-zA-Z_-][0-9a-zA-Z_-]*$");
+
+            if (!reg.IsMatch(propertyName))
             {
-                return false;
+                throw new InvalidPropertyNameException($"Error! Property '{propertyName}' does not contain or has invalid property-name.");
             }
-            for (int i = 1; i < name.Length; i++)
+            return propertyName;
+        }
+
+        private string InitPropertyValue(string propertyValue)
+        {
+            if (string.IsNullOrWhiteSpace(propertyValue))
             {
-                if (!char.IsLetterOrDigit(name[i]) && name[i] != '_' && name[i] != '-')
-                {
-                    return false;
-                }
+                throw new MissingPropertyValueException($"Error! Property '{propertyValue}' does not contains property-value.");
             }
-            return true;
+            return propertyValue;
         }
     }
 
