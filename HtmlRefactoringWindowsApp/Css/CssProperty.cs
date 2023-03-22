@@ -13,8 +13,8 @@ namespace HtmlRefactoringWindowsApp.Css
         public CssProperty(string property)
         {
             var colonIndex = FetchColonIndex(property);
-            Name = InitPropertyName(property[..colonIndex].Trim());
-            Value = InitPropertyValue(property[(colonIndex + 1)..].Trim());
+            Name = InitPropertyName(property, property[..colonIndex].Trim());
+            Value = InitPropertyValue(property, property[(colonIndex + 1)..].Trim());
         }
 
         private int FetchColonIndex(string property)
@@ -28,22 +28,22 @@ namespace HtmlRefactoringWindowsApp.Css
 
         //  Constructor CssProperty with RegEx is 5 times slower (200.000 properties/sec) than version with if & for-loop validation function
 
-        private string InitPropertyName(string propertyName)
+        private string InitPropertyName(string property, string propertyName)
         {
             var reg = new Regex("^[a-zA-Z_-][0-9a-zA-Z_-]*$");
 
             if (!reg.IsMatch(propertyName))
             {
-                throw new InvalidPropertyNameException($"Error! Property '{propertyName}' does not contain or has invalid property-name.");
+                throw new InvalidPropertyNameException($"Error! Property '{property}' does not contain or has invalid property-name.");
             }
             return propertyName;
         }
 
-        private string InitPropertyValue(string propertyValue)
+        private string InitPropertyValue(string property, string propertyValue)
         {
             if (string.IsNullOrWhiteSpace(propertyValue))
             {
-                throw new MissingPropertyValueException($"Error! Property '{propertyValue}' does not contains property-value.");
+                throw new MissingPropertyValueException($"Error! Property '{property}' does not contains property-value.");
             }
             return propertyValue;
         }
