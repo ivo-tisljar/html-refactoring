@@ -117,9 +117,12 @@ namespace HtmlRefactoringTests
 
         #region CssSelectorTests
         [Fact]
-        public void CanCreateCssSelector()
+        public void WhenInvalidSelector_Throws()
         {
-            var cssSelector = new CssSelector();
+            Throws<InvalidSelectorException>(() => new CssSelector(""));
+            Throws<InvalidSelectorException>(() => new CssSelector("0"));
+            Throws<InvalidSelectorException>(() => new CssSelector("."));
+            Throws<InvalidSelectorException>(() => new CssSelector("#"));
         }
         #endregion
 

@@ -25,12 +25,11 @@
         public void ReadProperties(string propertiesText)
         {
             var splitProperties = propertiesText.Split(';');
+
             foreach (var property in splitProperties)
             {
                 if (!string.IsNullOrWhiteSpace(property))
-                {
                     properties.Add(new CssProperty(property));
-                }
             }
         }
     }
