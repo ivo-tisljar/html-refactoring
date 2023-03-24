@@ -28,7 +28,7 @@ namespace HtmlRefactoringWindowsApp
 
             textBoxEndValidationTime.Text = DateTime.Now.TimeOfDay.ToString();
 
-            textBoxNumberOfProperties.Text = cssProperies.Count().ToString();
+            textBoxNumberOfProperties.Text = cssProperies.Count.ToString();
         }
     }
 }

@@ -5,6 +5,11 @@ namespace HtmlRefactoringWindowsApp.Css
     {
         private List<CssProperty> properties;
 
+        public int Count 
+        { 
+            get { return properties.Count; } 
+        }
+
         public CssProperty this[int index]
         {
             get { return properties[index]; }
@@ -14,11 +19,6 @@ namespace HtmlRefactoringWindowsApp.Css
         {
             properties = new List<CssProperty>();
             ReadProperties(propertiesText);
-        }
-
-        public int Count()
-        { 
-            return properties.Count; 
         }
 
             //  function ReadProperties DOES NOT take quotes and apostrophes into considerations when spliting properitiesText, IT IS ACCEPTABLE!
