@@ -99,8 +99,9 @@ namespace HtmlRefactoringTests
         [Fact]
         public void AfterCreatingCssProperties_CanReadRealWorldIndividualPropertyNamesAndValues()
         {
-            var cssProperties = new CssProperties("border-collapse:collapse;\r\n\tborder-color\t:\t#000000;\r\n\tborder-style : solid;\r\n\tborder-width:1px;\r\n\t" +
-                                                  "margin-bottom:-4px;\r\n\tmargin-top:4px;\r\n\tfont-family:\"Myriad Pro\", sans-serif;");
+            var cssProperties = new CssProperties("border-collapse:collapse;\r\n\tborder-color\t:\t#000000;\r\n\tborder-style : solid;\r\n\t" +
+                                                  "border-width:1px;\r\n\tmargin-bottom:-4px;\r\n\tmargin-top:4px;\r\n\t" +
+                                                  "font-family:\"Myriad Pro\", sans-serif;");
             Equal("border-collapse", cssProperties[0].Name);
             Equal("collapse",        cssProperties[0].Value);
             Equal("border-color",    cssProperties[1].Name);
@@ -164,6 +165,14 @@ namespace HtmlRefactoringTests
             Null(new CssSelector("#x").Class);
             Equal("x", new CssSelector(".x").Class);
             Equal("y", new CssSelector("x.y").Class);
+        }
+        #endregion
+
+        #region CssSelectorsTests
+        [Fact]
+        public void CanCreateSelectors()
+        {
+            var cssSelectors = new CssSelectors();
         }
         #endregion
 
