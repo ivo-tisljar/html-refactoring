@@ -126,6 +126,16 @@ namespace HtmlRefactoringTests
             Throws<InvalidSelectorException>(() => new CssSelector("x#"));
             Throws<InvalidSelectorException>(() => new CssSelector("šč"));
         }
+
+        [Fact]
+        public void AfterConstruction_CanReadSelector()
+        {
+            Equal("x", new CssSelector("x").Selector);
+            Equal("#x", new CssSelector("#x").Selector);
+            Equal(".x", new CssSelector(".x").Selector);
+            Equal("x.y", new CssSelector("x.y").Selector);
+        }
+
         #endregion
 
         #region CssRuleTests
