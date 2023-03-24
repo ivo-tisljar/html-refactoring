@@ -1,4 +1,5 @@
-﻿using HtmlRefactoringWindowsApp.Css;
+﻿
+using HtmlRefactoringWindowsApp.Css;
 using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
@@ -132,9 +133,9 @@ namespace HtmlRefactoringTests
         [Fact]
         public void AfterConstruction_CanReadSelector()
         {
-            Equal("x", new CssSelector("x").Selector);
+            Equal("x", new CssSelector("x ").Selector);
             Equal("#x", new CssSelector("#x").Selector);
-            Equal(".x", new CssSelector(".x").Selector);
+            Equal(".x", new CssSelector(" .x").Selector);
             Equal("x.y", new CssSelector("x.y").Selector);
         }
 
@@ -154,6 +155,15 @@ namespace HtmlRefactoringTests
             Null(new CssSelector(".x").ID);
             Null(new CssSelector("x.y").ID);
             Equal("x", new CssSelector("#x").ID);
+        }
+
+        [Fact]
+        public void AfterConstruction_CanReadClass()
+        {
+            Null(new CssSelector("x").Class);
+            Null(new CssSelector("#x").Class);
+            Equal("x", new CssSelector(".x").Class);
+            Equal("y", new CssSelector("x.y").Class);
         }
         #endregion
 

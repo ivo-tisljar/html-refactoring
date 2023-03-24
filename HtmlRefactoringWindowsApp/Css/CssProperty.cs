@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿
+using System.Text.RegularExpressions;
 
 namespace HtmlRefactoringWindowsApp.Css
 
@@ -19,7 +20,7 @@ namespace HtmlRefactoringWindowsApp.Css
             Value = InitPropertyValue(property, property[(colonIndex + 1)..].Trim());
         }
 
-            private int FetchColonIndex(string property)
+            private static int FetchColonIndex(string property)
             {
                 if (!property.Contains(Colon))
                     throw new MissingColonException($"Error! Property '{property}' does not contains colon '{Colon}'.");
@@ -29,7 +30,7 @@ namespace HtmlRefactoringWindowsApp.Css
 
             //  Constructor CssProperty with RegEx is 5 times slower (200.000 properties/sec) than version with if & for-loop validation function
 
-            private string InitPropertyName(string property, string propertyName)
+            private static string InitPropertyName(string property, string propertyName)
             {
                 var reg = new Regex("^[a-zA-Z_-][0-9a-zA-Z_-]*$");
 
@@ -39,7 +40,7 @@ namespace HtmlRefactoringWindowsApp.Css
                 return propertyName;
             }
 
-            private string InitPropertyValue(string property, string propertyValue)
+            private static string InitPropertyValue(string property, string propertyValue)
             {
                 if (string.IsNullOrWhiteSpace(propertyValue))
                     throw new MissingPropertyValueException($"Error! Property '{property}' does not contains property-value.");

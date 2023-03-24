@@ -1,4 +1,5 @@
-﻿namespace HtmlRefactoringWindowsApp.Css
+﻿
+namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssRule
     {

@@ -1,4 +1,5 @@
-﻿namespace HtmlRefactoringWindowsApp.Css
+﻿
+namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssProperties
     {
@@ -20,7 +21,7 @@
             return properties.Count; 
         }
 
-        //  function ReadProperties DOES NOT take quotes and apostrophes into considerations when spliting properitiesText, IT IS ACCEPTABLE!
+            //  function ReadProperties DOES NOT take quotes and apostrophes into considerations when spliting properitiesText, IT IS ACCEPTABLE!
 
             private void ReadProperties(string propertiesText)
             {
