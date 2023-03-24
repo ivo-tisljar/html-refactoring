@@ -123,6 +123,8 @@ namespace HtmlRefactoringTests
             Throws<InvalidSelectorException>(() => new CssSelector("0"));
             Throws<InvalidSelectorException>(() => new CssSelector("."));
             Throws<InvalidSelectorException>(() => new CssSelector("#"));
+            Throws<InvalidSelectorException>(() => new CssSelector("x#"));
+            Throws<InvalidSelectorException>(() => new CssSelector("šč"));
         }
         #endregion
 
