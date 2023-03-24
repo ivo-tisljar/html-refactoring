@@ -19,33 +19,33 @@ namespace HtmlRefactoringWindowsApp.Css
             Value = InitPropertyValue(property, property[(colonIndex + 1)..].Trim());
         }
 
-        private int FetchColonIndex(string property)
-        {
-            if (!property.Contains(Colon))
-                throw new MissingColonException($"Error! Property '{property}' does not contains colon '{Colon}'.");
+            private int FetchColonIndex(string property)
+            {
+                if (!property.Contains(Colon))
+                    throw new MissingColonException($"Error! Property '{property}' does not contains colon '{Colon}'.");
 
-            return property.IndexOf(Colon);
-        }
+                return property.IndexOf(Colon);
+            }
 
-        //  Constructor CssProperty with RegEx is 5 times slower (200.000 properties/sec) than version with if & for-loop validation function
+            //  Constructor CssProperty with RegEx is 5 times slower (200.000 properties/sec) than version with if & for-loop validation function
 
-        private string InitPropertyName(string property, string propertyName)
-        {
-            var reg = new Regex("^[a-zA-Z_-][0-9a-zA-Z_-]*$");
+            private string InitPropertyName(string property, string propertyName)
+            {
+                var reg = new Regex("^[a-zA-Z_-][0-9a-zA-Z_-]*$");
 
-            if (!reg.IsMatch(propertyName))
-                throw new InvalidPropertyNameException($"Error! Property '{property}' does not contain or has invalid property-name.");
+                if (!reg.IsMatch(propertyName))
+                    throw new InvalidPropertyNameException($"Error! Property '{property}' does not contain or has invalid property-name.");
 
-            return propertyName;
-        }
+                return propertyName;
+            }
 
-        private string InitPropertyValue(string property, string propertyValue)
-        {
-            if (string.IsNullOrWhiteSpace(propertyValue))
-                throw new MissingPropertyValueException($"Error! Property '{property}' does not contains property-value.");
+            private string InitPropertyValue(string property, string propertyValue)
+            {
+                if (string.IsNullOrWhiteSpace(propertyValue))
+                    throw new MissingPropertyValueException($"Error! Property '{property}' does not contains property-value.");
 
-            return propertyValue;
-        }
+                return propertyValue;
+            }
     }
 
     public class CssPropertyException : Exception

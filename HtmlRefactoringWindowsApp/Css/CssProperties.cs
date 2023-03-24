@@ -22,15 +22,15 @@
 
         //  function ReadProperties DOES NOT take quotes and apostrophes into considerations when spliting properitiesText, IT IS ACCEPTABLE!
 
-        public void ReadProperties(string propertiesText)
-        {
-            var splitProperties = propertiesText.Split(';');
-
-            foreach (var property in splitProperties)
+            private void ReadProperties(string propertiesText)
             {
-                if (!string.IsNullOrWhiteSpace(property))
-                    properties.Add(new CssProperty(property));
+                var splitProperties = propertiesText.Split(';');
+
+                foreach (var property in splitProperties)
+                {
+                    if (!string.IsNullOrWhiteSpace(property))
+                        properties.Add(new CssProperty(property));
+                }
             }
-        }
     }
 }

@@ -146,6 +146,15 @@ namespace HtmlRefactoringTests
             Equal("x", new CssSelector("x").Element);
             Equal("x", new CssSelector("x.y").Element);
         }
+
+        [Fact]
+        public void AfterConstruction_CanReadID()
+        {
+            Null(new CssSelector("x").ID);
+            Null(new CssSelector(".x").ID);
+            Null(new CssSelector("x.y").ID);
+            Equal("x", new CssSelector("#x").ID);
+        }
         #endregion
 
         #region CssRuleTests

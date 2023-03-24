@@ -9,40 +9,50 @@ namespace HtmlRefactoringWindowsApp.Css
         public string Selector { get; }
 
         public string? Element { get; }
+        public string? ID { get; }
 
         public CssSelector(string selector)
         {
             Selector = InitSelector(selector.Trim());
             Element = InitElement(Selector);
+            ID = InitID(Selector);
         }
 
-        private string InitSelector(string selector)
-        {
-            var reg = new Regex("^[\\.#a-zA-Z_-][0-9\\.a-zA-Z_-]*$");
+            private string InitSelector(string selector)
+            {
+                var reg = new Regex("^[\\.#a-zA-Z_-][0-9\\.a-zA-Z_-]*$");
 
-            if ((!reg.IsMatch(selector)) || (selector == ".") || (selector == "#"))
-                throw new InvalidSelectorException($"Error! Selector '{selector}' is invalid.");
+                if ((!reg.IsMatch(selector)) || (selector == ".") || (selector == "#"))
+                    throw new InvalidSelectorException($"Error! Selector '{selector}' is invalid.");
 
-            return selector;
-        }
-
-        private string? InitElement(string selector)
-        {
-            if ((selector[..1] != ".") && (selector[..1] != "#"))
-                return ExtractElement(selector);
-            else
-                return null;
-        }
-
-        private string? ExtractElement(string selector)
-        {
-            var indexDot = selector.IndexOf('.');
-
-            if (indexDot == -1)
                 return selector;
-            else
-                return selector[0..indexDot];
-        }
+            }
+
+            private string? InitElement(string selector)
+            {
+                if ((selector[..1] != ".") && (selector[..1] != "#"))
+                    return ExtractElement(selector);
+                else
+                    return null;
+            }
+
+                private string? ExtractElement(string selector)
+                {
+                    var indexDot = selector.IndexOf('.');
+
+                    if (indexDot == -1)
+                        return selector;
+                    else
+                        return selector[0..indexDot];
+                }
+
+            private string? InitID(string selector)
+            {
+                if (selector[..1] == "#")
+                    return (selector[1..]);
+                else
+                    return null;
+            }
     }
 
     public class InvalidSelectorException : Exception
