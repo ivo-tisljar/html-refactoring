@@ -1,6 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 
 namespace HtmlRefactoringWindowsApp.Css
+
+//  We are using simplified syntax for CSS properties, which covers all use cases that we face
 {
     public class CssProperty
     {

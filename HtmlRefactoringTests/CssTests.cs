@@ -98,8 +98,8 @@ namespace HtmlRefactoringTests
         [Fact]
         public void AfterCreatingCssProperties_CanReadRealWorldIndividualPropertyNamesAndValues()
         {
-            var cssProperties = new CssProperties("border-collapse:collapse;\r\n\tborder-color\t:\t#000000;\r\n\tborder-style : solid;\r\n\tborder-width:1px;\r\n\t" + 
-                                                  "margin-bottom:-4px;\r\n\tmargin-top:4px;");
+            var cssProperties = new CssProperties("border-collapse:collapse;\r\n\tborder-color\t:\t#000000;\r\n\tborder-style : solid;\r\n\tborder-width:1px;\r\n\t" +
+                                                  "margin-bottom:-4px;\r\n\tmargin-top:4px;\r\n\tfont-family:\"Myriad Pro\", sans-serif;");
             Equal("border-collapse", cssProperties[0].Name);
             Equal("collapse",        cssProperties[0].Value);
             Equal("border-color",    cssProperties[1].Name);
@@ -112,6 +112,8 @@ namespace HtmlRefactoringTests
             Equal("-4px",            cssProperties[4].Value);
             Equal("margin-top",      cssProperties[5].Name);
             Equal("4px",             cssProperties[5].Value);
+            Equal("font-family",     cssProperties[6].Name);
+            Equal("\"Myriad Pro\", sans-serif", cssProperties[6].Value);
         }
         #endregion
 
@@ -136,6 +138,14 @@ namespace HtmlRefactoringTests
             Equal("x.y", new CssSelector("x.y").Selector);
         }
 
+        [Fact]
+        public void AfterConstruction_CanReadElement()
+        {
+            Null(new CssSelector("#x").Element);
+            Null(new CssSelector(".x").Element);
+            Equal("x", new CssSelector("x").Element);
+            Equal("x", new CssSelector("x.y").Element);
+        }
         #endregion
 
         #region CssRuleTests
