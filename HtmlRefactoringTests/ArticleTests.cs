@@ -6,146 +6,75 @@ namespace HtmlRefactoringTests
     public class ArticleTests
     {
         [Fact]
-        public void Article_Title_Successful_Initialization()
+        public void WhenTitleIsEmptyOrWhiteSpace_Throws()
+        {
+            Throws<ArgumentOutOfRangeException>(() => new Article("", "b", "c", "d"));
+            Throws<ArgumentOutOfRangeException>(() => new Article(" \t\r\n", "b", "c", "d"));
+        }
+
+        [Fact]
+        public void AfterCreatingArticle_CanReadTitle()
         {
             const string title = "Title";
-
-            var article = new Article(title, "2", "3", "4");
-
-            Equal(title, article.Title);
+            Equal(title, new Article(title, "b", "c", "d").Title);
         }
 
         [Fact]
-        public void Title_WhenEmptyThrows()
+        public void WhenAuthorNameWithTitlesIsEmptyOrWhiteSpace_Throws()
         {
-            const string title = "";
-
-            Throws<ArgumentOutOfRangeException>(() => new Article(title, "2", "3", "4"));
+            Throws<ArgumentOutOfRangeException>(() => new Article("a", "", "c", "d"));
+            Throws<ArgumentOutOfRangeException>(() => new Article("a", " \t\r\n", "c", "d"));
         }
 
         [Fact]
-        public void Title_WhenWhiteSpaceThrows()
+        public void AfterCreatingArticle_CanReadAuthorNameWithTitles()
         {
-            const string title = " \t\r\n";
+            const string authorNameWithTitles = "Author Name with Titles";
 
-            Throws<ArgumentOutOfRangeException>(() => new Article(title, "2", "3", "4"));
-        }
-
-        //[Fact]
-        //public void AuthorNameWithTitles_WhenNullThrows()
-        //{
-        //    const string authorNameWithTitles = "AuthorNameWithTitles";
-
-        //    var article = new Article("1", authorNameWithTitles, "3", "4");
-
-        //    Equal(authorNameWithTitles, article.AuthorNameWithTitles);
-        //}
-
-        [Fact]
-        public void AuthorNameWithTitles_WhenEmptyThrows()
-        {
-            const string authorNameWithTitles = "";
-
-            Throws<ArgumentOutOfRangeException>(() => new Article("1", authorNameWithTitles, "3", "4"));
+            Equal(authorNameWithTitles, new Article("a", authorNameWithTitles, "c", "d").AuthorNameWithTitles);
         }
 
         [Fact]
-        public void Article_AuthorNameWithTitles_When_WhiteSpace_Throws()
+        public void WhenInputRelativePathIsEmptyOrWhiteSpace_Throws()
         {
-            const string authorNameWithTitles = " \t\r\n";
-
-            Throws<ArgumentOutOfRangeException>(() => new Article("1", authorNameWithTitles, "3", "4"));
+            Throws<ArgumentOutOfRangeException>(() => new Article("a", "b", "", "d"));
+            Throws<ArgumentOutOfRangeException>(() => new Article("a", "b", " \t\r\n", "d"));
         }
 
         [Fact]
         public void Article_InputRelativePath_Successful_Initialization()
         {
-            const string inputRelativePath = "InputRelativePath";
+            const string inputRelativePath = "Input Relative Path";
 
-            var article = new Article("1", "2", inputRelativePath, "4");
-
-            Equal(inputRelativePath, article.InputRelativePath);
+            Equal(inputRelativePath, new Article("a", "b", inputRelativePath, "d").InputRelativePath);
         }
 
         [Fact]
-        public void Article_InputRelativePath_When_Empty_Throws()
+        public void WhenInputFileNameIsEmptyOrWhiteSpace_Throws()
         {
-            const string inputRelativePath = "";
-
-            Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", inputRelativePath, "4"));
-        }
-
-        [Fact]
-        public void Article_InputRelativePath_When_WhiteSpace_Throws()
-        {
-            const string inputRelativePath = " \t\r\n";
-
-            Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", inputRelativePath, "4"));
+            Throws<ArgumentOutOfRangeException>(() => new Article("a", "b", "c", ""));
+            Throws<ArgumentOutOfRangeException>(() => new Article("a", "b", "c", " \t\r\n"));
         }
 
         [Fact]
         public void Article_InputFileName_Successful_Initialization()
         {
-            const string inputFileName = "InputFileName";
+            const string inputFileName = "Input File Name";
 
-            var article = new Article("1", "2", "3", inputFileName);
-
-            Equal(inputFileName, article.InputFileName);
+            Equal(inputFileName, new Article("a", "b", "c", inputFileName).InputFileName);
         }
 
         [Fact]
-        public void Article_InputFileName_When_Empty_Throws()
+        public void Article_AuthorNameWithoutTitles()
         {
-            const string inputFileName = "";
+            Equal("Ivan PETARÈIÆ", new Article("a",
+                  "Ivan PETARÈIÆ, struè. spec. oec. zamjenik glavne urednice", "c", "d").AuthorNameWithoutTitles());
 
-            Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", "3", inputFileName));
-        }
+            Equal("Tamara CIRKVENI FILIPOVIÆ", new Article("a",
+                  "Dr. sc. Tamara CIRKVENI FILIPOVIÆ, prof. v. šk. i ovl. raè.", "c", "d").AuthorNameWithoutTitles());
 
-        [Fact]
-        public void Article_InputFileName_When_WhiteSpace_Throws()
-        {
-            const string inputFileName = " \t\r\n";
-
-            Throws<ArgumentOutOfRangeException>(() => new Article("1", "2", "3", inputFileName));
-        }
-
-        [Fact]
-        public void Article_AuthorNameWithoutTitles_Ivan()
-        {
-            const string nameWithTitles = "Ivan PETARÈIÆ, struè. spec. oec. zamjenik glavne urednice";
-            const string nameWithoutTitles = "Ivan PETARÈIÆ";
-
-            var article = new Article("1", nameWithTitles, "3", "4");
-
-            string authorNameWithoutTitles = article.AuthorNameWithoutTitles();
-
-            Equal(authorNameWithoutTitles, nameWithoutTitles);
-        }
-
-        [Fact]
-        public void Article_AuthorNameWithoutTitles_Tamara()
-        {
-            const string nameWithTitles = "Dr. sc. Tamara CIRKVENI FILIPOVIÆ, prof. v. šk. i ovl. raè.";
-            const string nameWithoutTitles = "Tamara CIRKVENI FILIPOVIÆ";
-
-            var article = new Article("1", nameWithTitles, "3", "4");
-
-            string authorNameWithoutTitles = article.AuthorNameWithoutTitles();
-
-            Equal(authorNameWithoutTitles, nameWithoutTitles);
-        }
-
-        [Fact]
-        public void Article_AuthorNameWithoutTitles_Vlado()
-        {
-            const string nameWithTitles = "Dr. sc. Vlado BRKANIÆ , prof. struè. stud., ovl. raè. i ovl. rev.";
-            const string nameWithoutTitles = "Vlado BRKANIÆ";
-
-            var article = new Article("1", nameWithTitles, "3", "4");
-
-            string authorNameWithoutTitles = article.AuthorNameWithoutTitles();
-
-            Equal(authorNameWithoutTitles, nameWithoutTitles);
+            Equal("Vlado BRKANIÆ", new Article("a",
+                  "Dr. sc. Vlado BRKANIÆ , prof. struè. stud., ovl. raè. i ovl. rev.", "c", "d").AuthorNameWithoutTitles());
         }
     }
 }

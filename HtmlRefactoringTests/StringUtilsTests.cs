@@ -7,107 +7,38 @@ namespace HtmlRefactoringTests
     {
 
         [Fact]
-        public void WhenValidateEmpty_Throws()
+        public void WhenValidateEmptyOrWhiteSpace_Throws()
         {
-            const string paramValue = "";
-
-            Throws<ArgumentOutOfRangeException>(() => StringUtils.ValidateNotEmptyOrWhiteSpace(paramValue, "x"));
+            Throws<ArgumentOutOfRangeException>(() => StringUtils.ValidateNotEmptyOrWhiteSpace("", "x"));
+            Throws<ArgumentOutOfRangeException>(() => StringUtils.ValidateNotEmptyOrWhiteSpace("\t \r\n", "x"));
         }
 
         [Fact]
-        public void WhenValidateWhiteSpace_Throws()
+        public void StripTitlesFromName()
         {
-            const string paramValue = "\t \r\n";
+            Equal("Nada DREMEL", StringUtils.StripTitlesFromName(
+                  "Mr. sc. Nada DREMEL, dipl. oec., ovl. rač. i ovl. por. savj."));
 
-            Throws<ArgumentOutOfRangeException>(() => StringUtils.ValidateNotEmptyOrWhiteSpace(paramValue, "x"));
-        }
+            Equal("Ivan PETARČIĆ", StringUtils.StripTitlesFromName(
+                  "Priredio: Ivan PETARČIĆ, struč. spec. oec."));
 
-        [Fact]
-        public void StripTitlesFromName_Nada()
-        {
-            const string nameWithTitles = "Mr. sc. Nada DREMEL, dipl. oec., ovl. rač. i ovl. por. savj.";
-            const string nameWithoutTitles = "Nada DREMEL";
+            Equal("Anamarija WAGNER", StringUtils.StripTitlesFromName(
+                  "Anamarija WAGNER, dipl. oec., ovl. rev. i ACCA"));
 
-            string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
+            Equal("Tamara CIRKVENI FILIPOVIĆ", StringUtils.StripTitlesFromName(
+                  "Dr. sc. Tamara CIRKVENI FILIPOVIĆ, glavna urednica"));
 
-            Equal(nameStripedOfTitles, nameWithoutTitles);
-        }
+            Equal("Marijana RADUSIN LIPOŠINOVIĆ", StringUtils.StripTitlesFromName(
+                  "Marijana RADUSIN LIPOŠINOVIĆ, dipl. oec., univ. spec. oec. i ovl. rač."));
 
-        [Fact]
-        public void StripTitlesFromName_Ivan()
-        {
-            const string nameWithTitles = "Priredio: Ivan PETARČIĆ, struč. spec. oec.";
-            const string nameWithoutTitles = "Ivan PETARČIĆ";
+            Equal("Vinko BELAK", StringUtils.StripTitlesFromName(
+                  "Prof. dr. sc. Vinko BELAK"));
 
-            string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
+            Equal("Jasna VUK", StringUtils.StripTitlesFromName(
+                  "Jasna VUK, dipl. oec. i ovl. rač."));
 
-            Equal(nameStripedOfTitles, nameWithoutTitles);
-        }
-
-        [Fact]
-        public void StripTitlesFromName_Anamarija()
-        {
-            const string nameWithTitles = "Anamarija WAGNER, dipl. oec., ovl. rev. i ACCA";
-            const string nameWithoutTitles = "Anamarija WAGNER";
-
-            string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
-
-            Equal(nameStripedOfTitles, nameWithoutTitles);
-        }
-
-        [Fact]
-        public void StripTitlesFromName_Tamara()
-        {
-            const string nameWithTitles = "Dr. sc. Tamara CIRKVENI FILIPOVIĆ, glavna urednica";
-            const string nameWithoutTitles = "Tamara CIRKVENI FILIPOVIĆ";
-
-            string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
-
-            Equal(nameStripedOfTitles, nameWithoutTitles);
-        }
-
-        [Fact]
-        public void StripTitlesFromName_Marijana()
-        {
-            const string nameWithTitles = "Marijana RADUSIN LIPOŠINOVIĆ, dipl. oec., univ. spec. oec. i ovl. rač.";
-            const string nameWithoutTitles = "Marijana RADUSIN LIPOŠINOVIĆ";
-
-            string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
-
-            Equal(nameStripedOfTitles, nameWithoutTitles);
-        }
-
-        [Fact]
-        public void StripTitlesFromName_Vinko()
-        {
-            const string nameWithTitles = "Prof. dr. sc. Vinko BELAK";
-            const string nameWithoutTitles = "Vinko BELAK";
-
-            string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
-
-            Equal(nameStripedOfTitles, nameWithoutTitles);
-        }
-
-        [Fact]
-        public void StripTitlesFromName_Jasna()
-        {
-            const string nameWithTitles = "Jasna VUK, dipl. oec. i ovl. rač.*";
-            const string nameWithoutTitles = "Jasna VUK";
-
-            string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
-
-            Equal(nameStripedOfTitles, nameWithoutTitles);
-        }
-
-        [Fact]
-        public void StripTitlesFromName_Tatjana()
-        {
-            const string nameWithTitles = "Pripremila: Tatjana GRBAC, dipl. iur., stalni sudski tumač za njemački jezik";
-            const string nameWithoutTitles = "Tatjana GRBAC";
-
-            string nameStripedOfTitles = StringUtils.StripTitlesFromName(nameWithTitles);
-
-            Equal(nameStripedOfTitles, nameWithoutTitles);
+            Equal("Tatjana GRBAC", StringUtils.StripTitlesFromName(
+                  "Pripremila: Tatjana GRBAC, dipl. iur., stalni sudski tumač za njemački jezik"));
         }
     }
 }

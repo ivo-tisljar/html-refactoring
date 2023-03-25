@@ -3,7 +3,7 @@ using static Xunit.Assert;
 
 namespace HtmlRefactoringTests.Enums
 {
-    public class MagazineBrandTests
+    public class EnumTests
     {
         [Fact]
         public void MagazineBrand_IsDefined_True()
@@ -14,7 +14,6 @@ namespace HtmlRefactoringTests.Enums
             {
                 isDefined &= magazineBrand.IsDefined();
             }
-
             True(isDefined);
         }
 
@@ -22,12 +21,10 @@ namespace HtmlRefactoringTests.Enums
         public void MagazineBrand_IsDefined_False()
         {
             MagazineBrand prevToMinElement = (MagazineBrand)(Enum.GetValues(typeof(MagazineBrand)).Cast<int>().Min() - 1);
+            False(prevToMinElement.IsDefined());
 
             MagazineBrand succToMaxElement = (MagazineBrand)(Enum.GetValues(typeof(MagazineBrand)).Cast<int>().Max() + 1);
-
-            bool isDefined = prevToMinElement.IsDefined() || succToMaxElement.IsDefined();
-
-            False(isDefined);
+            False(succToMaxElement.IsDefined());
         }
 
         [Fact]
@@ -41,43 +38,25 @@ namespace HtmlRefactoringTests.Enums
         [Fact]
         public void MagazineBrand_RRiF_Label()
         {
-            const string label = "RRiF";
-
-            const MagazineBrand magazineBrand = MagazineBrand.RRiF;
-
-            Equal(label, magazineBrand.GetLabel());
+            Equal("RRiF", MagazineBrand.RRiF.GetLabel());
         }
 
         [Fact]
         public void MagazineBrand_PiP_Name()
         {
-            const string name = "Pravo i porezi";
-
-            const MagazineBrand magazineBrand = MagazineBrand.PiP;
-
-            Equal(name, magazineBrand.GetName());
+            Equal("Pravo i porezi", MagazineBrand.PiP.GetName());
         }
 
         [Fact]
         public void MagazineBrand_Proracuni_LeadChar()
         {
-            const string leadChar = "P";
-
-            const MagazineBrand magazineBrand = MagazineBrand.Proracuni;
-
-            Equal(leadChar, magazineBrand.GetLeadChar());
+            Equal("P", MagazineBrand.Proracuni.GetLeadChar());
         }
-
 
         [Fact]
         public void MagazineBrand_Neprofitni_ID()
         {
-            const int id = 7;
-
-            const MagazineBrand magazineBrand = MagazineBrand.Neprofitni;
-
-            Equal(id, magazineBrand.GetID());
+            Equal(7, MagazineBrand.Neprofitni.GetID());
         }
-
     }
 }
