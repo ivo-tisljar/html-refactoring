@@ -283,6 +283,22 @@ namespace HtmlRefactoringTests
             Throws<InvalidBracesException>(() => new CssRule("x}x:0{"));
         }
 
+        [Fact]
+        public void WhenCssRuleHasInvalidSelector_Throws()
+        {
+            Throws<InvalidSelectorException>(() => new CssRule("0{}"));
+            Throws<InvalidSelectorException>(() => new CssRule("lišće{}"));
+        }
+
+        [Fact]
+        public void WhenCssRuleHasInvalidProperty_Throws()
+        {
+            ThrowsAny<CssPropertyException>(() => new CssRule("x{0}"));
+            ThrowsAny<CssPropertyException>(() => new CssRule("x,y{x:}"));
+            ThrowsAny<CssPropertyException>(() => new CssRule(".x,y.y,z{:0}"));
+            ThrowsAny<CssPropertyException>(() => new CssRule("#x{a:a;b;c:c}"));
+        }
+
         #endregion
     }
 }
