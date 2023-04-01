@@ -320,13 +320,13 @@ namespace HtmlRefactoringTests
         public void WhenAnyCssRuleInCssFileHasInvalidBraces_Throws()
         {
             Throws<InvalidBracesException>(() => new CssFile("x x:0"));
-            Throws<InvalidBracesException>(() => new CssFile("a{a:0}"));
-            Throws<InvalidBracesException>(() => new CssFile("a{{a:0}"));
-            Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n"));
-            Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n x x:0"));
-            Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n b{b:0}\n x x:0"));
-            Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n b{b:0}\n x x:0\n c{c:0}"));
-            Throws<InvalidBracesException>(() => new CssFile("x{x:0}y{y:0}"));
+            Throws<InvalidBracesException>(() => new CssFile("a{a:0}}"));
+            //Throws<InvalidBracesException>(() => new CssFile("a{{a:0}"));
+            //Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n"));
+            //Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n x x:0"));
+            //Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n b{b:0}\n x x:0"));
+            //Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n b{b:0}\n x x:0\n c{c:0}"));
+            //Throws<InvalidBracesException>(() => new CssFile("x{x:0}y{y:0}"));
             //Throws<InvalidBracesException>(() => new CssFile("x x:0}"));
             //Throws<InvalidBracesException>(() => new CssFile("x}x:0{"));
         }

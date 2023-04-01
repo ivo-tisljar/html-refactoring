@@ -1,6 +1,7 @@
 ﻿
 using System.Data;
 using System.Text.RegularExpressions;
+using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
 namespace HtmlRefactoringWindowsApp.Css
 {
@@ -10,7 +11,7 @@ namespace HtmlRefactoringWindowsApp.Css
         {
             PreliminaryValidation(file);
 
-            var splitFile = file.Replace("}", "}}").Split('}');
+            var splitFile = SplitAndIncludeSeparator(file, '}');
             var cssRule = new CssRule("x{x:o}");
 
             foreach (var rule in splitFile)

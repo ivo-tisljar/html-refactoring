@@ -1,4 +1,5 @@
 ﻿using HtmlRefactoringWindowsApp.Utils;
+using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
 namespace HtmlRefactoringWindowsApp
 {
@@ -14,15 +15,15 @@ namespace HtmlRefactoringWindowsApp
 
         public Article(string title, string authorNameWithTitles, string inputRelativePath, string inputFileName)
         {
-            Title = StringUtils.ValidateIsNotEmptyAndIsNotWhiteSpace(title, "Title");
-            AuthorNameWithTitles = StringUtils.ValidateIsNotEmptyAndIsNotWhiteSpace(authorNameWithTitles, "AuthorNameWithTitles");
-            InputRelativePath = StringUtils.ValidateIsNotEmptyAndIsNotWhiteSpace(inputRelativePath, "InputRelativePath");
-            InputFileName = StringUtils.ValidateIsNotEmptyAndIsNotWhiteSpace(inputFileName, "InputFileName");
+            Title = ValidateIsNotEmptyAndIsNotWhiteSpace(title, "Title");
+            AuthorNameWithTitles = ValidateIsNotEmptyAndIsNotWhiteSpace(authorNameWithTitles, "AuthorNameWithTitles");
+            InputRelativePath = ValidateIsNotEmptyAndIsNotWhiteSpace(inputRelativePath, "InputRelativePath");
+            InputFileName = ValidateIsNotEmptyAndIsNotWhiteSpace(inputFileName, "InputFileName");
         }
 
         public string AuthorNameWithoutTitles()
         {
-            return StringUtils.StripTitlesFromName(AuthorNameWithTitles);
+            return StripTitlesFromName(AuthorNameWithTitles);
         }
 
     }

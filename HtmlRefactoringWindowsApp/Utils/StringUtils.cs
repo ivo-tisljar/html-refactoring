@@ -1,7 +1,26 @@
-﻿namespace HtmlRefactoringWindowsApp.Utils
+﻿using System.IO;
+
+namespace HtmlRefactoringWindowsApp.Utils
 {
     public class StringUtils
     {
+        public static string[] SplitAndIncludeSeparator(string str, char delimiter)
+        {
+            var subStrings = new List<string>();
+            int firstIndex = 0;
+            int lastIndex = 0;
+
+            while ((lastIndex = str.IndexOf(delimiter, firstIndex)) != -1)
+            {
+                subStrings.Add(str.Substring(firstIndex, lastIndex - firstIndex + 1));
+                firstIndex = lastIndex + 1;
+            }
+            if (firstIndex < str.Length)
+                subStrings.Add(str.Substring(firstIndex));
+
+            return subStrings.ToArray();
+        }
+
         // to-do: keep titles in configuration file and enable crud operations on them
         public static string StripTitlesFromName(string nameWithTitles)
         {

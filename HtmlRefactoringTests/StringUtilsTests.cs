@@ -1,71 +1,69 @@
 ﻿using HtmlRefactoringWindowsApp.Utils;
 using static Xunit.Assert;
+using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
 namespace HtmlRefactoringTests
 {
     public class StringUtilsTests
     {
         [Fact]
-        public void StripTitlesFromNames()
+        public void SplitAndIncludeSeparator_TestCases()
         {
-            Equal("Nada DREMEL", StringUtils.StripTitlesFromName(
-                  "Mr. sc. Nada DREMEL, dipl. oec., ovl. rač. i ovl. por. savj."));
+            Empty(SplitAndIncludeSeparator("", ';'));
 
-            Equal("Ivan PETARČIĆ", StringUtils.StripTitlesFromName(
-                  "Priredio: Ivan PETARČIĆ, struč. spec. oec."));
+            var strings1 = SplitAndIncludeSeparator("x", ';');
+            Single(strings1);
+            Equal("x", strings1[0]);
 
-            Equal("Anamarija WAGNER", StringUtils.StripTitlesFromName(
-                  "Anamarija WAGNER, dipl. oec., ovl. rev. i ACCA"));
+            var strings2 = SplitAndIncludeSeparator(";", ';');
+            Single(strings2);
+            Equal(";", strings2[0]);
 
-            Equal("Tamara CIRKVENI FILIPOVIĆ", StringUtils.StripTitlesFromName(
-                  "Dr. sc. Tamara CIRKVENI FILIPOVIĆ, glavna urednica"));
+            var strings3 = SplitAndIncludeSeparator(";x", ';');
+            Equal(2, strings3.Length);
+            Equal(";", strings3[0]);
+            Equal("x", strings3[1]);
 
-            Equal("Marijana RADUSIN LIPOŠINOVIĆ", StringUtils.StripTitlesFromName(
-                  "Marijana RADUSIN LIPOŠINOVIĆ, dipl. oec., univ. spec. oec. i ovl. rač."));
-
-            Equal("Vinko BELAK", StringUtils.StripTitlesFromName(
-                  "Prof. dr. sc. Vinko BELAK"));
-
-            Equal("Jasna VUK", StringUtils.StripTitlesFromName(
-                  "Jasna VUK, dipl. oec. i ovl. rač."));
-
-            Equal("Tatjana GRBAC", StringUtils.StripTitlesFromName(
-                  "Pripremila: Tatjana GRBAC, dipl. iur., stalni sudski tumač za njemački jezik"));
+            var strings4 = SplitAndIncludeSeparator("x;;y", ';');
+            Equal(3, strings4.Length);
+            Equal("x;", strings4[0]);
+            Equal(";", strings4[1]);
+            Equal("y", strings4[2]);
         }
 
         [Fact]
         public void StripTitlesFromName_TestCases()
         {
-            Equal("Nada DREMEL", StringUtils.StripTitlesFromName(
+            Equal("Nada DREMEL", StripTitlesFromName(
                   "Mr. sc. Nada DREMEL, dipl. oec., ovl. rač. i ovl. por. savj."));
 
-            Equal("Ivan PETARČIĆ", StringUtils.StripTitlesFromName(
+            Equal("Ivan PETARČIĆ", StripTitlesFromName(
                   "Priredio: Ivan PETARČIĆ, struč. spec. oec."));
 
-            Equal("Anamarija WAGNER", StringUtils.StripTitlesFromName(
+            Equal("Anamarija WAGNER", StripTitlesFromName(
                   "Anamarija WAGNER, dipl. oec., ovl. rev. i ACCA"));
 
-            Equal("Tamara CIRKVENI FILIPOVIĆ", StringUtils.StripTitlesFromName(
+            Equal("Tamara CIRKVENI FILIPOVIĆ", StripTitlesFromName(
                   "Dr. sc. Tamara CIRKVENI FILIPOVIĆ, glavna urednica"));
 
-            Equal("Marijana RADUSIN LIPOŠINOVIĆ", StringUtils.StripTitlesFromName(
+            Equal("Marijana RADUSIN LIPOŠINOVIĆ", StripTitlesFromName(
                   "Marijana RADUSIN LIPOŠINOVIĆ, dipl. oec., univ. spec. oec. i ovl. rač."));
 
-            Equal("Vinko BELAK", StringUtils.StripTitlesFromName(
+            Equal("Vinko BELAK", StripTitlesFromName(
                   "Prof. dr. sc. Vinko BELAK"));
 
-            Equal("Jasna VUK", StringUtils.StripTitlesFromName(
+            Equal("Jasna VUK", StripTitlesFromName(
                   "Jasna VUK, dipl. oec. i ovl. rač."));
 
-            Equal("Tatjana GRBAC", StringUtils.StripTitlesFromName(
+            Equal("Tatjana GRBAC", StripTitlesFromName(
                   "Pripremila: Tatjana GRBAC, dipl. iur., stalni sudski tumač za njemački jezik"));
         }
 
         [Fact]
         public void WhenValidateEmptyOrWhiteSpace_Throws()
         {
-            Throws<ArgumentOutOfRangeException>(() => StringUtils.ValidateIsNotEmptyAndIsNotWhiteSpace("", "x"));
-            Throws<ArgumentOutOfRangeException>(() => StringUtils.ValidateIsNotEmptyAndIsNotWhiteSpace("\t \r\n", "x"));
+            Throws<ArgumentOutOfRangeException>(() => ValidateIsNotEmptyAndIsNotWhiteSpace("", "x"));
+            Throws<ArgumentOutOfRangeException>(() => ValidateIsNotEmptyAndIsNotWhiteSpace("\t \r\n", "x"));
         }
     }
 }
