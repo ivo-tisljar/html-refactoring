@@ -275,7 +275,7 @@ namespace HtmlRefactoringTests
         #region CssRuleTests
 
         [Fact]
-        public void WhenCssRuleHasInvalidBraces_Throws ()
+        public void WhenCssRuleHasInvalidBraces_Throws()
         {
             Throws<InvalidBracesException>(() => new CssRule("x x:0"));
             Throws<InvalidBracesException>(() => new CssRule("x{x:0"));
@@ -298,6 +298,17 @@ namespace HtmlRefactoringTests
             ThrowsAny<CssPropertyException>(() => new CssRule(".x,y.y,z{:0}"));
             ThrowsAny<CssPropertyException>(() => new CssRule("#x{a:a;b;c:c}"));
         }
+
+        #endregion
+
+        #region CssFileTests
+
+        [Fact]
+        public void CanCreateCssTest()
+        {
+            var cssFile = new CssFile();
+        }
+
 
         #endregion
     }
