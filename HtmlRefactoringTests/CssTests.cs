@@ -149,7 +149,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterConstruction_CanReadSelector()
+        public void AfterCreatingCssSelector_CanReadSelector()
         {
             Equal("x", new CssSelector("x ").Selector);
             Equal("#x", new CssSelector("#x").Selector);
@@ -158,7 +158,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterConstruction_CanReadElement()
+        public void AfterCreatingCssSelector_CanReadElement()
         {
             Null(new CssSelector("#x").Element);
             Null(new CssSelector(".x").Element);
@@ -167,7 +167,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterConstruction_CanReadID()
+        public void AfterCreatingCssSelector_CanReadID()
         {
             Null (new CssSelector("x").ID);
             Null (new CssSelector(".x").ID);
@@ -176,7 +176,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterConstruction_CanReadClass()
+        public void AfterCreatingCssSelector_CanReadClass()
         {
             Null(new CssSelector("x").Class);
             Null(new CssSelector("#x").Class);
@@ -299,16 +299,34 @@ namespace HtmlRefactoringTests
             ThrowsAny<CssPropertyException>(() => new CssRule("#x{a:a;b;c:c}"));
         }
 
+        [Fact]
+        public void AfterCreatingCssRule_CanReadSelectorsAndProperties()
+        {
+            //  OVDJE TREBA NEŠTO NAPISATI
+            //  OVDJE TREBA NEŠTO NAPISATI
+        }
+
         #endregion
 
         #region CssFileTests
 
         [Fact]
-        public void CanCreateCssTest()
+        public void WhenCssFileIsEmptyOrWhiteSpace_Throws()
         {
-            var cssFile = new CssFile();
+            Throws<InvalidCssFileException>(() => new CssFile(""));
         }
 
+        [Fact]
+        public void WhenAnyCssRuleInCssFileHasInvalidBraces_Throws()
+        {
+            Throws<InvalidBracesException>(() => new CssFile("x x:0"));
+            Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n x x:0"));
+            Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n b{b:0}\n x x:0"));
+            Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n b{b:0}\n x x:0\n c{c:0}"));
+            //Throws<InvalidBracesException>(() => new CssFile("x{x:0"));
+            //Throws<InvalidBracesException>(() => new CssFile("x x:0}"));
+            //Throws<InvalidBracesException>(() => new CssFile("x}x:0{"));
+        }
 
         #endregion
     }
