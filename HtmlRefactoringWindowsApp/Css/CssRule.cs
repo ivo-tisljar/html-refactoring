@@ -14,13 +14,17 @@ namespace HtmlRefactoringWindowsApp.Css
             ValidateBraces(rule, leftBraceIndex, rightBraceIndex);
 
             cssSelectors = new CssSelectors(rule[0..leftBraceIndex]);
-            cssProperties = new CssProperties(rule[(leftBraceIndex + 1)..rightBraceIndex]);
+            cssProperties = new CssProperties(rule[(leftBraceIndex + 1)..rightBraceIndex]); 
         }
+
 
             private static void ValidateBraces(string rule, int leftBraceIndex, int rightBraceIndex)
             {
-                if (((leftBraceIndex == -1) || (rightBraceIndex == -1)) || (leftBraceIndex > rightBraceIndex))
+                if ((leftBraceIndex == -1) || (rightBraceIndex == -1) || (leftBraceIndex > rightBraceIndex) ||
+                    (rule[(leftBraceIndex + 1)..rightBraceIndex].IndexOf('{') != -1))
+                {
                     throw new InvalidBracesException($"Error! Rule '{rule}' does not contain left & right braces '{{' & '}}' in the proper order.");
+                }
             }
     }
 
