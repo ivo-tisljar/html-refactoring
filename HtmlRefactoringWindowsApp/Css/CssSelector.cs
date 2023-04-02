@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace HtmlRefactoringWindowsApp.Css
 
-//  We are using simplified syntax for CSS selectors, which covers all use cases that we face
+//  We are using simplified syntax for CSS selectors, validation rules covers all use cases that we face
 {
     public class CssSelector
     {

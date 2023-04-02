@@ -29,6 +29,7 @@ namespace HtmlRefactoringTests
         [Fact]
         public void WhenMissingPropertyValue_Throws()
         {
+            Throws<MissingPropertyValueException>(() => new CssProperty("-x:"));
             Throws<MissingPropertyValueException>(() => new CssProperty(" _x:"));
             Throws<MissingPropertyValueException>(() => new CssProperty("x-1: "));
         }
@@ -46,7 +47,7 @@ namespace HtmlRefactoringTests
         {
             Equal("0", new CssProperty("x:0").Value);
             Equal("12 13", new CssProperty("x: 12 13 ").Value);
-            Equal("čžš", new CssProperty("x:    čžš").Value);
+            Equal("čžš", new CssProperty("x:    čžš\r\n").Value);
         }
 
         #endregion
@@ -145,6 +146,7 @@ namespace HtmlRefactoringTests
             Throws<InvalidSelectorException>(() => new CssSelector("."));
             Throws<InvalidSelectorException>(() => new CssSelector("#"));
             Throws<InvalidSelectorException>(() => new CssSelector("x#"));
+            Throws<InvalidSelectorException>(() => new CssSelector("x y"));
             Throws<InvalidSelectorException>(() => new CssSelector("šč"));
         }
 
@@ -199,6 +201,7 @@ namespace HtmlRefactoringTests
         public void AfterCreatingCssSelectors_IfCssSelectorIsInvalidThrows()
         {
             Throws<InvalidSelectorException>(() => new CssSelectors("0"));
+            Throws<InvalidSelectorException>(() => new CssSelectors("x y"));
         }
         [Fact]
         public void AfterCreatingCssSelectorsWithOneSelector_CountOfSelectorsIsOne()
@@ -210,7 +213,7 @@ namespace HtmlRefactoringTests
         [Fact]
         public void AfterCreatingCssSelectorsWithTwoSelectors_CountOfSelectorsIsTwo()
         {
-            var cssSelectors = new CssSelectors("x, y");
+            var cssSelectors = new CssSelectors("x, #y");
             Equal(2, cssSelectors.Count);
         }
 
@@ -322,13 +325,28 @@ namespace HtmlRefactoringTests
             Throws<InvalidBracesException>(() => new CssFile("x x:0"));
             Throws<InvalidBracesException>(() => new CssFile("a{a:0}}"));
             Throws<InvalidBracesException>(() => new CssFile("a{{a:0}"));
+            Throws<InvalidBracesException>(() => new CssFile("x x:0}"));
+            Throws<InvalidBracesException>(() => new CssFile("x}x:0{"));
             Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n x"));
             Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n x x:0"));
             Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n b{b:0}\n x x:0"));
             Throws<InvalidBracesException>(() => new CssFile("a{a:0}\r\n b{b:0}}\n x x:0\n c{c:0}"));
             Throws<InvalidBracesException>(() => new CssFile("x{x:0}x,y{{y:0}"));
-            Throws<InvalidBracesException>(() => new CssFile("x x:0}"));
-            Throws<InvalidBracesException>(() => new CssFile("x}x:0{"));
+        }
+
+        [Fact]
+        public void WhenAnyCssRuleInCssFileHasInvalidSelector_Throws()
+        {
+            Throws<InvalidSelectorException>(() => new CssFile("'x{x:0}"));
+            //Throws<InvalidSelectorException>(() => new CssFile("0{a:0}}"));
+            //Throws<InvalidSelectorException>(() => new CssFile("a{{a:0}"));
+            //Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n x"));
+            //Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n x x:0"));
+            //Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n b{b:0}\n x x:0"));
+            //Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n b{b:0}}\n x x:0\n c{c:0}"));
+            //Throws<InvalidSelectorException>(() => new CssFile("x{x:0}x,y{{y:0}"));
+            //Throws<InvalidSelectorException>(() => new CssFile("x x:0}"));
+            //Throws<InvalidSelectorException>(() => new CssFile("x}x:0{"));
         }
 
         #endregion
