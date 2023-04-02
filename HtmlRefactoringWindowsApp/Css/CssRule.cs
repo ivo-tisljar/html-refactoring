@@ -3,9 +3,9 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssRule
     {
-        private CssSelectors cssSelectors;
+        private readonly CssSelectors cssSelectors;
 
-        private CssProperties cssProperties;
+        private readonly CssProperties cssProperties;
 
         public CssRule(string rule)
         {

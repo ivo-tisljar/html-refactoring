@@ -35,7 +35,7 @@ namespace HtmlRefactoringWindowsApp.Temp
             {
                 return "P";
             }
-            return magazineType.ToString().Substring(0, 1);
+            return magazineType.ToString()[..1];
         }
 
         public static int GetID(this MagazineType2 magazineType)
@@ -45,25 +45,17 @@ namespace HtmlRefactoringWindowsApp.Temp
 
         public static string GetLabel(this MagazineType2 magazineType)
         {
-            switch (magazineType)
+            return magazineType switch
             {
-                case MagazineType2.RRiF:
-                    return "RRiF";
-                case MagazineType2.PiP:
-                    return "PiP";
-                case MagazineType2.Proracuni:
-                    return "Pror";
-                case MagazineType2.Neprofitni:
-                    return "Nepr";
-                case MagazineType2.GodisnjiObracun:
-                    return "PrGO";
-                case MagazineType2.Obrtnici:
-                    return "Obrt";
-                case MagazineType2.Obavijesti:
-                    return "Obav";
-                default:
-                    throw new ArgumentException("Item not found.", nameof(magazineType));
-            }
+                MagazineType2.RRiF => "RRiF",
+                MagazineType2.PiP => "PiP",
+                MagazineType2.Proracuni => "Pror",
+                MagazineType2.Neprofitni => "Nepr",
+                MagazineType2.GodisnjiObracun => "PrGO",
+                MagazineType2.Obrtnici => "Obrt",
+                MagazineType2.Obavijesti => "Obav",
+                _ => throw new ArgumentException("Item not found.", nameof(magazineType)),
+            };
         }
 
         public static string GetName(this MagazineType2 magazineType)

@@ -12,7 +12,7 @@ namespace HtmlRefactoringWindowsApp.Css
             PreliminaryValidation(file);
 
             var splitFile = SplitAndIncludeSeparator(file, '}');
-            var cssRule = new CssRule("x{x:o}");
+            CssRule cssRule;
 
             foreach (var rule in splitFile)
             {
