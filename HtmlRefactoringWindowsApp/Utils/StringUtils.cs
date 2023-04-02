@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿
+using System.IO;
 
 namespace HtmlRefactoringWindowsApp.Utils
 {
@@ -8,7 +9,7 @@ namespace HtmlRefactoringWindowsApp.Utils
         {
             var subStrings = new List<string>();
             int firstIndex = 0;
-            int lastIndex = 0;
+            int lastIndex;
 
             while ((lastIndex = str.IndexOf(delimiter, firstIndex)) != -1)
             {
@@ -16,7 +17,7 @@ namespace HtmlRefactoringWindowsApp.Utils
                 firstIndex = lastIndex + 1;
             }
             if (firstIndex < str.Length)
-                subStrings.Add(str.Substring(firstIndex));
+                subStrings.Add(str[firstIndex..]);
 
             return subStrings.ToArray();
         }

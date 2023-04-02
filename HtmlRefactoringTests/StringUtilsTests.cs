@@ -1,4 +1,5 @@
-﻿using HtmlRefactoringWindowsApp.Utils;
+﻿
+using HtmlRefactoringWindowsApp.Utils;
 using static Xunit.Assert;
 using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 

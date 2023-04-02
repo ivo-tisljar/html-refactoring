@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿
+using System.ComponentModel;
 
 namespace HtmlRefactoringWindowsApp.Temp
 {
@@ -61,7 +62,7 @@ namespace HtmlRefactoringWindowsApp.Temp
         public static string GetName(this MagazineType2 magazineType)
         {
             var field = magazineType.GetType().GetField(magazineType.ToString());
-            if (Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attribute)
+            if ((field != null) && (Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attribute))
             {
                 return attribute.Description;
             }

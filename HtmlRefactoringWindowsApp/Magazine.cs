@@ -1,4 +1,5 @@
-﻿namespace HtmlRefactoringWindowsApp
+﻿
+namespace HtmlRefactoringWindowsApp
 {
     public class Magazine
     {

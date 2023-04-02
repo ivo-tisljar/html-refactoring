@@ -1,4 +1,5 @@
-﻿namespace HtmlRefactoringWindowsApp.Enums
+﻿
+namespace HtmlRefactoringWindowsApp.Enums
 {
     public enum MagazineBrand
     {
