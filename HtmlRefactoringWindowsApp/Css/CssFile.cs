@@ -11,25 +11,20 @@ namespace HtmlRefactoringWindowsApp.Css
         {
             PreliminaryValidation(file);
 
-            var splitFile = SplitAndIncludeSeparator(file, '}');
+            var splitFile = SplitWithSeparatorIncluded(file, '}');
             CssRule cssRule;
 
             foreach (var rule in splitFile)
             {
-                if (!string.IsNullOrEmpty(rule))
+                if (!string.IsNullOrWhiteSpace(rule))
                     cssRule = new CssRule(rule);
             }
         }
 
             private static void PreliminaryValidation(string file)
             {
-                if (string.IsNullOrEmpty(file))
+                if (string.IsNullOrWhiteSpace(file))
                     throw new InvalidCssFileException("Error! CSS file is empty or white space.");
-
-                var reg = new Regex("^.*\\}\\s*\\}.*$");
-
-                if (reg.IsMatch(file))
-                    throw new InvalidBracesException("Error! Invalid right brace '}'");
             }
 
         }

@@ -8,24 +8,24 @@ namespace HtmlRefactoringTests
     public class StringUtilsTests
     {
         [Fact]
-        public void SplitAndIncludeSeparator_TestCases()
+        public void SplitWithSeparatorIncluded_TestCases()
         {
-            Empty(SplitAndIncludeSeparator("", ';'));
+            Empty(SplitWithSeparatorIncluded("", ';'));
 
-            var strings1 = SplitAndIncludeSeparator("x", ';');
+            var strings1 = SplitWithSeparatorIncluded("x", ';');
             Single(strings1);
             Equal("x", strings1[0]);
 
-            var strings2 = SplitAndIncludeSeparator(";", ';');
+            var strings2 = SplitWithSeparatorIncluded(";", ';');
             Single(strings2);
             Equal(";", strings2[0]);
 
-            var strings3 = SplitAndIncludeSeparator(";x", ';');
+            var strings3 = SplitWithSeparatorIncluded(";x", ';');
             Equal(2, strings3.Length);
             Equal(";", strings3[0]);
             Equal("x", strings3[1]);
 
-            var strings4 = SplitAndIncludeSeparator("x;;y", ';');
+            var strings4 = SplitWithSeparatorIncluded("x;;y", ';');
             Equal(3, strings4.Length);
             Equal("x;", strings4[0]);
             Equal(";", strings4[1]);

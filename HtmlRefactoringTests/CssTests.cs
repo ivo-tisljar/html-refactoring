@@ -317,6 +317,7 @@ namespace HtmlRefactoringTests
         public void WhenCssFileIsEmptyOrWhiteSpace_Throws()
         {
             Throws<InvalidCssFileException>(() => new CssFile(""));
+            Throws<InvalidCssFileException>(() => new CssFile(" \t\r\n"));
         }
 
         [Fact]

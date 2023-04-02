@@ -5,7 +5,7 @@ namespace HtmlRefactoringWindowsApp.Utils
 {
     public class StringUtils
     {
-        public static string[] SplitAndIncludeSeparator(string str, char delimiter)
+        public static string[] SplitWithSeparatorIncluded(string str, char delimiter)
         {
             var subStrings = new List<string>();
             int firstIndex = 0;
