@@ -3,9 +3,9 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssRule
     {
-        private readonly CssSelectors cssSelectors;
+        public CssSelectors CssSelectors { get; }
 
-        private readonly CssProperties cssProperties;
+        public CssProperties CssProperties { get; }
 
         public CssRule(string rule)
         {
@@ -14,8 +14,8 @@ namespace HtmlRefactoringWindowsApp.Css
 
             ValidateBraces(rule, leftBraceIndex, rightBraceIndex);
 
-            cssSelectors = new CssSelectors(rule[0..leftBraceIndex]);
-            cssProperties = new CssProperties(rule[(leftBraceIndex + 1)..rightBraceIndex]);
+            CssSelectors = new CssSelectors(rule[0..leftBraceIndex]);
+            CssProperties = new CssProperties(rule[(leftBraceIndex + 1)..rightBraceIndex]);
         }
 
 

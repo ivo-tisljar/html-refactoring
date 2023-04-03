@@ -1,5 +1,6 @@
 ﻿
 using HtmlRefactoringWindowsApp.Css;
+using System.Data;
 using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
@@ -303,24 +304,52 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssRule_CanReadSelectorsAndProperties()
+        public void AfterCreatingCssRule_CanReadIndividualSelectorsAndProperties()
         {
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
-            //  OVDJE TREBA NEŠTO NAPISATI
+            var rule = new CssRule("x.y, x, .y, #z {a:0; b:1; c:2; d:3}");
+
+            Equal(4, rule.CssSelectors.Count);
+
+            Equal("x.y", rule.CssSelectors[0].Selector);
+            Equal("x", rule.CssSelectors[1].Element);
+            Equal("y", rule.CssSelectors[2].Class);
+            Equal("z", rule.CssSelectors[3].ID);
+
+            Throws<ArgumentOutOfRangeException>(() => rule.CssSelectors[4].Selector);
+
+            Equal("a", rule.CssProperties[0].Name);
+            Equal("0", rule.CssProperties[0].Value);
+
+            Equal("b", rule.CssProperties[1].Name);
+            Equal("1", rule.CssProperties[1].Value);
+
+            Equal("c", rule.CssProperties[2].Name);
+            Equal("2", rule.CssProperties[2].Value);
+
+            Equal("d", rule.CssProperties[3].Name);
+            Equal("3", rule.CssProperties[3].Value);
+        }
+
+        [Fact]
+        public void AfterCreatingCssRule_CanReadRealWorldSelectorsAndProperties()
+        {
+            var rule = new CssRule("p, li {\n\tfont-family: \"arial\";\n\tfont-weight: bold;\n\tfont-size: 120%\n\t}");
+
+            Equal(2, rule.CssSelectors.Count);
+
+            Equal("p", rule.CssSelectors[0].Selector);
+            Equal("li", rule.CssSelectors[1].Element);
+
+            Throws<ArgumentOutOfRangeException>(() => rule.CssSelectors[2].Selector);
+
+            Equal("font-family", rule.CssProperties[0].Name);
+            Equal("\"arial\"", rule.CssProperties[0].Value);
+
+            Equal("font-weight", rule.CssProperties[1].Name);
+            Equal("bold", rule.CssProperties[1].Value);
+
+            Equal("font-size", rule.CssProperties[2].Name);
+            Equal("120%", rule.CssProperties[2].Value);
         }
 
         #endregion
