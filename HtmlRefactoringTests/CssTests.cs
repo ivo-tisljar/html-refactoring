@@ -382,15 +382,18 @@ namespace HtmlRefactoringTests
         public void WhenAnyCssRuleInCssFileHasInvalidSelector_Throws()
         {
             Throws<InvalidSelectorException>(() => new CssFile("'x{x:0}"));
-            //Throws<InvalidSelectorException>(() => new CssFile("0{a:0}}"));
-            //Throws<InvalidSelectorException>(() => new CssFile("a{{a:0}"));
-            //Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n x"));
-            //Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n x x:0"));
-            //Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n b{b:0}\n x x:0"));
-            //Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n b{b:0}}\n x x:0\n c{c:0}"));
-            //Throws<InvalidSelectorException>(() => new CssFile("x{x:0}x,y{{y:0}"));
-            //Throws<InvalidSelectorException>(() => new CssFile("x x:0}"));
-            //Throws<InvalidSelectorException>(() => new CssFile("x}x:0{"));
+            Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n 0b{b:0}\n\n c{c:0}"));
+            Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n b{b:0}\n\n c c{c:0}"));
+            Throws<InvalidSelectorException>(() => new CssFile("a{a:0}\r\n šč \n {šč:0}\n\n c.c{c:0}"));
+        }
+
+        [Fact]
+        public void WhenAnyCssRuleInCssFileHasInvalidProperty_Throws()
+        {
+            ThrowsAny<CssPropertyException>(() => new CssFile("x{0:0}"));
+            ThrowsAny<CssPropertyException>(() => new CssFile("a{a:0}\r\n b{b b:0}\n\n c{c:0}"));
+            ThrowsAny<CssPropertyException>(() => new CssFile("a{a:0}\r\n b \n {b \n : \n 0 \n }\n\n c.c{d.d:0}"));
+            ThrowsAny<CssPropertyException>(() => new CssFile("a{a:0}\r\n sc \n {šč:0}\n\n šč{c:0}"));
         }
 
         #endregion
