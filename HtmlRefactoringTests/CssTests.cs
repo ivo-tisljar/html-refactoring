@@ -288,8 +288,9 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void WhenCssRuleHasInvalidSelector_Throws()
+        public void WhenCssRuleHasInvalidOrMissingSelector_Throws()
         {
+            Throws<InvalidSelectorException>(() => new CssRule("{}"));
             Throws<InvalidSelectorException>(() => new CssRule("0{}"));
             Throws<InvalidSelectorException>(() => new CssRule("lišće{}"));
         }
@@ -317,6 +318,8 @@ namespace HtmlRefactoringTests
 
             Throws<ArgumentOutOfRangeException>(() => rule.CssSelectors[4].Selector);
 
+            Equal(4, rule.CssProperties.Count);
+
             Equal("a", rule.CssProperties[0].Name);
             Equal("0", rule.CssProperties[0].Value);
 
@@ -342,6 +345,8 @@ namespace HtmlRefactoringTests
 
             Throws<ArgumentOutOfRangeException>(() => rule.CssSelectors[2].Selector);
 
+            Equal(3, rule.CssProperties.Count);
+
             Equal("font-family", rule.CssProperties[0].Name);
             Equal("\"arial\"", rule.CssProperties[0].Value);
 
@@ -357,10 +362,13 @@ namespace HtmlRefactoringTests
         #region CssFileTests
 
         [Fact]
-        public void WhenCssFileIsEmptyOrWhiteSpace_Throws()
+        public void WhenCssFileIsEmptyOrWhiteSpace_CssFileIsEmpty()
         {
-            Throws<InvalidCssFileException>(() => new CssFile(""));
-            Throws<InvalidCssFileException>(() => new CssFile(" \t\r\n"));
+            var cssFile1 = new CssFile("");
+            Equal(0, cssFile1.Count);
+
+            var cssFile2 = new CssFile(" \t\r\n");
+            Equal(0, cssFile2.Count);
         }
 
         [Fact]
@@ -394,6 +402,55 @@ namespace HtmlRefactoringTests
             ThrowsAny<CssPropertyException>(() => new CssFile("a{a:0}\r\n b{b b:0}\n\n c{c:0}"));
             ThrowsAny<CssPropertyException>(() => new CssFile("a{a:0}\r\n b \n {b \n : \n 0 \n }\n\n c.c{d.d:0}"));
             ThrowsAny<CssPropertyException>(() => new CssFile("a{a:0}\r\n sc \n {šč:0}\n\n šč{c:0}"));
+        }
+
+        [Fact]
+        public void AfterCreatingCssFile_CountMachesNumberOfRules()
+        {
+            Equal(1, new CssFile("a{a:0}").Count);
+            Equal(2, new CssFile("a{a:0}\r\n b{b:0}\n").Count);
+            Equal(3, new CssFile("a{\r\na:0;\r\n}\r\nb{\r\nb:0;\r\n}\r\nc.c{\r\nc:0\r\n}").Count);
+            Equal(4, new CssFile(".a{\na:0;\n}\nb{\nb:0;\n}\nc.c,c{\nc:0\n}\n#d{\nd:0\n}").Count);
+            Equal(7, new CssFile(".a{\na:0;\n}\nb{\nb:0;\n}\nc.c{\nc:0\n}\n#d,#d.d{\nd:0\n}\n#d{\na:0\n}\n#d{\nb:0\n}\n#d{\nc:0\n}").Count);
+        }
+
+        [Fact]
+        public void AfterCreatingCssFile_CanReadRulesSelectorsAndProperties()
+        {
+            var cssFile = new CssFile(".a{\na:0;\n}\nb{\nb:7;\n}\ne.f,#g,.h,i{\nc:1;cc:22;ccc:333\n}\no.p{\nd:9\n}");
+
+            Equal(".a", cssFile[0].CssSelectors[0].Selector);
+            Equal("a", cssFile[0].CssSelectors[0].Class);
+            Equal("a", cssFile[0].CssProperties[0].Name);
+            Equal("0", cssFile[0].CssProperties[0].Value);
+
+            Equal("b", cssFile[1].CssSelectors[0].Selector);
+            Equal("b", cssFile[1].CssSelectors[0].Element);
+            Equal("b", cssFile[1].CssProperties[0].Name);
+            Equal("7", cssFile[1].CssProperties[0].Value);
+
+            Equal("e.f", cssFile[2].CssSelectors[0].Selector);
+            Equal("e", cssFile[2].CssSelectors[0].Element);
+            Equal("f", cssFile[2].CssSelectors[0].Class);
+            Equal("#g", cssFile[2].CssSelectors[1].Selector);
+            Equal("g", cssFile[2].CssSelectors[1].ID);
+            Equal(".h", cssFile[2].CssSelectors[2].Selector);
+            Equal("h", cssFile[2].CssSelectors[2].Class);
+            Equal("i", cssFile[2].CssSelectors[3].Selector);
+            Equal("i", cssFile[2].CssSelectors[3].Element);
+
+            Equal("c", cssFile[2].CssProperties[0].Name);
+            Equal("1", cssFile[2].CssProperties[0].Value);
+            Equal("cc", cssFile[2].CssProperties[1].Name);
+            Equal("22", cssFile[2].CssProperties[1].Value);
+            Equal("ccc", cssFile[2].CssProperties[2].Name);
+            Equal("333", cssFile[2].CssProperties[2].Value);
+
+            Equal("o.p", cssFile[3].CssSelectors[0].Selector);
+            Equal("o", cssFile[3].CssSelectors[0].Element);
+            Equal("p", cssFile[3].CssSelectors[0].Class);
+            Equal("d", cssFile[3].CssProperties[0].Name);
+            Equal("9", cssFile[3].CssProperties[0].Value);
         }
 
         #endregion

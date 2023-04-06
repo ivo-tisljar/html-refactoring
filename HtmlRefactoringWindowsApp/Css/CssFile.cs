@@ -7,9 +7,22 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssFile
     {
+        public List<CssRule> rules;
+
+        public int Count
+        {
+            get { return rules.Count; }
+        }
+
+        public CssRule this[int index]
+        {
+            get { return rules[index]; }
+        }
+
         public CssFile(string file)
         {
-            PreliminaryValidation(file);
+            rules = new List<CssRule>();
+            //PreliminaryValidation(file);
             ExtractRules(file);
         }
 
@@ -19,15 +32,14 @@ namespace HtmlRefactoringWindowsApp.Css
                         throw new InvalidCssFileException("Error! CSS file is empty or white space.");
                 }
 
-            private static void ExtractRules(string file)
+            private void ExtractRules(string file)
             {
                 var splitFile = SplitWithSeparatorIncluded(file, '}');
-                CssRule cssRule;
 
                 foreach (var rule in splitFile)
                 {
                     if (!string.IsNullOrWhiteSpace(rule))
-                        cssRule = new CssRule(rule);
+                        rules.Add(new CssRule(rule));
                 }
             }
     }
