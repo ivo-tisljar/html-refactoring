@@ -1,8 +1,7 @@
-﻿using HtmlRefactoringWindowsApp.Css;
-using System.Drawing.Printing;
-using System.Security.Cryptography;
+﻿
+using System.Text.RegularExpressions;
 
-namespace HtmlRefactoringTests
+namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssMargin
     {
@@ -36,45 +35,45 @@ namespace HtmlRefactoringTests
                     throw new InvalidMarginException($"Error! Property '{cssProperty.Name}:{cssProperty.Value}' does not define a margin.");
             }
 
-                private void InitAllSides(CssProperty cssProperty)
-                {
-                    var sides = cssProperty.Value.Split();
+            private void InitAllSides(CssProperty cssProperty)
+            {
+                var sides = Regex.Split(cssProperty.Value, @"\s+");
 
-                    switch (sides.Count())
-                    {
-                        case 1:
-                            Top = Right = Bottom = Left = sides[0]; break;
-                        case 2:
-                            Top = Bottom = sides[0];
-                            Right = Left = sides[1]; break;
-                        case 3:
-                            Top = sides[0];
-                            Right = Left = sides[1];
-                            Bottom = sides[2]; break;
-                        case 4:
-                            Top = sides[0];
-                            Right = sides[1];
-                            Bottom = sides[2];
-                            Left = sides[3]; break;
-                        default:
-                            throw new InvalidMarginException($"Error! Property '{cssProperty.Name}:{cssProperty.Value}' has invalid number of sides defined.");
-                    }
-                }
-
-                private void InitOneSide(CssProperty cssProperty)
+                switch (sides.Length)
                 {
-                    switch (cssProperty.Name) 
-                    {
-                        case marginTop:
-                            Top = cssProperty.Value; break;
-                        case marginRight:
-                            Right = cssProperty.Value; break;
-                        case marginBottom:
-                            Bottom = cssProperty.Value; break;
-                        case marginLeft:
-                            Left = cssProperty.Value; break;
-                    }
+                    case 1:
+                        Top = Right = Bottom = Left = sides[0]; break;
+                    case 2:
+                        Top = Bottom = sides[0];
+                        Right = Left = sides[1]; break;
+                    case 3:
+                        Top = sides[0];
+                        Right = Left = sides[1];
+                        Bottom = sides[2]; break;
+                    case 4:
+                        Top = sides[0];
+                        Right = sides[1];
+                        Bottom = sides[2];
+                        Left = sides[3]; break;
+                    default:
+                        throw new InvalidMarginException($"Error! Property '{cssProperty.Name}:{cssProperty.Value}' has invalid number of sides defined.");
                 }
+            }
+
+            private void InitOneSide(CssProperty cssProperty)
+            {
+                switch (cssProperty.Name) 
+                {
+                    case marginTop:
+                        Top = cssProperty.Value; break;
+                    case marginRight:
+                        Right = cssProperty.Value; break;
+                    case marginBottom:
+                        Bottom = cssProperty.Value; break;
+                    case marginLeft:
+                        Left = cssProperty.Value; break;
+                }
+            }
     }
 
 public class InvalidMarginException : Exception
