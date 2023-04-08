@@ -31,9 +31,7 @@ namespace HtmlRefactoringWindowsApp.Css
             private static void ValidateSelectorsIsNotEmpty(string rule, int leftBraceIndex)
             {
                 if (string.IsNullOrEmpty(rule[..leftBraceIndex]))
-                {
                     throw new InvalidSelectorException($"Error! Rule '{rule}' does not have selector.");
-                }
             }
     }
 
