@@ -22,15 +22,8 @@ namespace HtmlRefactoringWindowsApp.Css
         public CssFile(string file)
         {
             rules = new List<CssRule>();
-            //PreliminaryValidation(file);
             ExtractRules(file);
         }
-
-            private static void PreliminaryValidation(string file)
-                {
-                    if (string.IsNullOrWhiteSpace(file))
-                        throw new InvalidCssFileException("Error! CSS file is empty or white space.");
-                }
 
             private void ExtractRules(string file)
             {
