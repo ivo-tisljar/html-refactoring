@@ -1,12 +1,35 @@
 ﻿
 using HtmlRefactoringWindowsApp.Css;
-using System.Data;
+using static HtmlRefactoringWindowsApp.Css.CssTypes;
+
 using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
 {
     public class CssTests
     {
+        #region CssTypesTests
+
+        [Fact]
+        public void IsValidCssLengthTests()
+        {
+            True(IsValidCssLength("0"));
+            True(IsValidCssLength("1%"));
+            True(IsValidCssLength("-3em"));
+            True(IsValidCssLength("0.1px"));
+            True(IsValidCssLength("-3.14%"));
+
+            False(IsValidCssLength("0xp"));
+            False(IsValidCssLength("1vh"));
+            False(IsValidCssLength("2vw"));
+            False(IsValidCssLength("3cm"));
+            False(IsValidCssLength("4ex"));
+            False(IsValidCssLength("5rem"));
+            False(IsValidCssLength("6 px"));
+        }
+
+        #endregion
+
         #region CssPropertyTests
 
         [Fact]
