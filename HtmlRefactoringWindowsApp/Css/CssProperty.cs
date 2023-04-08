@@ -35,7 +35,7 @@ namespace HtmlRefactoringWindowsApp.Css
                 if (!reg.IsMatch(propertyName))
                     throw new InvalidPropertyNameException($"Error! Property '{property}' does not contain or has invalid property-name.");
 
-                return propertyName;
+                return propertyName.ToLower();
             }
 
             private static string InitPropertyValue(string property, string propertyValue)

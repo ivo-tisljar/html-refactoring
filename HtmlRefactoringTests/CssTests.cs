@@ -90,7 +90,7 @@ namespace HtmlRefactoringTests
         [Fact]
         public void AfterCreatingCssProperties_CanReadIndividualPropertyNamesAndValues()
         {
-            var cssProperties = new CssProperties("x:0;y:1;z:2");
+            var cssProperties = new CssProperties("X:0;y:1;Z:2");
 
             Equal("x", cssProperties[0].Name);
             Equal("0", cssProperties[0].Value);
@@ -451,6 +451,23 @@ namespace HtmlRefactoringTests
             Equal("p", cssFile[3].CssSelectors[0].Class);
             Equal("d", cssFile[3].CssProperties[0].Name);
             Equal("9", cssFile[3].CssProperties[0].Value);
+        }
+
+        #endregion
+
+        #region CssMarginTests
+
+        [Fact]
+        public void WhenCreatedFromNonMarginProperty_Throws()
+        {
+            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("x:0")));
+        }
+
+        [Fact]
+        public void WhenCreatedWithInvalidMarginProperty_Throws()
+        {
+            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("margintop:0")));
+            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("Margin-botom:0")));
         }
 
         #endregion
