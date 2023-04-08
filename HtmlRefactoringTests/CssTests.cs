@@ -508,12 +508,14 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void WhenCreatingCssMarginOnOneSideWithInvalidLength_Throws()
+        public void WhenCreatingCssMarginWithInvalidLength_Throws()
         {
+            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("margin:0xp")));
+            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("margin:0vh 1vw")));
+            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("margin:0 2cm 3px")));
+            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("margin:0 1px 2em 3ex")));
             Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("margin-top:0xp")));
-            //Equal("10px", new CssMargin(new CssProperty("margin-right:10px")).Right);
-            //Equal("20ex", new CssMargin(new CssProperty("margin-bottom:20ex")).Bottom);
-            //Equal("30%", new CssMargin(new CssProperty("margin-left:30%")).Left);
+            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("margin-top:1px 0px")));
         }
 
         #endregion
