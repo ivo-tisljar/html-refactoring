@@ -5,6 +5,10 @@ namespace HtmlRefactoringTests
     public class CssMargin
     {
         private static string margin = "margin";
+        private static string marginTop = "margin-top";
+        private static string marginRight = "margin-right";
+        private static string marginBottom = "margin-bottom";
+        private static string marginLeft = "margin-left";
 
         public CssMargin(CssProperty cssProperty)
         {
@@ -13,14 +17,10 @@ namespace HtmlRefactoringTests
 
             private static void ValidateThatPropertyIsMargin(CssProperty cssProperty)
             {
-                if ((cssProperty.Name.Length < margin.Length) || (cssProperty.Name[..margin.Length] != margin) || !ValidateMarginSufix(cssProperty.Name[margin.Length..]))
+                if ((cssProperty.Name != margin) && (cssProperty.Name != marginTop) && (cssProperty.Name != marginRight) && (cssProperty.Name != marginBottom) && 
+                    (cssProperty.Name != marginLeft))
                     throw new InvalidMarginException($"Error! Property '{cssProperty.Name}:{cssProperty.Value}' does not define a margin.");
             }
-
-                private static bool ValidateMarginSufix(string sufix)
-                {
-                    return (sufix == "") || (sufix == "-top") || (sufix == "-right") || (sufix == "-bottom") || (sufix == "-left");
-                }
     }
 
     public class InvalidMarginException : Exception
