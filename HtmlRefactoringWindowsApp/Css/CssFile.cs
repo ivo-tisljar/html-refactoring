@@ -1,6 +1,4 @@
 ﻿
-using System.Data;
-using System.Text.RegularExpressions;
 using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
 namespace HtmlRefactoringWindowsApp.Css
