@@ -467,7 +467,23 @@ namespace HtmlRefactoringTests
         public void WhenCreatedWithInvalidMarginProperty_Throws()
         {
             Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("margintop:0")));
-            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("Margin-botom:0")));
+            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("margin-botom:0")));
+        }
+
+        [Fact]
+        public void AfterCreatingCssMarginOnOneSide_CanReadMarginWidthOfThatSide()
+        {
+            Equal("0", new CssMargin(new CssProperty("margin-top:0")).Top);
+            Equal("10px", new CssMargin(new CssProperty("margin-right:10px")).Right);
+            Equal("20ex", new CssMargin(new CssProperty("margin-bottom:20ex")).Bottom);
+            Equal("30%", new CssMargin(new CssProperty("margin-left:30%")).Left);
+
+
+            //Equal("o.p", cssFile[3].CssSelectors[0].Selector);
+            //Equal("o", cssFile[3].CssSelectors[0].Element);
+            //Equal("p", cssFile[3].CssSelectors[0].Class);
+            //Equal("d", cssFile[3].CssProperties[0].Name);
+            //Equal("9", cssFile[3].CssProperties[0].Value);
         }
 
         #endregion
