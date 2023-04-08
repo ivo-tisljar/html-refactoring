@@ -1,5 +1,6 @@
 ﻿
 using System.Text.RegularExpressions;
+using static HtmlRefactoringWindowsApp.Css.CssTypes;
 
 namespace HtmlRefactoringWindowsApp.Css
 {
@@ -39,6 +40,8 @@ namespace HtmlRefactoringWindowsApp.Css
             {
                 var sides = Regex.Split(cssProperty.Value, @"\s+");
 
+                ValidateSideLengths(cssProperty, sides);
+
                 switch (sides.Length)
                 {
                     case 1:
@@ -60,8 +63,22 @@ namespace HtmlRefactoringWindowsApp.Css
                 }
             }
 
+                private static void ValidateSideLengths(CssProperty cssProperty, string[] sides)
+                {
+                    foreach (var side in sides)
+                        ValidateSideLength(cssProperty, side);
+                }
+
+                    private static void ValidateSideLength(CssProperty cssProperty, string sideLength)
+                        {
+                            if (!IsValidCssLength(sideLength))
+                                throw new InvalidMarginException($"Error! Property '{cssProperty.Name}:{cssProperty.Value}' contains invalid length.");
+                        }
+
             private void InitOneSide(CssProperty cssProperty)
             {
+                ValidateSideLength(cssProperty, cssProperty.Value);
+
                 switch (cssProperty.Name) 
                 {
                     case marginTop:

@@ -475,7 +475,7 @@ namespace HtmlRefactoringTests
         {
             Equal("0", new CssMargin(new CssProperty("margin-top:0")).Top);
             Equal("10px", new CssMargin(new CssProperty("margin-right:10px")).Right);
-            Equal("20ex", new CssMargin(new CssProperty("margin-bottom:20ex")).Bottom);
+            Equal("20em", new CssMargin(new CssProperty("margin-bottom:20em")).Bottom);
             Equal("30%", new CssMargin(new CssProperty("margin-left:30%")).Left);
         }
 
@@ -488,23 +488,32 @@ namespace HtmlRefactoringTests
             Equal("0", cssMargin1.Bottom);
             Equal("0", cssMargin1.Left);
 
-            var cssMargin2 = new CssMargin(new CssProperty("margin:10px \t 20cm"));
+            var cssMargin2 = new CssMargin(new CssProperty("margin:10px \t 20em"));
             Equal("10px", cssMargin2.Top);
-            Equal("20cm", cssMargin2.Right);
+            Equal("20em", cssMargin2.Right);
             Equal("10px", cssMargin2.Bottom);
-            Equal("20cm", cssMargin2.Left);
+            Equal("20em", cssMargin2.Left);
 
-            var cssMargin3 = new CssMargin(new CssProperty("margin:1vh 1vw\n1%"));
-            Equal("1vh", cssMargin3.Top);
-            Equal("1vw", cssMargin3.Right);
+            var cssMargin3 = new CssMargin(new CssProperty("margin:1em 1px\n1%"));
+            Equal("1em", cssMargin3.Top);
+            Equal("1px", cssMargin3.Right);
             Equal("1%", cssMargin3.Bottom);
-            Equal("1vw", cssMargin3.Left);
+            Equal("1px", cssMargin3.Left);
 
-            var cssMargin4 = new CssMargin(new CssProperty("margin:1em 2rem\t3ex\r\n4ch"));
-            Equal("1em", cssMargin4.Top);
-            Equal("2rem", cssMargin4.Right);
-            Equal("3ex", cssMargin4.Bottom);
-            Equal("4ch", cssMargin4.Left);
+            var cssMargin4 = new CssMargin(new CssProperty("margin:1 2%\t3em\r\n4px"));
+            Equal("1", cssMargin4.Top);
+            Equal("2%", cssMargin4.Right);
+            Equal("3em", cssMargin4.Bottom);
+            Equal("4px", cssMargin4.Left);
+        }
+
+        [Fact]
+        public void WhenCreatingCssMarginOnOneSideWithInvalidLength_Throws()
+        {
+            Throws<InvalidMarginException>(() => new CssMargin(new CssProperty("margin-top:0xp")));
+            //Equal("10px", new CssMargin(new CssProperty("margin-right:10px")).Right);
+            //Equal("20ex", new CssMargin(new CssProperty("margin-bottom:20ex")).Bottom);
+            //Equal("30%", new CssMargin(new CssProperty("margin-left:30%")).Left);
         }
 
         #endregion
