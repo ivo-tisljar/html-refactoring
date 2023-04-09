@@ -40,7 +40,7 @@ namespace HtmlRefactoringWindowsApp.Css
             {
                 var sides = Regex.Split(cssProperty.Value, @"\s+");
 
-                ValidateSideLengths(cssProperty, sides);
+                ValidateAllSidesLengths(cssProperty, sides);
 
                 switch (sides.Length)
                 {
@@ -63,13 +63,13 @@ namespace HtmlRefactoringWindowsApp.Css
                 }
             }
 
-                private static void ValidateSideLengths(CssProperty cssProperty, string[] sides)
+                private static void ValidateAllSidesLengths(CssProperty cssProperty, string[] sides)
                 {
                     foreach (var side in sides)
-                        ValidateSideLength(cssProperty, side);
+                        ValidateOneSideLength(cssProperty, side);
                 }
 
-                    private static void ValidateSideLength(CssProperty cssProperty, string sideLength)
+                    private static void ValidateOneSideLength(CssProperty cssProperty, string sideLength)
                         {
                             if (!IsValidCssMarginLength(sideLength))
                                 throw new InvalidMarginException($"Error! Property '{cssProperty.Name}:{cssProperty.Value}' contains invalid length.");
@@ -85,7 +85,7 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private void InitOneSide(CssProperty cssProperty)
                 {
-                ValidateSideLength(cssProperty, cssProperty.Value);
+                ValidateOneSideLength(cssProperty, cssProperty.Value);
 
                 switch (cssProperty.Name) 
                 {
