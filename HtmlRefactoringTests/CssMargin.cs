@@ -1,6 +1,5 @@
 ﻿
 using System.Text.RegularExpressions;
-using static HtmlRefactoringWindowsApp.Css.CssTypes;
 
 namespace HtmlRefactoringWindowsApp.Css
 {
@@ -63,6 +62,23 @@ namespace HtmlRefactoringWindowsApp.Css
                 }
             }
 
+            private void InitOneSide(CssProperty cssProperty)
+                {
+                ValidateOneSideLength(cssProperty, cssProperty.Value);
+
+                switch (cssProperty.Name) 
+                {
+                    case marginTop:
+                        Top = cssProperty.Value; break;
+                    case marginRight:
+                        Right = cssProperty.Value; break;
+                    case marginBottom:
+                        Bottom = cssProperty.Value; break;
+                    case marginLeft:
+                        Left = cssProperty.Value; break;
+                }
+            }
+
                 private static void ValidateAllSidesLengths(CssProperty cssProperty, string[] sides)
                 {
                     foreach (var side in sides)
@@ -82,23 +98,6 @@ namespace HtmlRefactoringWindowsApp.Css
 
                             return reg.IsMatch(cssLength);
                         }
-
-            private void InitOneSide(CssProperty cssProperty)
-                {
-                ValidateOneSideLength(cssProperty, cssProperty.Value);
-
-                switch (cssProperty.Name) 
-                {
-                    case marginTop:
-                        Top = cssProperty.Value; break;
-                    case marginRight:
-                        Right = cssProperty.Value; break;
-                    case marginBottom:
-                        Bottom = cssProperty.Value; break;
-                    case marginLeft:
-                        Left = cssProperty.Value; break;
-                }
-            }
     }
 
 public class InvalidMarginException : Exception
