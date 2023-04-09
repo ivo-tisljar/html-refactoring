@@ -1,8 +1,7 @@
-﻿
-using HtmlRefactoringWindowsApp.Utils;
+﻿using HtmlRefactoringWindowsApp.Utils;
 using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
-namespace HtmlRefactoringWindowsApp
+namespace HtmlRefactoringWindowsApp.Articles
 {
     public class Article
     {

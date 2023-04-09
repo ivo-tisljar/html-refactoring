@@ -5,7 +5,7 @@ using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
 namespace HtmlRefactoringTests
 {
-    public class StringUtilsTests
+    public class UtilsTests
     {
         [Fact]
         public void SplitWithSeparatorIncluded_TestCases()
