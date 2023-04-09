@@ -71,12 +71,20 @@ namespace HtmlRefactoringWindowsApp.Css
 
                     private static void ValidateSideLength(CssProperty cssProperty, string sideLength)
                         {
-                            if (!IsValidCssLength(sideLength))
+                            if (!IsValidCssMarginLength(sideLength))
                                 throw new InvalidMarginException($"Error! Property '{cssProperty.Name}:{cssProperty.Value}' contains invalid length.");
                         }
 
+                        //  px, em and % are the only three units used in CSS files exported from InDesign
+                        private static bool IsValidCssMarginLength(string cssLength)
+                        {
+                            var reg = new Regex("^(auto|-?\\d+(\\.\\d+)?(px|em|%)?)$");
+
+                            return reg.IsMatch(cssLength);
+                        }
+
             private void InitOneSide(CssProperty cssProperty)
-            {
+                {
                 ValidateSideLength(cssProperty, cssProperty.Value);
 
                 switch (cssProperty.Name) 
