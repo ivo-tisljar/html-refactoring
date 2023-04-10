@@ -36,7 +36,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterConstruction_CanReadPropertyName()
+        public void AfterConstructionOfCssPropery_CanReadPropertyName()
         {
             Equal("_x", new CssProperty("_x :0").Name);
             Equal("x-y", new CssProperty(" x-y :0").Name);
@@ -44,7 +44,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterConstruction_CanReadPropertyValue()
+        public void AfterConstructionOfCssProperty_CanReadPropertyValue()
         {
             Equal("0", new CssProperty("x:0").Value);
             Equal("12 13", new CssProperty("x: 12 13 ").Value);
@@ -56,14 +56,14 @@ namespace HtmlRefactoringTests
         #region CssPropertiesTests
 
         [Fact]
-        public void AfterCreatingCssProperties_CountOfPropertiesIsZero()
+        public void AfterConstructionOfCssProperties_CountOfPropertiesIsZero()
         {
             var cssProperties = new CssProperties("");
             Equal(0, cssProperties.Count);
         }
 
         [Fact]
-        public void AfterCreatingCssPropertiesIfAnyOfIndividualPropertiesIsInvalid_Throws()
+        public void AfterConstructionOfCssPropertiesIfAnyOfIndividualPropertiesIsInvalid_Throws()
         {
             ThrowsAny<CssPropertyException>(() => new CssProperties("a"));
             ThrowsAny<CssPropertyException>(() => new CssProperties("2:"));
@@ -74,21 +74,21 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssPropertiesWithOneProperty_CountOfPropertiesIsOne()
+        public void AfterConstructionOfCssPropertiesWithOneProperty_CountOfPropertiesIsOne()
         {
             var cssProperties = new CssProperties("x:0");
             Equal(1, cssProperties.Count);
         }
 
         [Fact]
-        public void AfterCreatingCssPropertiesWithTwoProperties_CountOfPropertiesIsTwo()
+        public void AfterConstructionOfCssPropertiesWithTwoProperties_CountOfPropertiesIsTwo()
         {
             var cssProperties = new CssProperties("x:0;y:1");
             Equal(2, cssProperties.Count);
         }
 
         [Fact]
-        public void AfterCreatingCssProperties_CanReadIndividualPropertyNamesAndValues()
+        public void AfterConstructionOfCssProperties_CanReadIndividualPropertyNamesAndValues()
         {
             var cssProperties = new CssProperties("X:0;y:1;Z:2");
 
@@ -105,7 +105,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssProperties_CanReadRealWorldIndividualPropertyNamesAndValues()
+        public void AfterConstructionOfCssProperties_CanReadRealWorldIndividualPropertyNamesAndValues()
         {
             var cssProperties = new CssProperties("border-collapse:collapse;\r\n\tborder-color\t:\t#000000;\r\n\tborder-style : solid;\r\n\t" +
                                                   "border-width:1px;\r\n\tmargin-bottom:-4px;\r\n\tmargin-top:4px;\r\n\t" +
@@ -152,7 +152,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssSelector_CanReadSelector()
+        public void AfterConstructionOfCssSelector_CanReadSelector()
         {
             Equal("x", new CssSelector("x ").Selector);
             Equal("#x", new CssSelector("#x").Selector);
@@ -161,7 +161,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssSelector_CanReadElement()
+        public void AfterConstructionOfCssSelector_CanReadElement()
         {
             Null(new CssSelector("#x").Element);
             Null(new CssSelector(".x").Element);
@@ -170,7 +170,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssSelector_CanReadID()
+        public void AfterConstructionOfCssSelector_CanReadID()
         {
             Null (new CssSelector("x").ID);
             Null (new CssSelector(".x").ID);
@@ -179,7 +179,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssSelector_CanReadClass()
+        public void AfterConstructionOfCssSelector_CanReadClass()
         {
             Null(new CssSelector("x").Class);
             Null(new CssSelector("#x").Class);
@@ -192,34 +192,34 @@ namespace HtmlRefactoringTests
         #region CssSelectorsTests
 
         [Fact]
-        public void AfterCreatingCssSelectors_CountOfSelectorsIsZero()
+        public void AfterConstructionOfCssSelectors_CountOfSelectorsIsZero()
         {
             var cssSelectors = new CssSelectors("");
             Equal(0, cssSelectors.Count);
         }
 
         [Fact]
-        public void AfterCreatingCssSelectors_IfCssSelectorIsInvalidThrows()
+        public void AfterConstructionOfCssSelectors_IfCssSelectorIsInvalidThrows()
         {
             Throws<InvalidSelectorException>(() => new CssSelectors("0"));
             Throws<InvalidSelectorException>(() => new CssSelectors("x y"));
         }
         [Fact]
-        public void AfterCreatingCssSelectorsWithOneSelector_CountOfSelectorsIsOne()
+        public void AfterConstructionOfCssSelectorsWithOneSelector_CountOfSelectorsIsOne()
         {
             var cssSelectors = new CssSelectors("x");
             Equal(1, cssSelectors.Count);
         }
 
         [Fact]
-        public void AfterCreatingCssSelectorsWithTwoSelectors_CountOfSelectorsIsTwo()
+        public void AfterConstructionOfCssSelectorsWithTwoSelectors_CountOfSelectorsIsTwo()
         {
             var cssSelectors = new CssSelectors("x, #y");
             Equal(2, cssSelectors.Count);
         }
 
         [Fact]
-        public void AfterCreatingCssSelectors_CanReadIndividualSelectorsAndTheirElementIDAndClass()
+        public void AfterConstructionOfCssSelectors_CanReadIndividualSelectorsAndTheirElementIDAndClass()
         {
             var cssSelectors = new CssSelectors("x, #x, .x, x.y");
 
@@ -247,7 +247,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssSelectors_CanReadRealWorldSelectorsAndTheirElementIDAndClass()
+        public void AfterConstructionOfCssSelectors_CanReadRealWorldSelectorsAndTheirElementIDAndClass()
         {
             var cssSelectors = new CssSelectors(" table.No-Table-Style , .Bold-italic, #_idContainer001, body");
 
@@ -305,7 +305,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssRule_CanReadIndividualSelectorsAndProperties()
+        public void AfterConstructionOfCssRule_CanReadIndividualSelectorsAndProperties()
         {
             var rule = new CssRule("x.y, x, .y, #z {a:0; b:1; c:2; d:3}");
 
@@ -334,7 +334,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssRule_CanReadRealWorldSelectorsAndProperties()
+        public void AfterConstructionOfCssRule_CanReadRealWorldSelectorsAndProperties()
         {
             var rule = new CssRule("p, li {\n\tfont-family: \"arial\";\n\tfont-weight: bold;\n\tfont-size: 120%\n\t}");
 
@@ -405,7 +405,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssFile_CountMachesNumberOfRules()
+        public void AfterConstructionOfCssFile_CountMachesNumberOfRules()
         {
             Equal(1, new CssFile("a{a:0}").Count);
             Equal(2, new CssFile("a{a:0}\r\n b{b:0}\n").Count);
@@ -415,7 +415,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssFile_CanReadRulesSelectorsAndProperties()
+        public void AfterConstructionOfCssFile_CanReadRulesSelectorsAndProperties()
         {
             var cssFile = new CssFile(".a{\na:0;\n}\nb{\nb:7;\n}\ne.f,#g,.h,i{\nc:1;cc:22;ccc:333\n}\no.p{\nd:9\n}");
 
@@ -483,7 +483,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssMarginOnOneSide_CanReadMarginWidthOfThatSide()
+        public void AfterConstructionOfCssMarginOnOneSide_CanReadMarginWidthOfThatSide()
         {
             Equal("0", new CssMargin(new CssProperty("margin-top:0")).Top);
             Equal("12.34px", new CssMargin(new CssProperty("margin-right : \t 12.34px")).Right);
@@ -492,7 +492,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssMarginOnAllSides_CanReadMarginWidthOfThatSide()
+        public void AfterConstructionOfCssMarginOnAllSides_CanReadMarginWidthOfThatSide()
         {
             var cssMargin1 = new CssMargin(new CssProperty("margin:0"));
             Equal("0", cssMargin1.Top);

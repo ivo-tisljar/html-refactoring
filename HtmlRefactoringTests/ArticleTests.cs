@@ -1,6 +1,7 @@
 
 using HtmlRefactoringWindowsApp;
 using HtmlRefactoringWindowsApp.Articles;
+using HtmlRefactoringWindowsApp.Css;
 using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
@@ -20,6 +21,17 @@ namespace HtmlRefactoringTests
         {
             Throws<MagazineBrandException>(() => new MagazineBrand(" ;\t; ;"));
             Throws<MagazineBrandException>(() => new MagazineBrand("a;b;c;d;e;f"));
+        }
+
+        [Fact]
+        public void AfterConstructionOfMagazineBrand_CanReadAllProperties()
+        {
+            var magazineBrand = new MagazineBrand("1;2;A;B;C");
+            Equal(1, magazineBrand.ID);
+            Equal(2, magazineBrand.WebID);
+            Equal("A", magazineBrand.Name);
+            Equal("B", magazineBrand.Label);
+            Equal('C', magazineBrand.LeadChar);
         }
 
         #endregion
