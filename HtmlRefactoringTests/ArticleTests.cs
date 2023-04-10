@@ -7,6 +7,16 @@ namespace HtmlRefactoringTests
 {
     public class ArticleTests
     {
+        #region MagazineBrandTests
+
+        [Fact]
+        public void WhenCreatingMagazineWithEmptyArgument_Throws()
+        {
+            Throws<MagazineBrandException>(() => new MagazineBrand(""));
+        }
+
+        #endregion
+
         #region ArticleTests
 
         [Fact]
