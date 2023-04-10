@@ -10,9 +10,16 @@ namespace HtmlRefactoringTests
         #region MagazineBrandTests
 
         [Fact]
-        public void WhenCreatingMagazineWithEmptyArgument_Throws()
+        public void WhenCreatingMagazineBrandWithEmptyOrWhiteSpaceArgument_Throws()
         {
-            Throws<MagazineBrandException>(() => new MagazineBrand(""));
+            Throws<MagazineBrandException>(() => new MagazineBrand(" \t"));
+        }
+
+        [Fact]
+        public void WhenCreatingMagazineBrandWithInvalidNumberOfParametersInCsvArgument_Throws()
+        {
+            Throws<MagazineBrandException>(() => new MagazineBrand(" ;\t; ;"));
+            Throws<MagazineBrandException>(() => new MagazineBrand("a;b;c;d;e;f"));
         }
 
         #endregion

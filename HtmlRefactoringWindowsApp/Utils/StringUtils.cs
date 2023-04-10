@@ -1,10 +1,25 @@
 ﻿
+using System;
 using System.IO;
+using System.Windows.Forms;
 
 namespace HtmlRefactoringWindowsApp.Utils
 {
     public class StringUtils
     {
+        public static int CountCharInString(char c, string s)
+        {
+            char[] test = s.ToCharArray();
+            int count = 0;
+            int length = test.Length;
+            for (int n = length - 1; n >= 0; n--)
+            {
+                if (test[n] == c)
+                    count++;
+            }
+            return count;
+        }
+
         public static string[] SplitWithSeparatorIncluded(string str, char delimiter)
         {
             var subStrings = new List<string>();
