@@ -13,14 +13,26 @@ namespace HtmlRefactoringTests
         [Fact]
         public void WhenCreatingMagazineBrandWithEmptyOrWhiteSpaceArgument_Throws()
         {
-            Throws<MagazineBrandException>(() => new MagazineBrand(" \t"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand(" \t"));
         }
 
         [Fact]
         public void WhenCreatingMagazineBrandWithInvalidNumberOfParametersInCsvArgument_Throws()
         {
-            Throws<MagazineBrandException>(() => new MagazineBrand(" ;\t; ;"));
-            Throws<MagazineBrandException>(() => new MagazineBrand("a;b;c;d;e;f"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand(" ;\t; ;"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("a;b;c;d;e;f"));
+        }
+
+        [Fact]
+        public void WhenCreatingMagazineBrandIfAnyPropertyValueIsInvalid_Throws()
+        {
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("0;2;A;B;C"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("ab;2;A;B;C"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("123;2;A;B;C"));
+
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;00;A;B;C"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;abc;A;B;C"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;1000;A;B;C"));
         }
 
         [Fact]
