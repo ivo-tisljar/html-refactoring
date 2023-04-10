@@ -16,7 +16,7 @@
         private struct MagazineBrandData
         {
             public string LeadChar;
-            public int ID;
+            public int WebID;
             public string Label;
             public string Name;
         }
@@ -25,13 +25,13 @@
 
         private static readonly MagazineBrandData[] magazineData = new MagazineBrandData[]
         {
-            new MagazineBrandData { LeadChar = "R", ID = 01, Label="RRiF", Name ="RRiF" },
-            new MagazineBrandData { LeadChar = "P", ID = 03, Label="PiP",  Name ="Pravo i porezi" },
-            new MagazineBrandData { LeadChar = "P", ID = 08, Label="Pror", Name ="Proračuni" },
-            new MagazineBrandData { LeadChar = "N", ID = 07, Label="Nepr", Name ="Neprofitni" },
-            new MagazineBrandData { LeadChar = "P", ID = 20, Label="PrGO", Name ="Godišnji obračun" },
-            new MagazineBrandData { LeadChar = "O", ID = 11, Label="Obrt", Name ="Obrtnici" },
-            new MagazineBrandData { LeadChar = "O", ID = 10, Label="Obav", Name ="Obavijesti" }
+            new MagazineBrandData { LeadChar = "R", WebID = 01, Label="RRiF", Name ="RRiF" },
+            new MagazineBrandData { LeadChar = "P", WebID = 03, Label="PiP",  Name ="Pravo i porezi" },
+            new MagazineBrandData { LeadChar = "P", WebID = 08, Label="Pror", Name ="Proračuni" },
+            new MagazineBrandData { LeadChar = "N", WebID = 07, Label="Nepr", Name ="Neprofitni" },
+            new MagazineBrandData { LeadChar = "P", WebID = 20, Label="PrGO", Name ="Godišnji obračun" },
+            new MagazineBrandData { LeadChar = "O", WebID = 11, Label="Obrt", Name ="Obrtnici" },
+            new MagazineBrandData { LeadChar = "O", WebID = 10, Label="Obav", Name ="Obavijesti" }
         };
 
         // file name leading char for this type of magazine
@@ -45,11 +45,11 @@
             throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
         }
 
-        public static int GetID(this MagazineBrand magazineBrand)
+        public static int GetWebID(this MagazineBrand magazineBrand)
         {
             if (magazineBrand.IsDefined())
             {
-                return magazineData[(int)magazineBrand].ID;
+                return magazineData[(int)magazineBrand].WebID;
             }
             throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
         }
