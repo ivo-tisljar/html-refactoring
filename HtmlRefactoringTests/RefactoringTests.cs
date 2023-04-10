@@ -16,6 +16,12 @@ namespace HtmlRefactoringTests
             var script = new Script("");
         }
 
+        //[Fact]
+        //public void WhenCreatingScriptWithInvalidSegment_Throws()
+        //{
+        //    Throws<InvalidScriptException>(() => new Script(""));
+        //}
+
         #endregion
     }
 }

@@ -84,12 +84,13 @@ namespace HtmlRefactoringTests
         #endregion
 
         #region MagazineBrandTests
+
         [Fact]
         public void MagazineBrand_IsDefined_True()
         {
             bool isDefined = true;
 
-            foreach (MagazineBrand magazineBrand in (MagazineBrand[])Enum.GetValues(typeof(MagazineBrand)))
+            foreach (MagazineBrandEx magazineBrand in (MagazineBrandEx[])Enum.GetValues(typeof(MagazineBrandEx)))
             {
                 isDefined &= magazineBrand.IsDefined();
             }
@@ -99,17 +100,17 @@ namespace HtmlRefactoringTests
         [Fact]
         public void MagazineBrand_IsDefined_False()
         {
-            MagazineBrand prevToMinElement = (MagazineBrand)(Enum.GetValues(typeof(MagazineBrand)).Cast<int>().Min() - 1);
+            MagazineBrandEx prevToMinElement = (MagazineBrandEx)(Enum.GetValues(typeof(MagazineBrandEx)).Cast<int>().Min() - 1);
             False(prevToMinElement.IsDefined());
 
-            MagazineBrand succToMaxElement = (MagazineBrand)(Enum.GetValues(typeof(MagazineBrand)).Cast<int>().Max() + 1);
+            MagazineBrandEx succToMaxElement = (MagazineBrandEx)(Enum.GetValues(typeof(MagazineBrandEx)).Cast<int>().Max() + 1);
             False(succToMaxElement.IsDefined());
         }
 
         [Fact]
         public void MagazineBrand_Unknown_Label()
         {
-            MagazineBrand succToMaxElement = (MagazineBrand)(Enum.GetValues(typeof(MagazineBrand)).Cast<int>().Max() + 1);
+            MagazineBrandEx succToMaxElement = (MagazineBrandEx)(Enum.GetValues(typeof(MagazineBrandEx)).Cast<int>().Max() + 1);
 
             Throws<ArgumentOutOfRangeException>(() => succToMaxElement.GetLabel());
         }
@@ -117,25 +118,25 @@ namespace HtmlRefactoringTests
         [Fact]
         public void MagazineBrand_RRiF_Label()
         {
-            Equal("RRiF", MagazineBrand.RRiF.GetLabel());
+            Equal("RRiF", MagazineBrandEx.RRiF.GetLabel());
         }
 
         [Fact]
         public void MagazineBrand_PiP_Name()
         {
-            Equal("Pravo i porezi", MagazineBrand.PiP.GetName());
+            Equal("Pravo i porezi", MagazineBrandEx.PiP.GetName());
         }
 
         [Fact]
         public void MagazineBrand_Proracuni_LeadChar()
         {
-            Equal("P", MagazineBrand.Proracuni.GetLeadChar());
+            Equal("P", MagazineBrandEx.Proracuni.GetLeadChar());
         }
 
         [Fact]
-        public void MagazineBrand_Neprofitni_ID()
+        public void MagazineBrand_Neprofitni_WebID()
         {
-            Equal(7, MagazineBrand.Neprofitni.GetID());
+            Equal(7, MagazineBrandEx.Neprofitni.GetWebID());
         }
 
         #endregion

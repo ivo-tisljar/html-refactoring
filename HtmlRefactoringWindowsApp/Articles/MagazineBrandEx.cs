@@ -1,6 +1,8 @@
 ﻿namespace HtmlRefactoringWindowsApp.Articles
 {
-    public enum MagazineBrand
+    // TO-DO: OVO TREBA PRETVORITI U OBIČNU KLASU BEZ ENUMA: WebID, Name, Label, LeadChar
+
+    public enum MagazineBrandEx
     {
         RRiF = 0,
         PiP = 1,
@@ -36,45 +38,45 @@
 
         // file name leading char for this type of magazine
 
-        public static string GetLeadChar(this MagazineBrand magazineBrand)
+        public static string GetLeadChar(this MagazineBrandEx magazineBrand)
         {
             if (magazineBrand.IsDefined())
             {
                 return magazineData[(int)magazineBrand].LeadChar;
             }
-            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
+            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrandEx.");
         }
 
-        public static int GetWebID(this MagazineBrand magazineBrand)
+        public static int GetWebID(this MagazineBrandEx magazineBrand)
         {
             if (magazineBrand.IsDefined())
             {
                 return magazineData[(int)magazineBrand].WebID;
             }
-            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
+            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrandEx.");
         }
 
-        public static string GetLabel(this MagazineBrand magazineBrand)
+        public static string GetLabel(this MagazineBrandEx magazineBrand)
         {
             if (magazineBrand.IsDefined())
             {
                 return magazineData[(int)magazineBrand].Label;
             }
-            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
+            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrandEx.");
         }
 
-        public static string GetName(this MagazineBrand magazineBrand)
+        public static string GetName(this MagazineBrandEx magazineBrand)
         {
             if (magazineBrand.IsDefined())
             {
                 return magazineData[(int)magazineBrand].Name;
             }
-            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrand.");
+            throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrandEx.");
         }
 
-        public static bool IsDefined(this MagazineBrand magazineBrand)
+        public static bool IsDefined(this MagazineBrandEx magazineBrand)
         {
-            return magazineBrand >= MagazineBrand.RRiF && magazineBrand <= MagazineBrand.Obavijesti;
+            return magazineBrand >= MagazineBrandEx.RRiF && magazineBrand <= MagazineBrandEx.Obavijesti;
         }
     }
 }
