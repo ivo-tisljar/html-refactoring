@@ -73,8 +73,8 @@ namespace HtmlRefactoringTests
         [Fact]
         public void WhenValidateEmptyOrWhiteSpace_Throws()
         {
-            Throws<ArgumentOutOfRangeException>(() => ValidateIsNotEmptyAndIsNotWhiteSpace("", "x"));
-            Throws<ArgumentOutOfRangeException>(() => ValidateIsNotEmptyAndIsNotWhiteSpace("\t \r\n", "x"));
+            Throws<ArgumentOutOfRangeException>(() => ValidateIsNotEmptyNorWhiteSpace("", "x"));
+            Throws<ArgumentOutOfRangeException>(() => ValidateIsNotEmptyNorWhiteSpace("\t \r\n", "x"));
         }
     }
 }

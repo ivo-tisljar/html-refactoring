@@ -15,10 +15,10 @@ namespace HtmlRefactoringWindowsApp.Articles
 
         public Article(string title, string authorNameWithTitles, string inputRelativePath, string inputFileName)
         {
-            Title = ValidateIsNotEmptyAndIsNotWhiteSpace(title, "Title");
-            AuthorNameWithTitles = ValidateIsNotEmptyAndIsNotWhiteSpace(authorNameWithTitles, "AuthorNameWithTitles");
-            InputRelativePath = ValidateIsNotEmptyAndIsNotWhiteSpace(inputRelativePath, "InputRelativePath");
-            InputFileName = ValidateIsNotEmptyAndIsNotWhiteSpace(inputFileName, "InputFileName");
+            Title = ValidateIsNotEmptyNorWhiteSpace(title, "Title");
+            AuthorNameWithTitles = ValidateIsNotEmptyNorWhiteSpace(authorNameWithTitles, "AuthorNameWithTitles");
+            InputRelativePath = ValidateIsNotEmptyNorWhiteSpace(inputRelativePath, "InputRelativePath");
+            InputFileName = ValidateIsNotEmptyNorWhiteSpace(inputFileName, "InputFileName");
         }
 
         public string AuthorNameWithoutTitles()

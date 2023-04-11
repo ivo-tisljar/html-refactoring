@@ -26,9 +26,9 @@ namespace HtmlRefactoringWindowsApp.Css
                 return property.IndexOf(':');
             }
 
-            //  Constructor CssProperty with RegEx is 5 times slower (200.000 properties/sec) than version with if & for-loop validation function
+        //  Constructor CssProperty with RegEx is 5 times slower (200.000 properties/sec) than version with if & for-loop validation function, IT IS ACCEPTABLE!
 
-            private static string InitPropertyName(string property, string propertyName)
+        private static string InitPropertyName(string property, string propertyName)
             {
                 var reg = new Regex("^[a-zA-Z_-][0-9a-zA-Z_-]*$");
 

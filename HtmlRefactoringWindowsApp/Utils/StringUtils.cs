@@ -51,7 +51,7 @@ namespace HtmlRefactoringWindowsApp.Utils
             return nameWithTitles.Replace("  ", " ").Replace("  ", " ").Trim();
         }
 
-        public static string ValidateIsNotEmptyAndIsNotWhiteSpace(string paramValue, string paramName)
+        public static string ValidateIsNotEmptyNorWhiteSpace(string paramValue, string paramName)
         {
             if (string.IsNullOrWhiteSpace(paramValue))
             {
