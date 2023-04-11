@@ -1,12 +1,10 @@
 
-using HtmlRefactoringWindowsApp;
 using HtmlRefactoringWindowsApp.Articles;
-using HtmlRefactoringWindowsApp.Css;
 using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
 {
-    public class ArticleTests
+    public class ArticlesTests
     {
         #region MagazineBrandTests
 
@@ -43,20 +41,31 @@ namespace HtmlRefactoringTests
         public void WhenCreatingMagazineBrandIfNameIsInvalid_Throws()
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;abc;Hijk;L"));
-            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Ab_c;Hijk;L"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Ab-c;Hijk;L"));
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abcd7;Hijk;L"));
-            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abcde!;Hijk;L"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc,de;Hijk;L"));
+        }
+
+        [Fact]
+        public void WhenCreatingMagazineBrandIfLabelIsInvalid_Throws()
+        {
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc defg;Hij;L"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc defg;hijk;L"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc defg;H ij;L"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc defg;Hij5;L"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc defg;H,hi;L"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc defg;Hijkl;L"));
         }
 
         [Fact]
         public void AfterConstructionOfMagazineBrand_CanReadAllProperties()
         {
-            var magazineBrand1 = new MagazineBrand("1;2;A;B;C");
+            var magazineBrand1 = new MagazineBrand("1;2;Abc defg;Hijk;L");
             Equal(1, magazineBrand1.ID);
             Equal(2, magazineBrand1.WebID);
-            Equal("A", magazineBrand1.Name);
-            Equal("B", magazineBrand1.Label);
-            Equal('C', magazineBrand1.LeadChar);
+            Equal("Abc defg", magazineBrand1.Name);
+            Equal("Hijk", magazineBrand1.Label);
+            Equal('L', magazineBrand1.LeadChar);
         }
 
         #endregion
