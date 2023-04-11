@@ -8,6 +8,16 @@ namespace HtmlRefactoringTests
     public class UtilsTests
     {
         [Fact]
+        public void CountCharInString_TestCases()
+        {
+            Equal(4, CountCharInString(';', "Danas;je;lijep;dan;"));
+            Equal(1, CountCharInString('D', "Danas;je;lijep;dan"));
+            Equal(1, CountCharInString('d', "Danas;je;lijep;dan"));
+            Equal(0, CountCharInString('\t', "Danas \r\n je \r\n lijep \n dan!"));
+            Equal(3, CountCharInString('\n', "Danas \r\n je \r\n lijep \n dan!"));
+        }
+
+        [Fact]
         public void SplitWithSeparatorIncluded_TestCases()
         {
             Empty(SplitWithSeparatorIncluded("", ';'));
@@ -25,11 +35,11 @@ namespace HtmlRefactoringTests
             Equal(";", strings3[0]);
             Equal("x", strings3[1]);
 
-            var strings4 = SplitWithSeparatorIncluded("x;;y", ';');
+            var strings4 = SplitWithSeparatorIncluded("x;;y;", ';');
             Equal(3, strings4.Length);
             Equal("x;", strings4[0]);
             Equal(";", strings4[1]);
-            Equal("y", strings4[2]);
+            Equal("y;", strings4[2]);
         }
 
         [Fact]
