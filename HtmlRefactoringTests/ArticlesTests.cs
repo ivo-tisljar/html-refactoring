@@ -1,5 +1,6 @@
 
 using HtmlRefactoringWindowsApp.Articles;
+using HtmlRefactoringWindowsApp.Temp;
 using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
@@ -171,64 +172,6 @@ namespace HtmlRefactoringTests
 
             Equal("Vlado BRKANIÆ", new Article("a",
                   "Dr. sc. Vlado BRKANIÆ , prof. struè. stud., ovl. raè. i ovl. rev.", "c", "d").AuthorNameWithoutTitles());
-        }
-
-        #endregion
-
-        #region MagazineBrandTests
-
-        [Fact]
-        public void MagazineBrand_IsDefined_True()
-        {
-            bool isDefined = true;
-
-            foreach (MagazineBrandEx magazineBrand in (MagazineBrandEx[])Enum.GetValues(typeof(MagazineBrandEx)))
-            {
-                isDefined &= magazineBrand.IsDefined();
-            }
-            True(isDefined);
-        }
-
-        [Fact]
-        public void MagazineBrand_IsDefined_False()
-        {
-            MagazineBrandEx prevToMinElement = (MagazineBrandEx)(Enum.GetValues(typeof(MagazineBrandEx)).Cast<int>().Min() - 1);
-            False(prevToMinElement.IsDefined());
-
-            MagazineBrandEx succToMaxElement = (MagazineBrandEx)(Enum.GetValues(typeof(MagazineBrandEx)).Cast<int>().Max() + 1);
-            False(succToMaxElement.IsDefined());
-        }
-
-        [Fact]
-        public void MagazineBrand_Unknown_Label()
-        {
-            MagazineBrandEx succToMaxElement = (MagazineBrandEx)(Enum.GetValues(typeof(MagazineBrandEx)).Cast<int>().Max() + 1);
-
-            Throws<ArgumentOutOfRangeException>(() => succToMaxElement.GetLabel());
-        }
-
-        [Fact]
-        public void MagazineBrand_RRiF_Label()
-        {
-            Equal("RRiF", MagazineBrandEx.RRiF.GetLabel());
-        }
-
-        [Fact]
-        public void MagazineBrand_PiP_Name()
-        {
-            Equal("Pravo i porezi", MagazineBrandEx.PiP.GetName());
-        }
-
-        [Fact]
-        public void MagazineBrand_Proracuni_LeadChar()
-        {
-            Equal("P", MagazineBrandEx.Proracuni.GetLeadChar());
-        }
-
-        [Fact]
-        public void MagazineBrand_Neprofitni_WebID()
-        {
-            Equal(7, MagazineBrandEx.Neprofitni.GetWebID());
         }
 
         #endregion

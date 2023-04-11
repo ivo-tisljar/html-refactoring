@@ -1,8 +1,8 @@
-﻿namespace HtmlRefactoringWindowsApp.Articles
+﻿namespace HtmlRefactoringWindowsApp.Temp
 {
     // TO-DO: OVO TREBA PRETVORITI U OBIČNU KLASU BEZ ENUMA: WebID, Name, Label, LeadChar
 
-    public enum MagazineBrandEx
+    public enum ExMagazineBrand
     {
         RRiF = 0,
         PiP = 1,
@@ -38,7 +38,7 @@
 
         // file name leading char for this type of magazine
 
-        public static string GetLeadChar(this MagazineBrandEx magazineBrand)
+        public static string GetLeadChar(this ExMagazineBrand magazineBrand)
         {
             if (magazineBrand.IsDefined())
             {
@@ -47,7 +47,7 @@
             throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrandEx.");
         }
 
-        public static int GetWebID(this MagazineBrandEx magazineBrand)
+        public static int GetWebID(this ExMagazineBrand magazineBrand)
         {
             if (magazineBrand.IsDefined())
             {
@@ -56,7 +56,7 @@
             throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrandEx.");
         }
 
-        public static string GetLabel(this MagazineBrandEx magazineBrand)
+        public static string GetLabel(this ExMagazineBrand magazineBrand)
         {
             if (magazineBrand.IsDefined())
             {
@@ -65,7 +65,7 @@
             throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrandEx.");
         }
 
-        public static string GetName(this MagazineBrandEx magazineBrand)
+        public static string GetName(this ExMagazineBrand magazineBrand)
         {
             if (magazineBrand.IsDefined())
             {
@@ -74,9 +74,9 @@
             throw new ArgumentOutOfRangeException($"Invalid value! Value {magazineBrand} is NOT valid for type MagazineBrandEx.");
         }
 
-        public static bool IsDefined(this MagazineBrandEx magazineBrand)
+        public static bool IsDefined(this ExMagazineBrand magazineBrand)
         {
-            return magazineBrand >= MagazineBrandEx.RRiF && magazineBrand <= MagazineBrandEx.Obavijesti;
+            return magazineBrand >= ExMagazineBrand.RRiF && magazineBrand <= ExMagazineBrand.Obavijesti;
         }
     }
 }
