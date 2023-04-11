@@ -1,5 +1,4 @@
 ﻿
-using HtmlRefactoringWindowsApp.Css;
 using System.Text.RegularExpressions;
 using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
@@ -63,7 +62,7 @@ namespace HtmlRefactoringWindowsApp.Articles
 
             private static string InitName(string field)
             {
-                var reg = new Regex("^[A-ZČĆĐŠŽ][ a-zčćđšžA-ZČĆĐŠŽ]*$");
+                var reg = new Regex("^[A-ZČĆĐŠŽ][ \"a-zčćđšžA-ZČĆĐŠŽ]*$");
 
                 if (!reg.IsMatch(field))
                     throw new InvalidMagazineBrandException($"Error! One or more word is expected, first letter of name should be capitalized, allowed characters " + 
