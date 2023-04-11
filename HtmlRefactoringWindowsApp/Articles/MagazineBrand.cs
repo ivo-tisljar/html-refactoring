@@ -63,28 +63,31 @@ namespace HtmlRefactoringWindowsApp.Articles
 
             private static string InitName(string field)
             {
-            var reg = new Regex("^[A-ZČĆĐŠŽ][ a-zčćđšžA-ZČĆĐŠŽ]*$");
+                var reg = new Regex("^[A-ZČĆĐŠŽ][ a-zčćđšžA-ZČĆĐŠŽ]*$");
 
-            if (!reg.IsMatch(field))
-                throw new InvalidMagazineBrandException($"Error! One or more word is expected, first letter of name should be capitalized, allowed characters " + 
-                                                        $"are letters of English & Croatian alphabet & space, '{field}' is invalid value for Name");
-
-            return field;
+                if (!reg.IsMatch(field))
+                    throw new InvalidMagazineBrandException($"Error! One or more word is expected, first letter of name should be capitalized, allowed characters " + 
+                                                            $"are letters of English & Croatian alphabet & space, '{field}' is invalid value for Name");
+                return field;
             }
 
             private static string InitLabel(string field)
             {
-            var reg = new Regex("^[A-Z][a-zA-Z]{3}$");
+                var reg = new Regex("^[A-Z][a-zA-Z]{2,3}$");
 
-            if (!reg.IsMatch(field))
-                throw new InvalidMagazineBrandException($"Error! Four letter word is expected, first letter of label should be capitalized, allowed characters " +
-                                                        $"are letters of English alphabet, '{field}' is invalid value for Label");
-
-            return field;
+                if (!reg.IsMatch(field))
+                    throw new InvalidMagazineBrandException($"Error! Three or four letter word is expected, first letter of label should be capitalized, allowed " +
+                                                            $"characters are letters of English alphabet, '{field}' is invalid value for Label");
+                return field;
             }
 
             private static char InitLeadChar(string field)
             {
+                var reg = new Regex("^[A-Z]$");
+
+                if (!reg.IsMatch(field))
+                    throw new InvalidMagazineBrandException($"Error! One uppercase letter of English alphabet is expected, '{field}' is invalid value for LeadChar");
+
                 return (field[0]);
             }
     }
