@@ -8,12 +8,28 @@ namespace HtmlRefactoringWindowsApp.Utils
             char[] test = s.ToCharArray();
             int count = 0;
             int length = test.Length;
+
             for (int n = length - 1; n >= 0; n--)
             {
                 if (test[n] == c)
                     count++;
             }
             return count;
+        }
+
+        public static bool IsAsciiLettersAndSentenceCase(string s)
+        {
+            bool result = true;
+
+            if ((s.Length > 0) && !Char.IsAsciiLetterUpper(s[0]))
+                result = false;
+
+            for (int i = 1; i < s.Length; i++)
+            {
+                if (!Char.IsAsciiLetter(s[i]))
+                    result = false;
+            }
+            return result;
         }
 
         public static string[] SplitWithSeparatorIncluded(string str, char delimiter)
