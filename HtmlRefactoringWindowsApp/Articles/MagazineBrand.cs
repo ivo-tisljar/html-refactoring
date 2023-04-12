@@ -63,9 +63,7 @@ namespace HtmlRefactoringWindowsApp.Articles
 
             private static string InitName(string field)
             {
-                var reg = new Regex("^[A-ZČĆĐŠŽ][ a-zčćđšžA-ZČĆĐŠŽ]*$");
-
-                if (!reg.IsMatch(field))
+                if ((field.Length == 0) || !IsAsciiHrLettersSpaceAndFirstLetterUpper(field))
                     throw new InvalidMagazineBrandException($"Error! One or more word is expected, first letter of name should be capitalized, allowed characters " + 
                                                             $"are letters of English & Croatian alphabet & space, '{field}' is invalid value for Name");
                 return field;
@@ -73,7 +71,7 @@ namespace HtmlRefactoringWindowsApp.Articles
 
             private static string InitLabel(string field)
             {
-                if ((field.Length < 3) || (field.Length > 4) || !IsAsciiLettersAndSentenceCase(field))
+                if ((field.Length < 3) || (field.Length > 4) || !IsAsciiLettersAndFirstLetterUpper(field))
                     throw new InvalidMagazineBrandException($"Error! Three or four letter word is expected, first letter of label should be capitalized, allowed " +
                                                             $"characters are letters of English alphabet, '{field}' is invalid value for Label");
                 return field;

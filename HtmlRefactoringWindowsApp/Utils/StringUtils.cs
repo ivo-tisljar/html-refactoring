@@ -17,7 +17,22 @@ namespace HtmlRefactoringWindowsApp.Utils
             return count;
         }
 
-        public static bool IsAsciiLettersAndSentenceCase(string s)
+        public static bool IsAsciiHrLettersSpaceAndFirstLetterUpper(string s)
+        {
+            bool result = true;
+
+            if ((s.Length > 0) && !Char.IsAsciiLetterUpper(s[0]) && !IsHrUpperAccentedLetter(s[0]))
+                result = false;
+
+            for (int i = 1; i < s.Length; i++)
+            {
+                if (!Char.IsAsciiLetter(s[i]) && !IsHrAccentedLetter(s[i]) && (s[i] != ' '))
+                    result = false;
+            }
+            return result;
+        }
+
+        public static bool IsAsciiLettersAndFirstLetterUpper(string s)
         {
             bool result = true;
 
@@ -30,6 +45,16 @@ namespace HtmlRefactoringWindowsApp.Utils
                     result = false;
             }
             return result;
+        }
+
+        public static bool IsHrAccentedLetter(char c)
+        {
+            return ((c == 'č') || (c == 'ć') || (c == 'đ') || (c == 'š') || (c == 'ž') || (c == 'Č') || (c == 'Ć') || (c == 'Đ') || (c == 'Š') || (c == 'Ž'));
+        }
+
+        public static bool IsHrUpperAccentedLetter(char c)
+        {
+            return ((c == 'Č') || (c == 'Ć') || (c == 'Đ') || (c == 'Š') || (c == 'Ž'));
         }
 
         public static string[] SplitWithSeparatorIncluded(string str, char delimiter)
