@@ -1,6 +1,4 @@
 ﻿
-using System;
-using System.Text.RegularExpressions;
 using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
 namespace HtmlRefactoringWindowsApp.Articles
@@ -43,9 +41,7 @@ namespace HtmlRefactoringWindowsApp.Articles
 
             private static int InitID(string field)
             {
-                var reg = new Regex("^[1-9][0-9]?$");
-
-                if (!reg.IsMatch(field))
+                if (!IsNaturalNumberUpToMaxDigitsCount(field, 2))
                     throw new InvalidMagazineBrandException($"Error! Integer in range 1..99 expected, '{field}' is invalid value for ID");
 
                 return int.Parse(field);
@@ -53,9 +49,7 @@ namespace HtmlRefactoringWindowsApp.Articles
 
             private static int InitWebID(string field)
             {
-                var reg = new Regex("^[1-9][0-9]{0,2}$");
-
-                if (!reg.IsMatch(field))
+                if (!IsNaturalNumberUpToMaxDigitsCount(field, 3))
                     throw new InvalidMagazineBrandException($"Error! Integer in range 1..999 expected, '{field}' is invalid value for WebID");
 
                 return int.Parse(field);
@@ -63,7 +57,7 @@ namespace HtmlRefactoringWindowsApp.Articles
 
             private static string InitName(string field)
             {
-                if ((field.Length == 0) || !IsAsciiHrLettersSpaceAndFirstLetterUpper(field))
+                if ((field.Length == 0) || !IsAsciiHrLettersOrSpace(field) || !IsAsciiHrLetterUpper(field[0]))
                     throw new InvalidMagazineBrandException($"Error! One or more word is expected, first letter of name should be capitalized, allowed characters " + 
                                                             $"are letters of English & Croatian alphabet & space, '{field}' is invalid value for Name");
                 return field;
@@ -71,7 +65,7 @@ namespace HtmlRefactoringWindowsApp.Articles
 
             private static string InitLabel(string field)
             {
-                if ((field.Length < 3) || (field.Length > 4) || !IsAsciiLettersAndFirstLetterUpper(field))
+                if ((field.Length < 3) || (field.Length > 4) || !IsAsciiLetters(field) || !Char.IsAsciiLetterUpper(field[0]))
                     throw new InvalidMagazineBrandException($"Error! Three or four letter word is expected, first letter of label should be capitalized, allowed " +
                                                             $"characters are letters of English alphabet, '{field}' is invalid value for Label");
                 return field;

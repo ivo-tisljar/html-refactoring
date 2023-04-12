@@ -1,4 +1,6 @@
 ﻿
+using System.Security.Cryptography.X509Certificates;
+
 namespace HtmlRefactoringWindowsApp.Utils
 {
     public class StringUtils
@@ -17,32 +19,37 @@ namespace HtmlRefactoringWindowsApp.Utils
             return count;
         }
 
-        public static bool IsAsciiHrLettersSpaceAndFirstLetterUpper(string s)
+        public static bool IsAsciiHrLettersOrSpace(string s)
         {
             bool result = true;
 
-            if ((s.Length > 0) && !Char.IsAsciiLetterUpper(s[0]) && !IsHrUpperAccentedLetter(s[0]))
-                result = false;
-
-            for (int i = 1; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
-                if (!Char.IsAsciiLetter(s[i]) && !IsHrAccentedLetter(s[i]) && (s[i] != ' '))
+                if (!char.IsAsciiLetter(s[i]) && !IsHrAccentedLetter(s[i]) && (s[i] != ' '))
+                {
                     result = false;
+                    break;
+                }
             }
             return result;
         }
 
-        public static bool IsAsciiLettersAndFirstLetterUpper(string s)
+        public static bool IsAsciiHrLetterUpper(char c)
+        {
+            return (char.IsAsciiLetterUpper(c) || IsHrUpperAccentedLetter(c));
+        }
+
+        public static bool IsAsciiLetters(string s)
         {
             bool result = true;
 
-            if ((s.Length > 0) && !Char.IsAsciiLetterUpper(s[0]))
-                result = false;
-
-            for (int i = 1; i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
-                if (!Char.IsAsciiLetter(s[i]))
+                if (!char.IsAsciiLetter(s[i]))
+                {
                     result = false;
+                    break;
+                }
             }
             return result;
         }
@@ -55,6 +62,24 @@ namespace HtmlRefactoringWindowsApp.Utils
         public static bool IsHrUpperAccentedLetter(char c)
         {
             return ((c == 'Č') || (c == 'Ć') || (c == 'Đ') || (c == 'Š') || (c == 'Ž'));
+        }
+
+        public static bool IsNaturalNumberUpToMaxDigitsCount(string number, int maxDigitsCount)
+        {
+            bool result = true;
+
+            if ((number.Length == 0) || (number[0] < '1') || (number[0] > '9') || (number.Length > maxDigitsCount))
+                result = false;
+
+            for (var i = 1; i < number.Length; i++)
+            {
+                if ((number[0] < '0') || (number[0] > '9'))
+                { 
+                    result = false; 
+                    break;
+                }
+            }
+            return result;
         }
 
         public static string[] SplitWithSeparatorIncluded(string str, char delimiter)
