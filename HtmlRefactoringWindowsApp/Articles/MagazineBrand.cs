@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Text.RegularExpressions;
 using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
@@ -82,9 +83,7 @@ namespace HtmlRefactoringWindowsApp.Articles
 
             private static char InitLeadChar(string field)
             {
-                var reg = new Regex("^[A-Z]$");
-
-                if (!reg.IsMatch(field))
+                if ((field.Length != 1) || !Char.IsAsciiLetterUpper(field[0]))
                     throw new InvalidMagazineBrandException($"Error! One uppercase letter of English alphabet is expected, '{field}' is invalid value for LeadChar");
 
                 return (field[0]);
