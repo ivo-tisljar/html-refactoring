@@ -1,7 +1,6 @@
 ﻿
-using HtmlRefactoringWindowsApp.Utils;
-using static Xunit.Assert;
 using static HtmlRefactoringWindowsApp.Utils.StringUtils;
+using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
 {

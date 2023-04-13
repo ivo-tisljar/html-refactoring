@@ -1,6 +1,5 @@
 ﻿
 using HtmlRefactoringWindowsApp.Css;
-
 using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
