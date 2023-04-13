@@ -58,6 +58,21 @@ namespace HtmlRefactoringTests
         [Fact]
         public void IsAsciiLetters_TestCases()
         {
+            True(IsAsciiLetters(""));
+            True(IsAsciiLetters("FirstAndLast"));
+            True(IsAsciiLetters("AbcDefgHijklMnopqRstuVwxyz"));
+            True(IsAsciiLetters("aBCdEFGhIJKLmNOPQrSTUvWXYZ"));
+
+            False(IsAsciiLetters("Alpha7"));
+            False(IsAsciiLetters("Alpha Zero"));
+            False(IsAsciiLetters(" not trimmed "));
+            False(IsAsciiLetters("One,two,three"));
+            False(IsAsciiLetters("Sign for euro is €"));
+            False(IsAsciiLetters("exclamation!"));
+            False(IsAsciiLetters("Fullstop."));
+            False(IsAsciiLetters("Upitnik?"));
+            False(IsAsciiLetters("123"));
+            False(IsAsciiLetters("Šušti lišće"));
         }
 
         [Fact]
