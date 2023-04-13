@@ -66,6 +66,9 @@ namespace HtmlRefactoringWindowsApp.Utils
 
         public static bool IsNaturalNumberUpToMaxDigitsCount(string number, int maxDigitsCount)
         {
+            if (maxDigitsCount < 1)
+                throw new ArgumentOutOfRangeException($"Error! Argument '{nameof(maxDigitsCount)}' must be integer greater than 0");
+            
             bool result = true;
 
             if ((number.Length == 0) || (number[0] < '1') || (number[0] > '9') || (number.Length > maxDigitsCount))
@@ -73,7 +76,7 @@ namespace HtmlRefactoringWindowsApp.Utils
 
             for (var i = 1; i < number.Length; i++)
             {
-                if ((number[0] < '0') || (number[0] > '9'))
+                if ((number[i] < '0') || (number[i] > '9'))
                 { 
                     result = false; 
                     break;

@@ -120,6 +120,17 @@ namespace HtmlRefactoringTests
         [Fact]
         public void IsNaturalNumberUpToMaxDigitsCount_TestCases()
         {
+            Throws<ArgumentOutOfRangeException>(() => IsNaturalNumberUpToMaxDigitsCount("12", 0));
+
+            True(IsNaturalNumberUpToMaxDigitsCount("1", 1));
+            True(IsNaturalNumberUpToMaxDigitsCount("12", 4));
+            True(IsNaturalNumberUpToMaxDigitsCount("987", 987));
+            True(IsNaturalNumberUpToMaxDigitsCount("1234567890123456789012345678901234567890", 40));
+
+            False(IsNaturalNumberUpToMaxDigitsCount("0", 2));
+            False(IsNaturalNumberUpToMaxDigitsCount("12", 1));
+            False(IsNaturalNumberUpToMaxDigitsCount("x1", 3));
+            False(IsNaturalNumberUpToMaxDigitsCount("1.0", 4));
         }
 
         [Fact]
