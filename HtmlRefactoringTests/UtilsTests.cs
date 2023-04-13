@@ -78,6 +78,24 @@ namespace HtmlRefactoringTests
         [Fact]
         public void IsHrAccentedLetter_TestCases()
         {
+            True(IsHrAccentedLetter('č'));
+            True(IsHrAccentedLetter('ć'));
+            True(IsHrAccentedLetter('đ'));
+            True(IsHrAccentedLetter('š'));
+            True(IsHrAccentedLetter('ž'));
+            True(IsHrAccentedLetter('Č'));
+            True(IsHrAccentedLetter('Ć'));
+            True(IsHrAccentedLetter('Đ'));
+            True(IsHrAccentedLetter('Š'));
+            True(IsHrAccentedLetter('Ž'));
+
+            False(IsHrAccentedLetter('0'));
+            False(IsHrAccentedLetter('A'));
+            False(IsHrAccentedLetter('z'));
+            False(IsHrAccentedLetter('€'));
+            False(IsHrAccentedLetter('ő'));
+            False(IsHrAccentedLetter('ę'));
+            False(IsHrAccentedLetter(':'));
         }
 
         [Fact]
