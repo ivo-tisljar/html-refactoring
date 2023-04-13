@@ -39,6 +39,20 @@ namespace HtmlRefactoringTests
         [Fact]
         public void IsAsciiHrLetterUpper_TestCases()
         {
+            True(IsAsciiHrLetterUpper('A'));
+            True(IsAsciiHrLetterUpper('Z'));
+            True(IsAsciiHrLetterUpper('Č'));
+            True(IsAsciiHrLetterUpper('Ć'));
+            True(IsAsciiHrLetterUpper('Đ'));
+            True(IsAsciiHrLetterUpper('Š'));
+            True(IsAsciiHrLetterUpper('Ž'));
+
+            False(IsAsciiHrLetterUpper('a'));
+            False(IsAsciiHrLetterUpper('č'));
+            False(IsAsciiHrLetterUpper('0'));
+            False(IsAsciiHrLetterUpper('€'));
+            False(IsAsciiHrLetterUpper('.'));
+            False(IsAsciiHrLetterUpper('#'));
         }
 
         [Fact]
