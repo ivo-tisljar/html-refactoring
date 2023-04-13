@@ -57,9 +57,10 @@ namespace HtmlRefactoringWindowsApp.Articles
 
             private static string InitName(string field)
             {
-                if ((field.Length == 0) || !IsAsciiHrLettersOrSpace(field) || !IsAsciiHrLetterUpper(field[0]))
+                if ((field.Length == 0) || !IsAsciiHrLettersOrSpace(field) || !IsAsciiHrLetterUpper(field[0]) || (field.Trim() != field))
                     throw new InvalidMagazineBrandException($"Error! One or more word is expected, first letter of name should be capitalized, allowed characters " + 
-                                                            $"are letters of English & Croatian alphabet & space, '{field}' is invalid value for Name");
+                                                            $"are letters of English & Croatian alphabet & space, name should be trimmed of leading and trailing " +
+                                                            $"spaces, '{field}' is invalid value for Name");
                 return field;
             }
 

@@ -18,6 +18,50 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
+        public void IsAsciiHrLettersOrSpace_TestCases()
+        {
+            True(IsAsciiHrLettersOrSpace(""));
+            True(IsAsciiHrLettersOrSpace("Šušti lišće"));
+            True(IsAsciiHrLettersOrSpace("first and LAST"));
+            True(IsAsciiHrLettersOrSpace(" not trimmed "));
+            True(IsAsciiHrLettersOrSpace("Abcčć Dđefg Hijkl Mnopq Rsštu Vwxyz Ž"));
+            True(IsAsciiHrLettersOrSpace("aBCČĆ dĐEFG hIJKL mNOPQ rSŠTU vWXYZ ž"));
+
+            False(IsAsciiHrLettersOrSpace("Alpha 7"));
+            False(IsAsciiHrLettersOrSpace("One, two, three"));
+            False(IsAsciiHrLettersOrSpace("Sign for euro is €"));
+            False(IsAsciiHrLettersOrSpace("exclamation!"));
+            False(IsAsciiHrLettersOrSpace("Točka."));
+            False(IsAsciiHrLettersOrSpace("Upitnik?"));
+            False(IsAsciiHrLettersOrSpace("123"));
+        }
+
+        [Fact]
+        public void IsAsciiHrLetterUpper_TestCases()
+        {
+        }
+
+        [Fact]
+        public void IsAsciiLetters_TestCases()
+        {
+        }
+
+        [Fact]
+        public void IsHrAccentedLetter_TestCases()
+        {
+        }
+
+        [Fact]
+        public void IsHrUpperAccentedLetter_TestCases()
+        {
+        }
+
+        [Fact]
+        public void IsNaturalNumberUpToMaxDigitsCount_TestCases()
+        {
+        }
+
+        [Fact]
         public void SplitWithSeparatorIncluded_TestCases()
         {
             Empty(SplitWithSeparatorIncluded("", ';'));
