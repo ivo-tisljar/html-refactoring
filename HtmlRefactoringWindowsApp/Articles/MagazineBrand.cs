@@ -19,10 +19,10 @@ namespace HtmlRefactoringWindowsApp.Articles
 
         public char LeadChar { get; }
 
-        public MagazineBrand(string brand)
+        public MagazineBrand(string csvFields)
         {
-            PreliminaryValidation(brand);
-            var fields = brand.Split(csvSeparator, StringSplitOptions.TrimEntries);
+            PreliminaryValidation(csvFields);
+            var fields = csvFields.Split(csvSeparator, StringSplitOptions.TrimEntries);
             ID = InitID(fields[0]);
             WebID = InitWebID(fields[1]);
             Name = InitName(fields[2]);
