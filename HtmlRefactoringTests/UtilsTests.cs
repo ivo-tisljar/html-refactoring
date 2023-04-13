@@ -101,20 +101,20 @@ namespace HtmlRefactoringTests
         [Fact]
         public void IsHrUpperAccentedLetter_TestCases()
         {
-            True(IsHrAccentedLetter('Č'));
-            True(IsHrAccentedLetter('Ć'));
-            True(IsHrAccentedLetter('Đ'));
-            True(IsHrAccentedLetter('Š'));
-            True(IsHrAccentedLetter('Ž'));
+            True(IsHrUpperAccentedLetter('Č'));
+            True(IsHrUpperAccentedLetter('Ć'));
+            True(IsHrUpperAccentedLetter('Đ'));
+            True(IsHrUpperAccentedLetter('Š'));
+            True(IsHrUpperAccentedLetter('Ž'));
 
-            False(IsHrAccentedLetter('č'));
-            False(IsHrAccentedLetter('ć'));
-            False(IsHrAccentedLetter('đ'));
-            False(IsHrAccentedLetter('š'));
-            False(IsHrAccentedLetter('ž'));
-            False(IsHrAccentedLetter('0'));
-            False(IsHrAccentedLetter('A'));
-            False(IsHrAccentedLetter('!'));
+            False(IsHrUpperAccentedLetter('č'));
+            False(IsHrUpperAccentedLetter('ć'));
+            False(IsHrUpperAccentedLetter('đ'));
+            False(IsHrUpperAccentedLetter('š'));
+            False(IsHrUpperAccentedLetter('ž'));
+            False(IsHrUpperAccentedLetter('0'));
+            False(IsHrUpperAccentedLetter('A'));
+            False(IsHrUpperAccentedLetter('!'));
         }
 
         [Fact]
