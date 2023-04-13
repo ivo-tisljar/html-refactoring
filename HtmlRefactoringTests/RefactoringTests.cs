@@ -20,15 +20,9 @@ namespace HtmlRefactoringTests
         [Fact]
         public void WhenCreatingScriptWithInvalidNumberOfParametersInCsvArgument_Throws()
         {
-            Throws<InvalidScriptException>(() => new Script("a;b;c;d;e;f;g;h;i"));
-            Throws<InvalidScriptException>(() => new Script("a;b;c;d;e;f;g;h;i;j;k"));
+            Throws<InvalidScriptException>(() => new Script("a;b;c;d;e;f;g;h;i;j"));
+            Throws<InvalidScriptException>(() => new Script("a;b;c;d;e;f;g;h;i;j;k;l"));
         }
-
-        //[Fact]
-        //public void WhenCreatingScriptWithInvalidSegment_Throws()
-        //{
-        //    Throws<InvalidScriptException>(() => new Script(""));
-        //}
 
         #endregion
     }

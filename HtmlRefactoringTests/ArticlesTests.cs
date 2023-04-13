@@ -1,5 +1,6 @@
 
 using HtmlRefactoringWindowsApp.Articles;
+using HtmlRefactoringWindowsApp.Magazines;
 using HtmlRefactoringWindowsApp.Temp;
 using static Xunit.Assert;
 

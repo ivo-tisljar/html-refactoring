@@ -7,20 +7,17 @@ namespace HtmlRefactoringWindowsApp.Refactoring
     {
         private const char csvSeparator = ';';
 
-        private const int fieldsCount = 10;
+        private const int fieldsCount = 11;
 
         public Script(string csvFields)
         {
             PreliminaryValidation(csvFields);
             var fields = csvFields.Split(csvSeparator, StringSplitOptions.TrimEntries);
-            //Validate
 
-            //            magazine-brand;segment;tag-comparer;tag-input;class-comparer;class-input;conversion;tag-output;class-output;data;info
-            //            
-            //            
+            //            magazine-brand;segment;tag-comparer;tag-input;class-comparer;class-input;refactoring-method;tag-output;class-output;data;info
         }
 
-            private static void PreliminaryValidation(string csvFields)
+        private static void PreliminaryValidation(string csvFields)
             {
                 if (string.IsNullOrWhiteSpace(csvFields))
                     throw new InvalidScriptException($"Error! Parameter '{csvFields}' contains only white space or is empty");
