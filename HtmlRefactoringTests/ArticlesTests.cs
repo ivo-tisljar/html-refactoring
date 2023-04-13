@@ -18,7 +18,7 @@ namespace HtmlRefactoringTests
         [Fact]
         public void WhenCreatingMagazineBrandWithInvalidNumberOfParametersInCsvArgument_Throws()
         {
-            Throws<InvalidMagazineBrandException>(() => new MagazineBrand(" ;\t; ;"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrand("a;b;c;d"));
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("a;b;c;d;e;f"));
         }
 

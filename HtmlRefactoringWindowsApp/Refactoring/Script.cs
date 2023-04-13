@@ -1,18 +1,32 @@
 ﻿
+using static HtmlRefactoringWindowsApp.Utils.StringUtils;
+
 namespace HtmlRefactoringWindowsApp.Refactoring
 {
     public class Script
     {
-        private const int fieldCount = 1;
+        private const char csvSeparator = ';';
 
-        public Script(string script)
+        private const int fieldsCount = 10;
+
+        public Script(string csvFields)
         {
-            var fields = script.Split(';');
+            PreliminaryValidation(csvFields);
+            var fields = csvFields.Split(csvSeparator, StringSplitOptions.TrimEntries);
             //Validate
 
             //            magazine-brand;segment;tag-comparer;tag-input;class-comparer;class-input;conversion;tag-output;class-output;data;info
             //            
             //            
+        }
+
+            private static void PreliminaryValidation(string csvFields)
+            {
+                if (string.IsNullOrWhiteSpace(csvFields))
+                    throw new InvalidScriptException($"Error! Parameter '{csvFields}' contains only white space or is empty");
+
+                if (CountCharInString(csvSeparator, csvFields) + 1 != fieldsCount)
+                    throw new InvalidScriptException($"Error! Parameter '{csvFields}' does not contains {fieldsCount} field values separated by semicolons");
         }
     }
 

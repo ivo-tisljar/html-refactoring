@@ -11,9 +11,9 @@ namespace HtmlRefactoringWindowsApp.Utils
             int count = 0;
             int length = test.Length;
 
-            for (int n = length - 1; n >= 0; n--)
+            for (int i = length - 1; i >= 0; i--)
             {
-                if (test[n] == c)
+                if (test[i] == c)
                     count++;
             }
             return count;
@@ -67,7 +67,7 @@ namespace HtmlRefactoringWindowsApp.Utils
         public static bool IsNaturalNumberUpToMaxDigitsCount(string number, int maxDigitsCount)
         {
             if (maxDigitsCount < 1)
-                throw new ArgumentOutOfRangeException($"Error! Argument '{nameof(maxDigitsCount)}' must be integer greater than 0");
+                throw new ArgumentOutOfRangeException($"Error! Argument '{maxDigitsCount}' must be integer greater than 0");
             
             bool result = true;
 

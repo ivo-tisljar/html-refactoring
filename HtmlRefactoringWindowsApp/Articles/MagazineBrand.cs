@@ -36,7 +36,7 @@ namespace HtmlRefactoringWindowsApp.Articles
                         throw new InvalidMagazineBrandException($"Error! Parameter '{csvFields}' contains only white space or is empty");
 
                     if (CountCharInString(csvSeparator, csvFields) + 1 != fieldsCount)
-                        throw new InvalidMagazineBrandException($"Error! Parameter '{csvFields}' does not contains {fieldsCount} field values separated by semicolon");
+                        throw new InvalidMagazineBrandException($"Error! Parameter '{csvFields}' does not contains {fieldsCount} field values separated by semicolons");
                 }
 
             private static int InitID(string field)

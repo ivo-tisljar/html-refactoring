@@ -1,4 +1,5 @@
 ﻿
+using HtmlRefactoringWindowsApp.Articles;
 using HtmlRefactoringWindowsApp.Css;
 using HtmlRefactoringWindowsApp.Refactoring;
 
@@ -11,9 +12,16 @@ namespace HtmlRefactoringTests
         #region ScriptTests
 
         [Fact]
-        public void CanCreateScript()
+        public void WhenCreatingScriptWithEmptyOrWhiteSpaceArgument_Throws()
         {
-            var script = new Script("");
+            Throws<InvalidScriptException>(() => new Script(" \t"));
+        }
+
+        [Fact]
+        public void WhenCreatingScriptWithInvalidNumberOfParametersInCsvArgument_Throws()
+        {
+            Throws<InvalidScriptException>(() => new Script("a;b;c;d;e;f;g;h;i"));
+            Throws<InvalidScriptException>(() => new Script("a;b;c;d;e;f;g;h;i;j;k"));
         }
 
         //[Fact]
