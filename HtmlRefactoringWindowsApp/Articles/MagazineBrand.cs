@@ -7,7 +7,7 @@ namespace HtmlRefactoringWindowsApp.Articles
     {
         private const char csvSeparator = ';';
 
-        private const int propertiesCount = 5;
+        private const int fieldsCount = 5;
 
         public int ID { get; }
 
@@ -30,13 +30,13 @@ namespace HtmlRefactoringWindowsApp.Articles
             LeadChar = InitLeadChar(fields[4]);
         }
 
-            private static void PreliminaryValidation(string csvParameters)
+            private static void PreliminaryValidation(string csvFields)
                 {
-                    if (string.IsNullOrWhiteSpace(csvParameters))
-                        throw new InvalidMagazineBrandException($"Error! Parameter '{csvParameters}' contains only white space or is empty");
+                    if (string.IsNullOrWhiteSpace(csvFields))
+                        throw new InvalidMagazineBrandException($"Error! Parameter '{csvFields}' contains only white space or is empty");
 
-                    if (CountCharInString(csvSeparator, csvParameters) + 1 != propertiesCount)
-                        throw new InvalidMagazineBrandException($"Error! Parameter '{csvParameters}' does not contains {propertiesCount} field values separated by semicolon");
+                    if (CountCharInString(csvSeparator, csvFields) + 1 != fieldsCount)
+                        throw new InvalidMagazineBrandException($"Error! Parameter '{csvFields}' does not contains {fieldsCount} field values separated by semicolon");
                 }
 
             private static int InitID(string field)
