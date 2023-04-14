@@ -57,8 +57,7 @@ namespace HtmlRefactoringTests
         [Fact]
         public void AfterConstructionOfCssProperties_CountOfPropertiesIsZero()
         {
-            var cssProperties = new CssProperties("");
-            Equal(0, cssProperties.Count);
+            Equal(0, new CssProperties("").Count);
         }
 
         [Fact]

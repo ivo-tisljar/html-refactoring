@@ -98,5 +98,21 @@ namespace HtmlRefactoringTests
         }
 
         #endregion
+
+        #region MagazineBrandsTests
+
+        [Fact]
+        public void AfterCreatingMagazineBrands_CountOfIndividualMagazineBrands_IsZero()
+        {
+            Equal(0, new MagazineBrands("").Count);
+        }
+
+        [Fact]
+        public void WhenCreatingMagazineBrands_IfAnyOfIndividualBrandsIsInvalid_Throws()
+        {
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xy;X"));
+        }
+
+        #endregion
     }
 }
