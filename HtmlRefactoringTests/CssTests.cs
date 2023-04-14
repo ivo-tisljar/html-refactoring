@@ -72,13 +72,13 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterCreatingCssPropertiesWithOneProperty_CountOfProperties_IsOne()
+        public void AfterCreatingCssProperties_WithOneProperty_CountOfPropertiesIsOne()
         {
             Equal(1, new CssProperties("x:0").Count);
         }
 
         [Fact]
-        public void AfterCreatingCssPropertiesWithTwoProperties_CountOfProperties_IsTwo()
+        public void AfterCreatingCssProperties_WithTwoProperties_CountOfPropertiesIsTwo()
         {
             Equal(2, new CssProperties("x:0;y:1").Count);
         }
@@ -200,13 +200,13 @@ namespace HtmlRefactoringTests
             Throws<InvalidSelectorException>(() => new CssSelectors("x y"));
         }
         [Fact]
-        public void AfterCreatingCssSelectorsWithOneSelector_CountOfSelectors_IsOne()
+        public void AfterCreatingCssSelectors_WithOneSelector_CountOfSelectorsIsOne()
         {
             Equal(1, new CssSelectors("x").Count);
         }
 
         [Fact]
-        public void AfterCreatingCssSelectorsWithTwoSelectors_CountOfSelectors_IsTwo()
+        public void AfterCreatingCssSelectors_WithTwoSelectors_CountOfSelectorsIsTwo()
         {
             Equal(2, new CssSelectors("x, #y").Count);
         }

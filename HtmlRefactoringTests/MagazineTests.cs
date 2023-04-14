@@ -9,20 +9,20 @@ namespace HtmlRefactoringTests
         #region MagazineBrandTests
 
         [Fact]
-        public void WhenCreatingMagazineBrandWithEmptyOrWhiteSpaceArgument_Throws()
+        public void WhenCreatingMagazineBrand_WithEmptyOrWhiteSpaceArgument_Throws()
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand(" \t"));
         }
 
         [Fact]
-        public void WhenCreatingMagazineBrandWithInvalidNumberOfParametersInCsvArgument_Throws()
+        public void WhenCreatingMagazineBrand_WithInvalidNumberOfParametersInCsvArgument_Throws()
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("a;b;c;d"));
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("a;b;c;d;e;f"));
         }
 
         [Fact]
-        public void WhenCreatingMagazineBrandIfIDIsInvalid_Throws()
+        public void WhenCreatingMagazineBrand_IfIDIsInvalid_Throws()
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand(";2;A;B;C"));
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("0;2;A;B;C"));
@@ -31,7 +31,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void WhenCreatingMagazineBrandIfWebIDIsInvalid_Throws()
+        public void WhenCreatingMagazineBrand_IfWebIDIsInvalid_Throws()
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;;Abc defg;Hijk;L"));
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;00;Abc defg;Hijk;L"));
@@ -40,7 +40,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void WhenCreatingMagazineBrandIfNameIsInvalid_Throws()
+        public void WhenCreatingMagazineBrand_IfNameIsInvalid_Throws()
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;;Hijk;L"));
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;abc;Hijk;L"));
@@ -50,7 +50,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void WhenCreatingMagazineBrandIfLabelIsInvalid_Throws()
+        public void WhenCreatingMagazineBrand_IfLabelIsInvalid_Throws()
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc defg;;L"));
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc defg;Hi;L"));
@@ -63,7 +63,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void WhenCreatingMagazineBrandIfLeadCharIsInvalid_Throws()
+        public void WhenCreatingMagazineBrand_IfLeadCharIsInvalid_Throws()
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc defg;Hij;"));
             Throws<InvalidMagazineBrandException>(() => new MagazineBrand("1;2;Abc defg;Hij; "));
@@ -73,7 +73,7 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void AfterConstructionOfMagazineBrand_CanReadAllProperties()
+        public void AfterConstructionOfMagazineBrand_CanRead_AllProperties()
         {
             var magazineBrand1 = new MagazineBrand("1;2;Abc defg;Hijk;L");
             Equal(1, magazineBrand1.ID);
