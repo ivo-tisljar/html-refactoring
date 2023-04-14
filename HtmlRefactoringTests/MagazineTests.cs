@@ -111,6 +111,9 @@ namespace HtmlRefactoringTests
         public void WhenCreatingMagazineBrands_IfAnyOfIndividualBrandsIsInvalid_Throws()
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xy;X"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xy;X\n8;89;Opq;Op;O"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xy;X"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xy;X"));
         }
 
         #endregion
