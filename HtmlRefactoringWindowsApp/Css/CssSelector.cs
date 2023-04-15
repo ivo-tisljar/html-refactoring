@@ -27,7 +27,7 @@ namespace HtmlRefactoringWindowsApp.Css
             {
                 var reg = new Regex("^[\\.#a-zA-Z_-][0-9\\.a-zA-Z_-]*$");
 
-                if ((!reg.IsMatch(selector)) || (selector == ".") || (selector == "#"))
+                if (!reg.IsMatch(selector) || selector == "." || selector == "#")
                     throw new InvalidSelectorException($"Error! Selector '{selector}' is invalid.");
 
                 return selector;
@@ -35,7 +35,7 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private static string? InitElement(string selector)
             {
-                if ((selector[..1] != ".") && (selector[..1] != "#"))
+                if (selector[..1] != "." && selector[..1] != "#")
                     return ExtractElement(selector);
                 else
                     return null;

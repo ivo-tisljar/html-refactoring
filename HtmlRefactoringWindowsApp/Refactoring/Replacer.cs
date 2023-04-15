@@ -12,10 +12,12 @@ namespace HtmlRefactoringWindowsApp.Refactoring
         public Replacer(string csvFields) 
         {
             PreliminaryValidation(csvFields);
+            var fields = csvFields.Split(csvSeparator, StringSplitOptions.TrimEntries);
 
+            //            replacer-method;find-text;replace-text
         }
 
-            private static void PreliminaryValidation(string csvFields)
+        private static void PreliminaryValidation(string csvFields)
             {
                 if (string.IsNullOrWhiteSpace(csvFields))
                     throw new InvalidReplacerException($"Error! Replacer '{csvFields}' contains only white space or is empty");

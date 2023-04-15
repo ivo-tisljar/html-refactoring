@@ -30,8 +30,8 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private static void ValidateThatPropertyIsMargin(CssProperty cssProperty)
             {
-                if ((cssProperty.Name != margin) && (cssProperty.Name != marginTop) && (cssProperty.Name != marginRight) && (cssProperty.Name != marginBottom) &&
-                    (cssProperty.Name != marginLeft))
+                if (cssProperty.Name != margin && cssProperty.Name != marginTop && cssProperty.Name != marginRight && cssProperty.Name != marginBottom &&
+                    cssProperty.Name != marginLeft)
                     throw new InvalidMarginException($"Error! Property '{cssProperty.Name}:{cssProperty.Value}' does not define a margin.");
             }
 
