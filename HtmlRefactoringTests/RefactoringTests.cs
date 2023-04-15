@@ -9,6 +9,16 @@ namespace HtmlRefactoringTests
 {
     public class RefactoringTests
     {
+        #region ReplacerTests
+
+        [Fact]
+        public void CanCreateReplacer()
+        {
+            var replacer = new Replacer("");
+        }
+
+        #endregion
+
         #region ScriptTests
 
         [Fact]
