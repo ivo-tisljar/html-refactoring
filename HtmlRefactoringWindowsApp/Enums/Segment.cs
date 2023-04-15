@@ -3,13 +3,12 @@ namespace HtmlRefactoringWindowsApp.Enums
 {
     public enum Segment
     {
-        Unspecified = 0,
+        Any = 0,
         Paragraph = 1,
         Title = 2,
         TitleOrParagraph = 3,
         Table = 4,
-        Image = 5,
-        Whatever = 6
+        Image = 5
     }
 
     public static class SegmentExtensions
@@ -21,13 +20,12 @@ namespace HtmlRefactoringWindowsApp.Enums
 
         private static readonly SegmentData[] segmentData = new SegmentData[]
         {
-            new SegmentData { Name ="Unspecified" },
+            new SegmentData { Name ="Any" },
             new SegmentData { Name ="Paragraph" },
             new SegmentData { Name ="Title" },
             new SegmentData { Name ="Title or Paragraph" },
             new SegmentData { Name ="Table" },
-            new SegmentData { Name ="Image" },
-            new SegmentData { Name ="Whatever" }
+            new SegmentData { Name ="Image" }
         };
 
         public static string GetName(this Segment segment)
@@ -41,7 +39,7 @@ namespace HtmlRefactoringWindowsApp.Enums
 
         public static bool IsDefined(this Segment segment)
         {
-            return segment >= Segment.Paragraph && segment <= Segment.Whatever;
+            return segment >= Segment.Any && segment <= Segment.Image;
         }
     }
 }
