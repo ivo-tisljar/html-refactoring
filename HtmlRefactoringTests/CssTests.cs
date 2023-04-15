@@ -131,6 +131,24 @@ namespace HtmlRefactoringTests
             Equal(7, cssProperties.Count);
         }
 
+        [Fact]
+        public void AfterCreatingCssProperties_CanAssignAndRead_IndividualCssProperty()
+        {
+            var cssProperty = new CssProperties("X:0;y:1;Z:2")[2];
+
+            Equal("z", cssProperty.Name);
+            Equal("2", cssProperty.Value);
+        }
+
+        [Fact]
+        public void AfterCreatingCssProperties_IfIndexOfPropertiesIsOutOfRange_Throws()
+        {
+            var cssProperties = new CssProperties("a:0; b:1; c:2");
+
+            Throws<ArgumentOutOfRangeException>(() => cssProperties[-1].Name);
+            Throws<ArgumentOutOfRangeException>(() => cssProperties[3].Value);
+        }
+
         #endregion
 
         #region CssSelectorTests
@@ -199,6 +217,7 @@ namespace HtmlRefactoringTests
             Throws<InvalidSelectorException>(() => new CssSelectors("0"));
             Throws<InvalidSelectorException>(() => new CssSelectors("x y"));
         }
+
         [Fact]
         public void AfterCreatingCssSelectors_WithOneSelector_CountOfSelectorsIsOne()
         {
@@ -267,6 +286,26 @@ namespace HtmlRefactoringTests
             Equal(4, cssSelectors.Count);
         }
 
+        [Fact]
+        public void AfterCreatingCssSelectors_CanAssignAndRead_IndividualCssSelector()
+        {
+            var cssSelector = new CssSelectors("x, #x, .x, x.y")[3];
+
+            Equal("x.y", cssSelector.Selector);
+            Equal("x", cssSelector.Element);
+            Null(cssSelector.ID);
+            Equal("y", cssSelector.Class);
+        }
+
+        [Fact]
+        public void AfterCreatingCssSelectors_IfIndexOfSelectorsIsOutOfRange_Throws()
+        {
+            var cssSelectors = new CssSelectors("x.y, x, .y, #z");
+
+            Throws<ArgumentOutOfRangeException>(() => cssSelectors[-1].Selector);
+            Throws<ArgumentOutOfRangeException>(() => cssSelectors[4].Element);
+        }
+
         #endregion
 
         #region CssRuleTests
@@ -295,18 +334,6 @@ namespace HtmlRefactoringTests
             ThrowsAny<CssPropertyException>(() => new CssRule("x,y{x:}"));
             ThrowsAny<CssPropertyException>(() => new CssRule(".x,y.y,z{:0}"));
             ThrowsAny<CssPropertyException>(() => new CssRule("#x{a:a;b;c:c}"));
-        }
-
-        [Fact]
-        public void AfterCreatingCssRule_IfIndexOfSelectorsOrPropertiesIsOutOfRange_Throws()
-        {
-            var rule = new CssRule("x.y, x, .y, #z {a:0; b:1; c:2}");
-
-            Throws<ArgumentOutOfRangeException>(() => rule.CssSelectors[-1].Selector);
-            Throws<ArgumentOutOfRangeException>(() => rule.CssSelectors[4].Element);
-
-            Throws<ArgumentOutOfRangeException>(() => rule.CssProperties[-1].Name);
-            Throws<ArgumentOutOfRangeException>(() => rule.CssProperties[3].Value);
         }
 
         [Fact]
@@ -449,6 +476,28 @@ namespace HtmlRefactoringTests
             Equal("p", cssFile[3].CssSelectors[0].Class);
             Equal("d", cssFile[3].CssProperties[0].Name);
             Equal("9", cssFile[3].CssProperties[0].Value);
+        }
+
+        [Fact]
+        public void AfterCreatingCssFile_CanAssignAndRead_IndividualCssRule()
+        {
+            var cssRule = new CssFile(".a{\na:0;\n}\nb{\nb:7;\n}\ne.f,#g,.h,i{\nc:1;cc:22;ccc:333\n}\no.p{\nd:9\n}")[2];
+
+            Equal("c", cssRule.CssProperties[0].Name);
+            Equal("1", cssRule.CssProperties[0].Value);
+            Equal("cc", cssRule.CssProperties[1].Name);
+            Equal("22", cssRule.CssProperties[1].Value);
+            Equal("ccc", cssRule.CssProperties[2].Name);
+            Equal("333", cssRule.CssProperties[2].Value);
+        }
+
+        [Fact]
+        public void AfterCreatingCssFile_IfIndexOfRulesIsOutOfRange_Throws()
+        {
+            var cssFile = new CssFile(".a{\na:0;\n}\nb{\nb:7;\n}\ne.f,#g,.h,i{\nc:1;cc:22;ccc:333\n}\no.p{\nd:9\n}");
+
+            Throws<ArgumentOutOfRangeException>(() => cssFile[-1].CssSelectors);
+            Throws<ArgumentOutOfRangeException>(() => cssFile[4].CssProperties);
         }
 
         #endregion
