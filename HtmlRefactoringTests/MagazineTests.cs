@@ -1,4 +1,5 @@
 ﻿
+using HtmlRefactoringWindowsApp.Css;
 using HtmlRefactoringWindowsApp.Magazines;
 using static Xunit.Assert;
 
@@ -111,10 +112,80 @@ namespace HtmlRefactoringTests
         public void WhenCreatingMagazineBrands_IfAnyOfIndividualBrandsIsInvalid_Throws()
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xy;X"));
-            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xy;X\n8;89;Opq;Op;O"));
-            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xy;X"));
-            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xy;X"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xyz;X\n8;89;Opq;Opq;9"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xyz;X\n8;89;Opq;Opq;O\n6;A;Abc;Abc;A"));
         }
+
+        [Fact]
+        public void AfterCreatingMagazineBrands_WithOneBrand_CountOfBrandsIsOne()
+        {
+            Equal(1, new MagazineBrands("7;88;Xyz;Xyz;X").Count);
+        }
+
+        [Fact]
+        public void AfterCreatingMagazineBrands_WithTwoBrands_CountOfBradnsIsTwo()
+        {
+            Equal(2, new MagazineBrands("7;88;Xyz;Xyz;X\n8;89;Opq;Opq;O").Count);
+        }
+
+        [Fact]
+        public void AfterCreatingMagazineBrands_CanRead_IndividualFields()
+        {
+            var magazineBrands = new MagazineBrands("7;88;Xyz;Xyz;X\n8;89;Opq;Opq;O");
+
+            Equal(7 , magazineBrands[0].ID);
+            //Equal("0", magazineBrands[0].Value);
+
+        }
+
+        //[Fact]
+        //public void AfterCreatingCssProperties_CanRead_RealWorldIndividualPropertyNamesAndValues()
+        //{
+        //    var cssProperties = new CssProperties("border-collapse:collapse;\r\n\tborder-color\t:\t#000000;\r\n\tborder-style : solid;\r\n\t" +
+        //                                          "border-width:1px;\r\n\tmargin-bottom:-4px;\r\n\tmargin-top:4px;\r\n\t" +
+        //                                          "font-family:\"Myriad Pro\", sans-serif;");
+
+        //    Equal("border-collapse", cssProperties[0].Name);
+        //    Equal("collapse", cssProperties[0].Value);
+
+        //    Equal("border-color", cssProperties[1].Name);
+        //    Equal("#000000", cssProperties[1].Value);
+
+        //    Equal("border-style", cssProperties[2].Name);
+        //    Equal("solid", cssProperties[2].Value);
+
+        //    Equal("border-width", cssProperties[3].Name);
+        //    Equal("1px", cssProperties[3].Value);
+
+        //    Equal("margin-bottom", cssProperties[4].Name);
+        //    Equal("-4px", cssProperties[4].Value);
+
+        //    Equal("margin-top", cssProperties[5].Name);
+        //    Equal("4px", cssProperties[5].Value);
+
+        //    Equal("font-family", cssProperties[6].Name);
+        //    Equal("\"Myriad Pro\", sans-serif", cssProperties[6].Value);
+
+        //    Equal(7, cssProperties.Count);
+        //}
+
+        //[Fact]
+        //public void AfterCreatingCssProperties_CanAssignAndRead_IndividualCssProperty()
+        //{
+        //    var cssProperty = new CssProperties("X:0;y:1;Z:2")[2];
+
+        //    Equal("z", cssProperty.Name);
+        //    Equal("2", cssProperty.Value);
+        //}
+
+        //[Fact]
+        //public void AfterCreatingCssProperties_IfIndexOfPropertiesIsOutOfRange_Throws()
+        //{
+        //    var cssProperties = new CssProperties("a:0; b:1; c:2");
+
+        //    Throws<ArgumentOutOfRangeException>(() => cssProperties[-1].Name);
+        //    Throws<ArgumentOutOfRangeException>(() => cssProperties[3].Value);
+        //}
 
         #endregion
     }

@@ -1,4 +1,5 @@
-﻿using static HtmlRefactoringWindowsApp.Utils.StringUtils;
+﻿
+using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
 namespace HtmlRefactoringWindowsApp.Magazines
 {
