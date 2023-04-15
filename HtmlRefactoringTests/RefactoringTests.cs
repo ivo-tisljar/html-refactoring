@@ -12,13 +12,13 @@ namespace HtmlRefactoringTests
         #region ScriptTests
 
         [Fact]
-        public void WhenCreatingScriptWithEmptyOrWhiteSpaceArgument_Throws()
+        public void WhenCreatingScript_WithEmptyOrWhiteSpaceArgument_Throws()
         {
             Throws<InvalidScriptException>(() => new Script(" \t"));
         }
 
         [Fact]
-        public void WhenCreatingScriptWithInvalidNumberOfParametersInCsvArgument_Throws()
+        public void WhenCreatingScript_WithInvalidNumberOfCSVs_Throws()
         {
             Throws<InvalidScriptException>(() => new Script("a;b;c;d;e;f;g;h;i;j"));
             Throws<InvalidScriptException>(() => new Script("a;b;c;d;e;f;g;h;i;j;k;l"));
