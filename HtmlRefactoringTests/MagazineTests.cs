@@ -113,7 +113,7 @@ namespace HtmlRefactoringTests
         {
             Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xy;X"));
             Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xyz;X\n8;89;Opq;Opq;9"));
-            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xyz;X\n8;89;Opq;Opq;O\n6;A;Abc;Abc;A"));
+            Throws<InvalidMagazineBrandException>(() => new MagazineBrands("7;88;Xyz;Xyz;X\n8;89;Opq;Opq;Q\n6;A;Abc;Abc;A"));
         }
 
         [Fact]
@@ -125,67 +125,71 @@ namespace HtmlRefactoringTests
         [Fact]
         public void AfterCreatingMagazineBrands_WithTwoBrands_CountOfBradnsIsTwo()
         {
-            Equal(2, new MagazineBrands("7;88;Xyz;Xyz;X\n8;89;Opq;Opq;O").Count);
+            Equal(2, new MagazineBrands("7;88;Xyz;Xyz;X\n8;89;Opq;Opq;Q").Count);
         }
 
         [Fact]
         public void AfterCreatingMagazineBrands_CanRead_IndividualFields()
         {
-            var magazineBrands = new MagazineBrands("7;88;Xyz;Xyz;X\n8;89;Opq;Opq;O");
+            var magazineBrands = new MagazineBrands("7;88;Xyzž;Xyz;X\n8;89;Opqr sšt uvzž;Opqr;Q");
 
-            Equal(7 , magazineBrands[0].ID);
-            //Equal("0", magazineBrands[0].Value);
+            Equal(7, magazineBrands[0].ID);
+            Equal(88, magazineBrands[0].WebID);
+            Equal("Xyzž", magazineBrands[0].Name);
+            Equal("Xyz", magazineBrands[0].Label);
+            Equal('X', magazineBrands[0].LeadChar);
 
+            Equal(8, magazineBrands[1].ID);
+            Equal(89, magazineBrands[1].WebID);
+            Equal("Opqr sšt uvzž", magazineBrands[1].Name);
+            Equal("Opqr", magazineBrands[1].Label);
+            Equal('Q', magazineBrands[1].LeadChar);
         }
 
-        //[Fact]
-        //public void AfterCreatingCssProperties_CanRead_RealWorldIndividualPropertyNamesAndValues()
-        //{
-        //    var cssProperties = new CssProperties("border-collapse:collapse;\r\n\tborder-color\t:\t#000000;\r\n\tborder-style : solid;\r\n\t" +
-        //                                          "border-width:1px;\r\n\tmargin-bottom:-4px;\r\n\tmargin-top:4px;\r\n\t" +
-        //                                          "font-family:\"Myriad Pro\", sans-serif;");
+        [Fact]
+        public void AfterCreatingMagazineBrands_CanRead_RealWorldIndividualFields()
+        {
+            var magazineBrands = new MagazineBrands("1;11;RRiF;RRiF;R\n3;33;Pravo i porezi;Pip;P\n7;7;Proračuni;Pror;P");
 
-        //    Equal("border-collapse", cssProperties[0].Name);
-        //    Equal("collapse", cssProperties[0].Value);
+            Equal(1, magazineBrands[0].ID);
+            Equal(11, magazineBrands[0].WebID);
+            Equal("RRiF", magazineBrands[0].Name);
+            Equal("RRiF", magazineBrands[0].Label);
+            Equal('R', magazineBrands[0].LeadChar);
 
-        //    Equal("border-color", cssProperties[1].Name);
-        //    Equal("#000000", cssProperties[1].Value);
+            Equal(3, magazineBrands[1].ID);
+            Equal(33, magazineBrands[1].WebID);
+            Equal("Pravo i porezi", magazineBrands[1].Name);
+            Equal("Pip", magazineBrands[1].Label);
+            Equal('P', magazineBrands[1].LeadChar);
 
-        //    Equal("border-style", cssProperties[2].Name);
-        //    Equal("solid", cssProperties[2].Value);
+            Equal(7, magazineBrands[2].ID);
+            Equal(7, magazineBrands[2].WebID);
+            Equal("Proračuni", magazineBrands[2].Name);
+            Equal("Pror", magazineBrands[2].Label);
+            Equal('P', magazineBrands[2].LeadChar);
+        }
 
-        //    Equal("border-width", cssProperties[3].Name);
-        //    Equal("1px", cssProperties[3].Value);
+        [Fact]
+        public void AfterCreatingMagazineBrands_CanAssignAndRead_IndividualMagazineBrand()
+        {
+            var magazineBrand = new MagazineBrands("1;11;RRiF;RRiF;R\n3;33;Pravo i porezi;Pip;P\n7;17;Proračuni;Pror;P\n9;9;Neprofitni;Nepr;N")[2];
 
-        //    Equal("margin-bottom", cssProperties[4].Name);
-        //    Equal("-4px", cssProperties[4].Value);
+            Equal(7, magazineBrand.ID);
+            Equal(17, magazineBrand.WebID);
+            Equal("Proračuni", magazineBrand.Name);
+            Equal("Pror", magazineBrand.Label);
+            Equal('P', magazineBrand.LeadChar);
+        }
 
-        //    Equal("margin-top", cssProperties[5].Name);
-        //    Equal("4px", cssProperties[5].Value);
+        [Fact]
+        public void AfterCreatingMagazineBrands_IfIndexOfPropertiesIsOutOfRange_Throws()
+        {
+            var magazineBrands = new MagazineBrands("1;11;RRiF;RRiF;R\n3;33;Pravo i porezi;Pip;P\n7;17;Proračuni;Pror;P\n9;9;Neprofitni;Nepr;N");
 
-        //    Equal("font-family", cssProperties[6].Name);
-        //    Equal("\"Myriad Pro\", sans-serif", cssProperties[6].Value);
-
-        //    Equal(7, cssProperties.Count);
-        //}
-
-        //[Fact]
-        //public void AfterCreatingCssProperties_CanAssignAndRead_IndividualCssProperty()
-        //{
-        //    var cssProperty = new CssProperties("X:0;y:1;Z:2")[2];
-
-        //    Equal("z", cssProperty.Name);
-        //    Equal("2", cssProperty.Value);
-        //}
-
-        //[Fact]
-        //public void AfterCreatingCssProperties_IfIndexOfPropertiesIsOutOfRange_Throws()
-        //{
-        //    var cssProperties = new CssProperties("a:0; b:1; c:2");
-
-        //    Throws<ArgumentOutOfRangeException>(() => cssProperties[-1].Name);
-        //    Throws<ArgumentOutOfRangeException>(() => cssProperties[3].Value);
-        //}
+            Throws<ArgumentOutOfRangeException>(() => magazineBrands[-1]);
+            Throws<ArgumentOutOfRangeException>(() => magazineBrands[4]);
+        }
 
         #endregion
     }
