@@ -25,9 +25,9 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private void ExtractRules(string file)
             {
-                var splitFile = SplitWithSeparatorIncluded(file, '}');
+                var rulesArray= SplitStringWithSeparatorIncluded(file, '}');
 
-                foreach (var rule in splitFile)
+                foreach (var rule in rulesArray)
                 {
                     if (!string.IsNullOrWhiteSpace(rule))
                         rules.Add(new CssRule(rule));

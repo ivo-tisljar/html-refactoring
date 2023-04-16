@@ -1,4 +1,5 @@
 ﻿
+using System.Reflection.Emit;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
@@ -86,21 +87,59 @@ namespace HtmlRefactoringWindowsApp.Utils
             return result;
         }
 
-        public static string[] SplitWithSeparatorIncluded(string str, char delimiter)
+        public static string[] SplitStringWithSeparatorIncluded(string csvString, char delimiter)
         {
-            var subStrings = new List<string>();
+            var result = new List<string>();
             int firstIndex = 0;
             int lastIndex;
 
-            while ((lastIndex = str.IndexOf(delimiter, firstIndex)) != -1)
+            while ((lastIndex = csvString.IndexOf(delimiter, firstIndex)) != -1)
             {
-                subStrings.Add(str.Substring(firstIndex, lastIndex - firstIndex + 1));
+                result.Add(csvString[firstIndex..(lastIndex + 1)]);
                 firstIndex = lastIndex + 1;
             }
-            if (firstIndex < str.Length)
-                subStrings.Add(str[firstIndex..]);
+            if (firstIndex < csvString.Length)
+                result.Add(csvString[firstIndex..]);
 
-            return subStrings.ToArray();
+            return result.ToArray();
+        }
+
+        public static string[] SplitString(string csvString, char delimiter, char quote)
+        {
+            var result = new List<string>();
+            int firstIndex = 0;
+            int lastIndex;
+            bool inQuotes = false;
+
+            for (int i = 0; i < csvString.Length; i++)
+            {
+                char c = csvString[i];
+
+                //if (c == quote)
+                //{
+                //    if (inQuotes && i < csvString.Length - 1 && csvString[i + 1] == quote)
+                //        i++;
+                //    else
+                //        inQuotes = !inQuotes;
+                //}
+                //else if (c == delimiter && !inQuotes)
+                //{
+                //    result.Add(fieldBuilder.ToString());
+                //    fieldBuilder.Clear();
+                //}
+                //else
+                //    fieldBuilder.Append(c);
+
+            }
+            //while ((lastIndex = str.IndexOf(delimiter, firstIndex)) != -1)
+            //{
+            //    subStrings.Add(str.Substring(firstIndex, lastIndex - firstIndex + 1));
+            //    firstIndex = lastIndex + 1;
+            //}
+            //if (firstIndex < str.Length)
+            //    subStrings.Add(str[firstIndex..]);
+
+            return result.ToArray();
         }
 
         public string[] ParseCsv(string csvString, char delimiter, char quote)

@@ -133,24 +133,24 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
-        public void SplitWithSeparatorIncluded_TestCases()
+        public void SplitStringWithSeparatorIncluded_TestCases()
         {
-            Empty(SplitWithSeparatorIncluded("", ';'));
+            Empty(SplitStringWithSeparatorIncluded("", ';'));
 
-            var strings1 = SplitWithSeparatorIncluded("x", ';');
+            var strings1 = SplitStringWithSeparatorIncluded("x", ';');
             Single(strings1);
             Equal("x", strings1[0]);
 
-            var strings2 = SplitWithSeparatorIncluded(";", ';');
+            var strings2 = SplitStringWithSeparatorIncluded(";", ';');
             Single(strings2);
             Equal(";", strings2[0]);
 
-            var strings3 = SplitWithSeparatorIncluded(";x", ';');
+            var strings3 = SplitStringWithSeparatorIncluded(";x", ';');
             Equal(2, strings3.Length);
             Equal(";", strings3[0]);
             Equal("x", strings3[1]);
 
-            var strings4 = SplitWithSeparatorIncluded("x;;y;", ';');
+            var strings4 = SplitStringWithSeparatorIncluded("x;;y;", ';');
             Equal(3, strings4.Length);
             Equal("x;", strings4[0]);
             Equal(";", strings4[1]);
