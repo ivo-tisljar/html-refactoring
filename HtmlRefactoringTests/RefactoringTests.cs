@@ -18,8 +18,8 @@ namespace HtmlRefactoringTests
         [Fact]
         public void WhenCreatingReplacer_WithInvalidNumberOfFields_Throws()
         {
-            Throws<InvalidReplacerException>(() => new Replacer("a;b"));
-            Throws<InvalidReplacerException>(() => new Replacer("a;b;c;d"));
+            Throws<InvalidReplacerException>(() => new Replacer("a\0b"));
+            Throws<InvalidReplacerException>(() => new Replacer("a\0b\0c\0d"));
         }
 
         #endregion

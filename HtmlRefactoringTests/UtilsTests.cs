@@ -135,26 +135,30 @@ namespace HtmlRefactoringTests
         [Fact]
         public void SplitStringWithSeparatorIncluded_TestCases()
         {
-            Empty(SplitStringWithSeparatorIncluded("", ';'));
-
-            var strings1 = SplitStringWithSeparatorIncluded("x", ';');
+            var strings1 = SplitStringWithSeparatorIncluded("", ';');
             Single(strings1);
-            Equal("x", strings1[0]);
+            Equal("", strings1[0]);
 
-            var strings2 = SplitStringWithSeparatorIncluded(";", ';');
+            var strings2 = SplitStringWithSeparatorIncluded("x", ';');
             Single(strings2);
-            Equal(";", strings2[0]);
+            Equal("x", strings2[0]);
 
-            var strings3 = SplitStringWithSeparatorIncluded(";x", ';');
+            var strings3 = SplitStringWithSeparatorIncluded(";", ';');
             Equal(2, strings3.Length);
             Equal(";", strings3[0]);
-            Equal("x", strings3[1]);
+            Equal("", strings3[1]);
 
-            var strings4 = SplitStringWithSeparatorIncluded("x;;y;", ';');
-            Equal(3, strings4.Length);
-            Equal("x;", strings4[0]);
-            Equal(";", strings4[1]);
-            Equal("y;", strings4[2]);
+            var strings4 = SplitStringWithSeparatorIncluded(";x", ';');
+            Equal(2, strings4.Length);
+            Equal(";", strings4[0]);
+            Equal("x", strings4[1]);
+
+            var strings5 = SplitStringWithSeparatorIncluded("x;;y;", ';');
+            Equal(4, strings5.Length);
+            Equal("x;", strings5[0]);
+            Equal(";", strings5[1]);
+            Equal("y;", strings5[2]);
+            Equal("", strings5[3]);
         }
 
         [Fact]
