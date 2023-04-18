@@ -1,13 +1,10 @@
 ﻿
-using System.Xml.Linq;
-
 namespace HtmlRefactoringWindowsApp.Enums
 {
     public enum ReplacerMethod
     {
         Text = 0,
-        Extended = 1,
-        Regex =2
+        Regex = 1
     }
 
     public static class StringExtensionsForreplacerMethodString
