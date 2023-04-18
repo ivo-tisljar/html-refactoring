@@ -30,6 +30,13 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
+        public void WhenCreatingReplacer_IfOldValueInvalid_Throws()
+        {
+            Throws<InvalidOldValueException>(() => new Replacer("Text\0\0c\0d"));
+            Throws<InvalidOldValueException>(() => new Replacer("Regex\0\0c\0d"));
+        }
+
+        [Fact]
         public void AfterCreatingReplacer_CanRead_AllIndividualFields()
         {
             var replacer1 = new Replacer("Text\0Bravo\0Charlie\0");

@@ -23,7 +23,7 @@ namespace HtmlRefactoringWindowsApp.Refactoring
             PreliminaryValidation(csvFields);
             var fields = csvFields.Split(csvSeparator);
             ReplacerMethod = InitReplacerMethod(fields[0]);
-            OldValue = fields[1];
+            OldValue = InitOldValue(fields[1]);
             NewValue = fields[2];
             Info = fields[3];
         }
@@ -61,6 +61,14 @@ namespace HtmlRefactoringWindowsApp.Refactoring
                     throw new InvalidReplacerMethodException($"Error! '{field}' is invalid value for replacer-method\r\n" + Ex);
                 }
             }
+
+            private static string InitOldValue(string field)
+            {
+                if (field == "")
+                    throw new InvalidOldValueException($"Error! Old value of replacer is empty");
+
+                return field;
+            }
     }
 
     public class InvalidReplacerException : Exception
@@ -81,5 +89,10 @@ namespace HtmlRefactoringWindowsApp.Refactoring
     public class InvalidReplacerMethodException : InvalidReplacerException
     {
         public InvalidReplacerMethodException(string message) : base(message) { }
+    }
+
+    public class InvalidOldValueException : InvalidReplacerException
+    {
+        public InvalidOldValueException(string message) : base(message) { }
     }
 }
