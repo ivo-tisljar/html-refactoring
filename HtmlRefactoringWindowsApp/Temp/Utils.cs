@@ -98,11 +98,10 @@ namespace HtmlRefactoringWindowsApp.Temp
 
         public static string UnquoteString2(string str, char quote)
         {
-            var commentQuote = (quote == '\'') ? '"' : '\'';
+            if (str.Length <= 1 || str[0] != quote || str[str.Length - 1] != quote)
+                ThrowException();
 
-            if (str.Length > 1 && str[0] == quote && str[str.Length - 1] == quote)
-
-                for (int i = 1; i < str.Length - 2; i++)        //  skip first and last chars == quote
+            for (int i = 1; i < str.Length - 2; i++)        //  skip first and last chars == quote
                 {
                     if (str[i] == quote)
                     {
@@ -112,13 +111,12 @@ namespace HtmlRefactoringWindowsApp.Temp
                             ThrowException();
                     }
                 }
-            else
-                ThrowException();
-
             return str[1..(str.Length - 2)].Replace(string.Concat(quote, quote), quote.ToString());
 
             void ThrowException()
             {
+                var commentQuote = (quote == '\'') ? '"' : '\'';
+
                 throw new InvalidStringException($"Error! String {commentQuote}{str}{commentQuote} " +
                                                  $"is NOT unqotable with char {commentQuote}{quote}{commentQuote} acting as a quote");
             }
