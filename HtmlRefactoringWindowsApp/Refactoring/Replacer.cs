@@ -1,5 +1,6 @@
 ﻿
 using HtmlRefactoringWindowsApp.Enums;
+using System.Text.RegularExpressions;
 using static HtmlRefactoringWindowsApp.Utils.StringUtils;
 
 namespace HtmlRefactoringWindowsApp.Refactoring
@@ -34,8 +35,9 @@ namespace HtmlRefactoringWindowsApp.Refactoring
             {
                 case ReplacerMethod.Text:
                     return str.Replace(OldValue, NewValue);
+
                 case ReplacerMethod.Regex:
-                    return str;
+                    return new Regex(OldValue).Replace(str, NewValue);
             }
 
             return str;

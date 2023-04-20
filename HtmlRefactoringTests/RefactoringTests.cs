@@ -89,6 +89,29 @@ namespace HtmlRefactoringTests
 
         }
 
+        [Fact]
+        public void AfterCreatingReplacer_WithRegexMethod_ReplaceAsExpected()
+        {
+            var replacer1 = new Replacer("Regex\0(09\\d)(\\d{3})(\\d{3,4})\0$1/$2-$3\0Phone number");
+
+            Equal("098/765-432", replacer1.Replace("098765432"));
+
+            var replacer2 = new Replacer("Regex\0(09\\d)(\\d{3})(\\d{3,4})\0$1/$2-$3\0Phone number");
+
+            Equal("091/234-5678\n092/345-678", replacer2.Replace("0912345678\n092345678"));
+            Equal("012345678\n097/654-3210", replacer2.Replace("012345678\n0976543210"));
+            Equal("098765-43210 xyz 099/888-777 abc", replacer2.Replace("098765-43210 xyz 099888777 abc"));
+
+            //var replacer3 = new Replacer("Text\0  \0 \0Replace two consecutive space chars with single one");
+
+            //Equal("One  two  three", replacer3.Replace("One   two   three"));
+
+            //var replacer4 = new Replacer("Text\0\r\n\0 \0Replace CrLf with single space char");
+
+            //Equal("One two three", replacer4.Replace("One\r\ntwo\r\nthree"));
+
+        }
+
         #endregion
 
         #region ScriptTests
