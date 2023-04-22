@@ -1,6 +1,7 @@
 ﻿
 using HtmlRefactoringWindowsApp.Enums;
 using HtmlRefactoringWindowsApp.Refactoring;
+
 using static Xunit.Assert;
 
 namespace HtmlRefactoringTests
@@ -101,15 +102,16 @@ namespace HtmlRefactoringTests
             Equal("091/234-5678\n092/345-678", replacer2.Replace("0912345678\n092345678"));
             Equal("012345678\n097/654-3210", replacer2.Replace("012345678\n0976543210"));
             Equal("098765-43210 xyz 099/888-777 abc", replacer2.Replace("098765-43210 xyz 099888777 abc"));
+        }
 
-            //var replacer3 = new Replacer("Text\0  \0 \0Replace two consecutive space chars with single one");
+        #endregion
 
-            //Equal("One  two  three", replacer3.Replace("One   two   three"));
+        #region ReplacersTests
 
-            //var replacer4 = new Replacer("Text\0\r\n\0 \0Replace CrLf with single space char");
-
-            //Equal("One two three", replacer4.Replace("One\r\ntwo\r\nthree"));
-
+        [Fact]
+        public void CanCreate_Replacers()
+        {
+            var replacers = new Replacers("");
         }
 
         #endregion
