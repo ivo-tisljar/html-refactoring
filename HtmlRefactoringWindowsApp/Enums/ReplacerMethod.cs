@@ -7,7 +7,7 @@ namespace HtmlRefactoringWindowsApp.Enums
         Regex = 1
     }
 
-    public static class StringExtensionsForreplacerMethodString
+    public static class StringExtensions_ReplacerMethod
     {
         public static ReplacerMethod ToReplacerMethod(this string replacerMethodString)
         {
