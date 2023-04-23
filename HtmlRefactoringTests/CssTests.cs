@@ -84,6 +84,12 @@ namespace HtmlRefactoringTests
         }
 
         [Fact]
+        public void AfterCreatingCssProperties_CanIndex_IndividualProperties()
+        {
+            Equal("2", new CssProperties("X:0;y:1;Z:2")[2].Value);
+        }
+
+        [Fact]
         public void AfterCreatingCssProperties_CanRead_IndividualPropertyNamesAndValues()
         {
             var cssProperties = new CssProperties("X:0;y:1;Z:2");
@@ -97,7 +103,7 @@ namespace HtmlRefactoringTests
             Equal("z", cssProperties[2].Name);
             Equal("2", cssProperties[2].Value);
 
-            Equal(3,   cssProperties.Count);
+            Equal(3, cssProperties.Count);
         }
 
         [Fact]
@@ -228,6 +234,12 @@ namespace HtmlRefactoringTests
         public void AfterCreatingCssSelectors_WithTwoSelectors_CountOfSelectorsIsTwo()
         {
             Equal(2, new CssSelectors("x, #y").Count);
+        }
+
+        [Fact]
+        public void AfterCreatingCssSelectors_CanIndex_IndividualProperties()
+        {
+            Equal("x", new CssSelectors("x, #x, .x")[2].Class);
         }
 
         [Fact]
@@ -437,6 +449,12 @@ namespace HtmlRefactoringTests
             Equal(3, new CssFile("a{\r\na:0;\r\n}\r\nb{\r\nb:0;\r\n}\r\nc.c{\r\nc:0\r\n}").Count);
             Equal(4, new CssFile(".a{\na:0;\n}\nb{\nb:0;\n}\nc.c,c{\nc:0\n}\n#d{\nd:0\n}").Count);
             Equal(7, new CssFile(".a{\na:0;\n}\nb{\nb:0;\n}\nc.c{\nc:0\n}\n#d,#d.d{\nd:0\n}\n#d{\na:0\n}\n#d{\nb:0\n}\n#d{\nc:0\n}").Count);
+        }
+
+        [Fact]
+        public void AfterCreatingCssFile_CanIndex_IndividualRules()
+        {
+            Equal("b", new CssFile("a{a:0}\n b{b:0}")[1].CssProperties[0].Name);
         }
 
         [Fact]
