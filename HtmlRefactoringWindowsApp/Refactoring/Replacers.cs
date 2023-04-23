@@ -1,25 +1,31 @@
 ﻿
+using HtmlRefactoringWindowsApp.Css;
+
 namespace HtmlRefactoringWindowsApp.Refactoring
 {
     public class Replacers
     {
-        private const char csvSeparator = '█';
+        private const char csvSeparator = '█';      //  in replacers file, separator between individual replacers
 
-        private int count = 0;
+        private List<Replacer> replacers;
 
-        public int Count { get { return count; } }
+        public int Count { get { return replacers.Count; } }
+
+        public Replacer this[int index]
+        {
+            get { return replacers[index]; }
+        }
 
         public Replacers(string replacersText)
         {
-            if (!string.IsNullOrWhiteSpace(replacersText))
-            {
-                var replacers = replacersText.Split(csvSeparator);
+            replacers = new List<Replacer>();
 
-                foreach (var replacerText in replacers)
-                { 
-                var replacer = new Replacer(replacerText);
-                count++;
-                }
+            var replacersArray = replacersText.Split(csvSeparator);
+
+            foreach (var replacerText in replacersArray)
+            { 
+                if (!string.IsNullOrWhiteSpace(replacerText))
+                    replacers.Add(new Replacer(replacerText));
             }
         }
     }

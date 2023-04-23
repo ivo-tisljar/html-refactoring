@@ -7,7 +7,7 @@ namespace HtmlRefactoringWindowsApp.Refactoring
 {
     public class Replacer
     {
-        private const char csvSeparator = '║';
+        private const char csvSeparator = '║';      //  in replacer, separator between individual fields/properties
 
         private const int fieldsCount = 4;
 

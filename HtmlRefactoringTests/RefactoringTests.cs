@@ -134,6 +134,12 @@ namespace HtmlRefactoringTests
             Equal(2, new Replacers("Text║X║║█Regex║Y║║").Count);
         }
 
+        [Fact]
+        public void AfterCreatingReplacers_CanIndex_IndividualReplacers()
+        {
+            Equal("Regex", new Replacers("Text║X║║█Regex║Y║║")[1].ReplacerMethod.ToString());
+        }
+
         #endregion
 
         #region ScriptTests
