@@ -3,6 +3,8 @@ namespace HtmlRefactoringWindowsApp.Refactoring
 {
     public class Replacers
     {
+        private const char csvSeparator = '█';
+
         private int count = 0;
 
         public int Count { get { return count; } }
@@ -11,8 +13,13 @@ namespace HtmlRefactoringWindowsApp.Refactoring
         {
             if (!string.IsNullOrWhiteSpace(replacersText))
             {
-                var replacer = new Replacer(replacersText);
-                count = 1;
+                var replacers = replacersText.Split(csvSeparator);
+
+                foreach (var replacerText in replacers)
+                { 
+                var replacer = new Replacer(replacerText);
+                count++;
+                }
             }
         }
     }

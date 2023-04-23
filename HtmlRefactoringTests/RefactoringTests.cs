@@ -119,12 +119,19 @@ namespace HtmlRefactoringTests
         public void WhenCreatingReplacers_IfAnyOfIndividualReplacersIsInvalid_Throws()
         {
             ThrowsAny<InvalidReplacerException>(() => new Replacers("a║b║c"));
+            ThrowsAny<InvalidReplacerException>(() => new Replacers("RegEx║a║b║c"));
         }
 
         [Fact]
         public void AfterCreatingReplacers_WithOneReplacer_CountOfReplacersIsOne()
         {
             Equal(1, new Replacers("Text║X║║").Count);
+        }
+
+        [Fact]
+        public void AfterCreatingReplacers_WithTwoReplacers_CountOfReplacersIsTwo()
+        {
+            Equal(2, new Replacers("Text║X║║█Regex║Y║║").Count);
         }
 
         #endregion
