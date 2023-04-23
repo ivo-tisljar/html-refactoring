@@ -5,7 +5,7 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssFile
     {
-        private const char rightBrace = '}';
+        private const char rightBrace = '}';    //  in CSS file, end of CSS rule
 
         public List<CssRule> rules;
 

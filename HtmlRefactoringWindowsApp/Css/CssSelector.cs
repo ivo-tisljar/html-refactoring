@@ -7,9 +7,9 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssSelector
     {
-        private const char idPrefix = '#';
+        private const char idPrefix = '#';      //  in CSS selector, prefix for ID
 
-        private const char classPrefix = '.';
+        private const char classPrefix = '.';      //  in CSS selector, prefix for class
 
         public string Selector { get; }
 

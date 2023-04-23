@@ -7,7 +7,7 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssProperty
     {
-        private const char colon = ':';
+        private const char colon = ':';     //  in CSS property, separator of name and value parts
 
         public string Name { get; }
 

@@ -3,7 +3,7 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssSelectors
     {
-        private const char csvSeparator = ',';
+        private const char csvSeparator = ',';      // in CSS rule, separator of multiple selectors
 
         public List<CssSelector> selectors;
 

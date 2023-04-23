@@ -3,9 +3,9 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssRule
     {
-        private const char leftBrace = '{';
+        private const char leftBrace = '{';     //  in CSS rule, start of properties section
 
-        private const char rightBrace = '}';
+        private const char rightBrace = '}';     //  in CSS rule, end of properties section
 
         public CssSelectors CssSelectors { get; }
 

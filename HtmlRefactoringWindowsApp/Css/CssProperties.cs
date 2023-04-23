@@ -3,7 +3,7 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssProperties
     {
-        private const char csvSeparator = ';';
+        private const char csvSeparator = ';';      //  in CSS rule, separator of multiple CSS properties
 
         private List<CssProperty> properties;
 
