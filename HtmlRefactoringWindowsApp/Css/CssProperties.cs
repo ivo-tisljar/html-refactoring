@@ -3,6 +3,8 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssProperties
     {
+        private const char csvSeparator = ';';
+
         private List<CssProperty> properties;
 
         public int Count 
@@ -25,7 +27,7 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private void ReadProperties(string propertiesText)
             {
-                var splitProperties = propertiesText.Split(';');
+                var splitProperties = propertiesText.Split(csvSeparator);
 
                 foreach (var property in splitProperties)
                 {

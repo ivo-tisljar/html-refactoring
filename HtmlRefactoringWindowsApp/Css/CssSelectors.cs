@@ -3,6 +3,8 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssSelectors
     {
+        private const char csvSeparator = ',';
+
         public List<CssSelector> selectors;
 
         public int Count 
@@ -23,7 +25,7 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private void ExtractSelectors(string selectorsText)
             {
-                var splitSelectors = selectorsText.Split(',');
+                var splitSelectors = selectorsText.Split(csvSeparator);
             
                 foreach (var selector in splitSelectors) 
                 { 

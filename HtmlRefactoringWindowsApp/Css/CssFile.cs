@@ -5,6 +5,8 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssFile
     {
+        private const char rightBrace = '}';
+
         public List<CssRule> rules;
 
         public int Count
@@ -25,7 +27,7 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private void ExtractRules(string file)
             {
-                var rulesArray= SplitStringWithSeparatorIncluded(file, '}');
+                var rulesArray= SplitStringWithSeparatorIncluded(file, rightBrace);
 
                 foreach (var rule in rulesArray)
                 {

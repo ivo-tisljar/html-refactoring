@@ -3,14 +3,18 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssRule
     {
+        private const char leftBrace = '{';
+
+        private const char rightBrace = '}';
+
         public CssSelectors CssSelectors { get; }
 
         public CssProperties CssProperties { get; }
 
         public CssRule(string rule)
         {
-            var leftBraceIndex = rule.IndexOf('{');
-            var rightBraceIndex = rule.IndexOf('}');
+            var leftBraceIndex = rule.IndexOf(leftBrace);
+            var rightBraceIndex = rule.IndexOf(rightBrace);
 
             ValidateBraces(rule, leftBraceIndex, rightBraceIndex);
             ValidateSelectorsIsNotEmpty(rule, leftBraceIndex);
@@ -22,9 +26,9 @@ namespace HtmlRefactoringWindowsApp.Css
             private static void ValidateBraces(string rule, int leftBraceIndex, int rightBraceIndex)
             {
                 if (leftBraceIndex == -1 || rightBraceIndex == -1 || leftBraceIndex > rightBraceIndex ||
-                    rule[(leftBraceIndex + 1)..rightBraceIndex].IndexOf('{') != -1)
+                    rule[(leftBraceIndex + 1)..rightBraceIndex].IndexOf(leftBrace) != -1)
                 {
-                    throw new InvalidBracesException($"Error! Rule '{rule}' does not contain left & right braces '{{' & '}}' in the proper order.");
+                    throw new InvalidBracesException($"Error! Rule '{rule}' does not contain left & right braces '{leftBrace}' & '{rightBrace}' in the proper order.");
                 }
             }
 

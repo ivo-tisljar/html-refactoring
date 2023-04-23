@@ -7,6 +7,10 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssSelector
     {
+        private const char idPrefix = '#';
+
+        private const char classPrefix = '.';
+
         public string Selector { get; }
 
         public string? Element { get; }
@@ -27,7 +31,7 @@ namespace HtmlRefactoringWindowsApp.Css
             {
                 var reg = new Regex("^[\\.#a-zA-Z_-][0-9\\.a-zA-Z_-]*$");
 
-                if (!reg.IsMatch(selector) || selector == "." || selector == "#")
+                if (!reg.IsMatch(selector) || selector == classPrefix.ToString() || selector == idPrefix.ToString())
                     throw new InvalidSelectorException($"Error! Selector '{selector}' is invalid.");
 
                 return selector;
@@ -35,7 +39,7 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private static string? InitElement(string selector)
             {
-                if (selector[..1] != "." && selector[..1] != "#")
+                if (selector[0] != classPrefix && selector[0] != idPrefix)
                     return ExtractElement(selector);
                 else
                     return null;
@@ -43,7 +47,7 @@ namespace HtmlRefactoringWindowsApp.Css
 
                 private static string? ExtractElement(string selector)
                 {
-                    var indexDot = selector.IndexOf('.');
+                    var indexDot = selector.IndexOf(classPrefix);
 
                     if (indexDot == -1)
                         return selector;
@@ -53,7 +57,7 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private static string? InitID(string selector)
             {
-                if (selector[..1] == "#")
+                if (selector[0] == idPrefix)
                     return (selector[1..]);
                 else
                     return null;
@@ -61,7 +65,7 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private static string? InitClass(string selector)
             {
-                var indexDot = selector.IndexOf('.');
+                var indexDot = selector.IndexOf(classPrefix);
 
                 if (indexDot == -1)
                     return null;

@@ -7,6 +7,8 @@ namespace HtmlRefactoringWindowsApp.Css
 {
     public class CssProperty
     {
+        private const char colon = ':';
+
         public string Name { get; }
 
         public string Value { get; }
@@ -20,10 +22,10 @@ namespace HtmlRefactoringWindowsApp.Css
 
             private static int FetchColonIndex(string property)
             {
-                if (!property.Contains(':'))
-                    throw new MissingColonException($"Error! Property '{property}' does not contains colon ':'.");
+                if (!property.Contains(colon))
+                    throw new MissingColonException($"Error! Property '{property}' does not contains colon '{colon}'.");
 
-                return property.IndexOf(':');
+                return property.IndexOf(colon);
             }
 
         //  Constructor CssProperty with RegEx is 5 times slower (200.000 properties/sec) than version with if & for-loop validation function, IT IS ACCEPTABLE!
