@@ -140,6 +140,29 @@ namespace HtmlRefactoringTests
             Equal("Regex", new Replacers("Text║X║║█Regex║Y║║")[1].ReplacerMethod.ToString());
         }
 
+        [Fact]
+        public void AfterCreatingReplacers_CanRead_AllIndividualFields()
+        {
+            var replacers = new Replacers("Text║X║║█Regex║Y║║Z█Text║Bravo║Charlie║");
+
+            Equal(3, replacers.Count);
+
+            Equal(ReplacerMethod.Text, replacers[0].ReplacerMethod);
+            Equal("X", replacers[0].OldValue);
+            Equal("", replacers[0].NewValue);
+            Equal("", replacers[0].Info);
+
+            Equal(ReplacerMethod.Regex, replacers[1].ReplacerMethod);
+            Equal("Y", replacers[1].OldValue);
+            Equal("", replacers[1].NewValue);
+            Equal("Z", replacers[1].Info);
+
+            Equal(ReplacerMethod.Text, replacers[2].ReplacerMethod);
+            Equal("Bravo", replacers[2].OldValue);
+            Equal("Charlie", replacers[2].NewValue);
+            Equal("", replacers[2].Info);
+        }
+
         #endregion
 
         #region ScriptTests
